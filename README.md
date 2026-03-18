@@ -29,7 +29,7 @@ This pipeline is divided into two continuous halves:
 
 # Workflow, Part 1: Upstream Digital Pipeline ("Data to Blueprint")
 
-### Phase 1: Reading the Blueprint (Digitizing the Cells)
+## Phase 1: Reading the Blueprint (Digitizing the Cells)
 **Goal:** Convert physical biological samples into unorganized genetic code to establish a baseline and identify tumor anomalies.
 * **Hardware:** Next-Generation Sequencer (e.g., [Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) or [Element AVITI](https://www.elementbiosciences.com/products/aviti), ~$300k)
 * **Alt. (Outsourced):** Commercial labs (e.g., [Novogene](https://www.novogene.com/), [Azenta](https://www.azenta.com/), [Eurofins](https://www.eurofinsgenomics.com/)) or academic core facilities.
@@ -63,7 +63,7 @@ If you don't want to buy and maintain a ~$300,000 sequencer, you can send physic
 | **Complexity** | High (Requires specialized tech) | Low (Ship and wait) |
 | **Typical Labs** | N/A | [Novogene](https://www.novogene.com/), [Azenta](https://www.azenta.com/), [Genewiz](https://www.genewiz.com/), [Eurofins](https://www.eurofinsgenomics.com/) |
 
-### Phase 2: Spotting the Typos (Finding the Mutations)
+## Phase 2: Spotting the Typos (Finding the Mutations)
 **Goal:** Compare the healthy code against the tumor code to isolate specific cancer-causing errors.
 * **Software:** [GATK Mutect2](https://github.com/broadinstitute/gatk)
 * **Inputs:** 3 patient `.fastq` files (`baseline-normal`, `tumor-exome`, `tumor-rna`) + Human Reference Genome (`.fasta`).
@@ -80,7 +80,7 @@ If you don't want to buy and maintain a ~$300,000 sequencer, you can send physic
 chr7    14045313  Mut_01   A    T    .     PASS    SOMATIC;DP=152;AF=0.24
 ```
 
-### Phase 3: Picking the Targets (AI Neoantigen Prediction)
+## Phase 3: Picking the Targets (AI Neoantigen Prediction)
 **Goal:** Use AI to predict which mutations the immune system will recognize as a threat.
 * **Software:** [pVACseq](https://github.com/griffithlab/pVACtools) running [MHCflurry](https://github.com/openvax/mhcflurry) neural networks.
 * **Inputs:** `filtered-variants.vcf` + Patient HLA profile (`.txt`).
@@ -94,7 +94,7 @@ HLA-A*02:01 LLDVPTAAV         45.2                58.4                  0.92
 HLA-B*07:02 APRGVFLLS         112.4               145.2                 0.85
 ```
 
-### Phase 4: Writing the New Code (Sequence Assembly)
+## Phase 4: Writing the New Code (Sequence Assembly)
 **Goal:** Compile the top predicted targets into a single, printable digital blueprint.
 * **Software:** [pVACvector](https://github.com/griffithlab/pVACtools) + [LinearDesign](https://github.com/LinearDesignSoftware/LinearDesign)
 * **Inputs:** Top targets from `ranked-predictions.tsv`.
@@ -113,7 +113,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 # Workflow, Part 2: Downstream Physical Pipeline ("Blueprint to Vial")
 
-### Phase 5: Printing the Master Copy (DNA Synthesis)
+## Phase 5: Printing the Master Copy (DNA Synthesis)
 **Goal:** Convert the digital blueprint back into a physical, readable linear DNA template.
 * **Hardware:** Benchtop DNA Synthesizer (e.g., [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/), ~$100,000).
 * **Alt. (Outsourced):** Custom gene synthesis (e.g., [Twist Bioscience](https://www.twistbioscience.com/), [IDT](https://www.idtdna.com/), [GenScript](https://www.genscript.com/), [Azenta](https://www.azenta.com/)).
@@ -136,7 +136,7 @@ Ordering a synthetic gene is the industry standard for most research labs. Howev
 | **Complexity** | Moderate (Automated Benchtop) | Low (Upload sequence and wait) |
 | **Typical Providers** | N/A | [Twist Bioscience](https://www.twistbioscience.com/), [IDT](https://www.idtdna.com/), [GenScript](https://www.genscript.com/), [Azenta](https://www.azenta.com/) |
 
-### Phase 6: Mass Production (Automated mRNA Synthesis)
+## Phase 6: Mass Production (Automated mRNA Synthesis)
 **Goal:** Execute the code by transcribing the DNA into functional, immune-cloaked mRNA.
 * **Hardware:** [NTxscribe System](https://www.ntxbio.com/ntxscribe/) / [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/) (~$250k / ~$100k).
 * **Alt. (Outsourced):** Custom mRNA synthesis (e.g., [TriLink BioTechnologies](https://www.trilinkbiotech.com/), [GenScript](https://www.genscript.com/), [BiCell Scientific](https://bicellscientific.com/)).
@@ -162,7 +162,7 @@ In-house synthesis is ideal for rapid prototyping and total control over the cap
 | **Complexity** | High (Requires IVT expertise) | Low (Upload sequence and wait) |
 | **Typical Providers** | N/A | [TriLink](https://www.trilinkbiotech.com/), [GenScript](https://www.genscript.com/), [BiCell Scientific](https://bicellscientific.com/) |
 
-### Phase 7: Packaging for Delivery (LNP Formulation)
+## Phase 7: Packaging for Delivery (LNP Formulation)
 **Goal:** Wrap the fragile mRNA in a protective lipid nanoparticle to allow human cell entry.
 * **Hardware:** [Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / [NanoAssemblr Ignite / Spark](https://www.cytivalifesciences.com/en/us/solutions/genomic-medicine/brands/nanoassemblr/ignite) (~$150k / ~$150k).
 * **Alt. (Outsourced):** LNP formulation CROs (e.g., [VectorBuilder](https://www.vectorbuilder.com/), [Creative Biogene](https://www.creative-biogene.com/), [Lonza](https://www.lonza.com/), [Vernal Biosciences](https://www.vernal.bio/)).
@@ -185,7 +185,7 @@ Packaging mRNA into stable LNPs is one of the most technically challenging steps
 | **Complexity** | High (Microfluidics optimization) | Low (Send mRNA and wait) |
 | **Typical Providers** | N/A | [VectorBuilder](https://www.vectorbuilder.com/), [Creative Biogene](https://www.creative-biogene.com/), [Lonza](https://www.lonza.com/), [Vernal](https://www.vernal.bio/) |
 
-### Phase 8: Quality Check & Bottling (QC & Finalization)
+## Phase 8: Quality Check & Bottling (QC & Finalization)
 **Goal:** Validate structural integrity, size, and concentration before finalizing for injection.
 * **Hardware:** [Unchained Labs Stunner](https://www.unchainedlabs.com/stunner/) (~$80,000) & TFF System.
 * **Alt. (Outsourced):** Analytical & Purification services (e.g., [CordenPharma](https://www.cordenpharma.com/), [PreciGenome](https://www.precigenome.com/), [uBriGene](https://www.ubrigene.com/), [VectorBuilder](https://www.vectorbuilder.com/), [RIBOPRO](https://ribopro.eu/)).
