@@ -52,17 +52,6 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCC
 !''*((((***+))%%%++)(%%%%).1***-+*''))**
 ```
 
-#### In-House vs. Outsourced Sequencing
-If you don't want to buy and maintain a ~$300,000 sequencer, you can send physical samples (frozen tissue/blood) to a Contract Research Organization (CRO).
-
-| Category | In-House (NextSeq 2000) | Outsourced (Service Lab) |
-| --- | --- | --- |
-| **Upfront Cost** | ~$300,000 (Hardware) | $0 |
-| **Run Cost** | ~$1,000 / pt | ~$2,000 - $3,000 / pt |
-| **Turnaround** | 24 - 48 hours | 2 - 4 weeks |
-| **Complexity** | High (Requires specialized tech) | Low (Ship and wait) |
-| **Typical Labs** | N/A | [Novogene](https://www.novogene.com/), [Azenta](https://www.azenta.com/), [Genewiz](https://www.genewiz.com/), [Eurofins](https://www.eurofinsgenomics.com/) |
-
 ## Phase 2: Spotting the Typos (Finding the Mutations)
 **Goal:** Compare the healthy code against the tumor code to isolate specific cancer-causing errors.
 * **Software:** [GATK Mutect2](https://github.com/broadinstitute/gatk)
@@ -125,16 +114,6 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   * **Physical Form:** Clear, colorless liquid; stable at -20°C.
 * **Key Reagents:** Oligonucleotides, BspQI restriction enzymes, AMPure XP purification beads.
 
-#### DNA Synthesis: In-House vs. Outsourced
-Ordering a synthetic gene is the industry standard for most research labs. However, in-house synthesis allows for faster iterations (hours vs. days).
-
-| Category | In-House (BioXp) | Outsourced (Gene Synthesis) |
-| --- | --- | --- |
-| **Upfront Cost** | ~$100,000 (Hardware) | $0 |
-| **Run Cost** | ~$600 / rxn | ~$200 - $900 / gene |
-| **Turnaround** | 12 - 24 hours | 5 - 10 business days |
-| **Complexity** | Moderate (Automated Benchtop) | Low (Upload sequence and wait) |
-| **Typical Providers** | N/A | [Twist Bioscience](https://www.twistbioscience.com/), [IDT](https://www.idtdna.com/), [GenScript](https://www.genscript.com/), [Azenta](https://www.azenta.com/) |
 
 ## Phase 6: Mass Production (Automated mRNA Synthesis)
 **Goal:** Execute the code by transcribing the DNA into functional, immune-cloaked mRNA.
@@ -151,17 +130,6 @@ Ordering a synthetic gene is the industry standard for most research labs. Howev
   * N1-methylpseudouridine (cloaking)
   * CleanCap® AG (human cell recognition)
 
-#### mRNA Synthesis: In-House vs. Outsourced
-In-house synthesis is ideal for rapid prototyping and total control over the capping and tailing process. However, for a "garage" setup, ordering the final mRNA construct is often the most practical path.
-
-| Category | In-House (NTxscribe) | Outsourced (Custom mRNA) |
-| --- | --- | --- |
-| **Upfront Cost** | ~$250,000 (Hardware) | $0 |
-| **Run Cost** | ~$2,000 / rxn | ~$1,000 - $3,000 / mg |
-| **Turnaround** | < 24 hours | 1 - 3 weeks |
-| **Complexity** | High (Requires IVT expertise) | Low (Upload sequence and wait) |
-| **Typical Providers** | N/A | [TriLink](https://www.trilinkbiotech.com/), [GenScript](https://www.genscript.com/), [BiCell Scientific](https://bicellscientific.com/) |
-
 ## Phase 7: Packaging for Delivery (LNP Formulation)
 **Goal:** Wrap the fragile mRNA in a protective lipid nanoparticle to allow human cell entry.
 * **Hardware:** [Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / [NanoAssemblr Ignite / Spark](https://www.cytivalifesciences.com/en/us/solutions/genomic-medicine/brands/nanoassemblr/ignite) (~$150k / ~$150k).
@@ -174,16 +142,6 @@ In-house synthesis is ideal for rapid prototyping and total control over the cap
   * **Physical Form:** Opalescent, slightly milky liquid (contains ~25% ethanol before filtration).
 * **Key Reagents:** Ionizable Lipid (e.g., ALC-0315), PEG-Lipid, DSPC (Helper Lipid), Cholesterol, Ethanol, Acidic Buffer.
 
-#### LNP Formulation: In-House vs. Outsourced
-Packaging mRNA into stable LNPs is one of the most technically challenging steps. Outsourcing to a CRO guarantees professional-grade encapsulation and characterization.
-
-| Category | In-House (Sunshine/Ignite) | Outsourced (LNP CRO) |
-| --- | --- | --- |
-| **Upfront Cost** | ~$150,000 (Hardware) | $0 |
-| **Run Cost** | ~$500 / rxn | ~$2,000 - $5,000 / batch |
-| **Turnaround** | < 24 hours | 2 - 4 weeks |
-| **Complexity** | High (Microfluidics optimization) | Low (Send mRNA and wait) |
-| **Typical Providers** | N/A | [VectorBuilder](https://www.vectorbuilder.com/), [Creative Biogene](https://www.creative-biogene.com/), [Lonza](https://www.lonza.com/), [Vernal](https://www.vernal.bio/) |
 
 ## Phase 8: Quality Check & Bottling (QC & Finalization)
 **Goal:** Validate structural integrity, size, and concentration before finalizing for injection.
@@ -198,17 +156,6 @@ Packaging mRNA into stable LNPs is one of the most technically challenging steps
   * **Concentration:** ~100 µg/mL of encapsulated mRNA.
   * **Physical Form:** Clear to slightly opalescent liquid; stored at -80°C in a cryoprotectant buffer.
 * **Key Reagents:** Tris-Sucrose Buffer (cryoprotectant), RiboGreen Assay (encapsulation verification).
-
-#### LNP Quality Control: In-House vs. Outsourced
-Final validation is critical for safety and efficacy. While benchtop tools like the Stunner provide instant feedback, CROs offer comprehensive analytical reports suitable for regulatory filing.
-
-| Category | In-House (Stunner + TFF) | Outsourced (Analytical CRO) |
-| --- | --- | --- |
-| **Upfront Cost** | ~$100,000 (Hardware) | $0 |
-| **Run Cost** | ~$100 / rxn | ~$1,000 - $3,000 / batch |
-| **Turnaround** | < 12 hours | 1 - 3 weeks |
-| **Complexity** | Moderate (Requires precise assay prep) | Low (Send sample and wait) |
-| **Typical Providers** | N/A | [CordenPharma](https://www.cordenpharma.com/), [PreciGenome](https://www.precigenome.com/), [uBriGene](https://www.ubrigene.com/), [RIBOPRO](https://ribopro.eu/) |
 
 ---
 
