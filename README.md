@@ -1,6 +1,6 @@
 # mRNA Cancer Vaccine in Your Garage: An End-to-End Workflow
 
-An architecture overview and operational pipeline for creating a personalized mRNA cancer vaccine. This repository maps the continuous "Code-to-Clinic" workflow, bridging raw biological patient data to a physically deliverable lipid nanoparticle (LNP) vaccine, including all necessary software, hardware, and reagents, i.e. assuming you are doing EVERYTHING in your own private lab/garage.
+A complete reference architecture for building a personalized mRNA cancer vaccine from scratch—sequencer to syringe—entirely in your own lab. This repository documents every phase of the pipeline, from raw patient biopsies to a final injectable lipid nanoparticle (LNP) vaccine, including the specific software, benchtop hardware, and reagents required at each step.
 
 # Table of Contents
 - [System Architecture](#system-architecture)

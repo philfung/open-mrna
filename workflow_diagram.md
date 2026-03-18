@@ -2,8 +2,11 @@
 
 ```mermaid
 flowchart TD
-    subgraph "<strong><div style='font-size: 1.5em; min-width: 800px;'>Part 1: Upstream Digital Pipeline (Data to Blueprint)</div></strong>"
+    subgraph P1[" "]
+    direction TB
+    Title1["<strong style='font-size: 1.4em; display:inline-block; min-width:900px; text-align:center;'>📘 Part 1: Upstream Digital Pipeline (Data → Blueprint)</strong>"]
     %% Phase 1
+    Title1 ~~~ NodeIn1
     NodeIn1[/"<strong style='font-size: 1.1em;'>Tumor biopsy & Normal blood</strong><br><i>Normal DNA: ~30X WES</i><br><i>Tumor DNA: ~100X+ WES</i><br><i>Tumor RNA: RNA-Seq</i>"/] --> Phase1["<strong style='font-size: 1.2em; color: red;'>Phase 1: Reading the Blueprint (Digitizing the Cells)</strong><br><span style='color: black;'>The machine reads extracted DNA/RNA, turning biological chemistry into digital text.</span><br><span style='color: black;'><b>Hardware:</b> Next-Generation Sequencer (e.g., Illumina NextSeq 2000 or Element AVITI, ~$300k)<br><b>Cost:</b> ~$1,000 / pt</span>"]
     Phase1 --> NodeIn2[/"<strong style='font-size: 1.1em;'>Billions of patient genetic reads (.fastq)</strong><br><i>@Machine_Read_ID_001<br>GATTTGG...</i>"/]
     
@@ -23,8 +26,11 @@ flowchart TD
     Phase4 --> NodeIn5[/"<strong style='font-size: 1.1em;'>Master digital vaccine sequence (.fasta)</strong><br><i>>Patient_001_Construct...<br>AUGGGCUACU...</i>"/]
     end
     
-    subgraph "<strong><div style='font-size: 1.5em; min-width: 800px;'>Part 2: Downstream Physical Pipeline (Blueprint to Vial)</div></strong>"
+    subgraph P2[" "]
+    direction TB
+    Title2["<strong style='font-size: 1.4em; display:inline-block; min-width:900px; text-align:center;'>🧪 Part 2: Downstream Physical Pipeline (Blueprint → Vial)</strong>"]
     %% Phase 5
+    Title2 ~~~ Phase5
     NodeIn5 --> Phase5["<strong style='font-size: 1.2em; color: red;'>Phase 5: Printing the Master Copy (DNA Synthesis)</strong><br><span style='color: black;'>Automated Gibson Assembly stitches synthetic oligonucleotides into a complete DNA plasmid, which is then linearized with restriction enzymes.</span><br><span style='color: black;'><b>Hardware:</b> Benchtop DNA Synthesizer (e.g., Telesis Bio BioXp, ~$100k)<br><b>Cost:</b> ~$600 / rxn</span>"]
     Phase5 --> NodeIn6[/"<strong style='font-size: 1.1em;'>Purified linear DNA template</strong>"/]
     
@@ -44,5 +50,11 @@ flowchart TD
     end
 
     classDef process fill:#f9f9f9,stroke:#333,stroke-width:2px,text-align:left;
+    classDef titleNode fill:#e8e8e8,stroke:#555,stroke-width:2px,color:#222,font-size:16px;
     class Phase1,Phase2,Phase3,Phase4,Phase5,Phase6,Phase7,Phase8 process;
+    class Title1,Title2 titleNode;
+
+    style P1 fill:#f0f8ff,stroke:#336,stroke-width:3px
+    style P2 fill:#fff8f0,stroke:#633,stroke-width:3px
+    linkStyle default stroke:#000,stroke-width:4px
 ```
