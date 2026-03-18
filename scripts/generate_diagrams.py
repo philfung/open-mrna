@@ -16,7 +16,7 @@ def extract_mermaid(file_path):
 
 def generate_part_mermaid(full_mermaid, part_num):
     # Header - only one of these should exist in the final file
-    header = "%%{init: {'themeVariables': { 'fontSize': '16px', 'fontFamily': 'Inter, system-ui, sans-serif' }}}%%\nflowchart TD\n"
+    header = "%%{init: {'themeVariables': { 'fontSize': '16px', 'fontFamily': '-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Roboto, Helvetica Neue, sans-serif' }}}%%\nflowchart TD\n"
     
     # Extract global styles and classes
     class_defs = re.findall(r'^[ \t]*(?:classDef|class|style|linkStyle)[ \t].*$', full_mermaid, re.MULTILINE)
@@ -51,7 +51,8 @@ def export_diagram(mermaid_text, output_path):
     
     try:
         print(f"Exporting to {output_path}...")
-        subprocess.run(["mmdc", "-i", temp_mmd, "-o", output_path, "-b", "white", "-w", "2000"], check=True)
+        css_file = os.path.join(os.path.dirname(__file__), "mermaid.css")
+        subprocess.run(["mmdc", "-i", temp_mmd, "-o", output_path, "-b", "white", "-w", "2000", "-C", css_file], check=True)
         print(f"Successfully exported {output_path}!")
     except FileNotFoundError:
         print("\nError: 'mmdc' (Mermaid CLI) not found.")

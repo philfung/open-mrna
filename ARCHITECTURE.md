@@ -3,7 +3,7 @@
 This document contains the visual representation of the end-to-end mRNA cancer vaccine workflow.
 
 ```mermaid
-%%{init: {'themeVariables': { 'fontSize': '16px', 'fontFamily': 'Inter, system-ui, sans-serif' }}}%%
+%%{init: {'themeVariables': { 'fontSize': '16px', 'fontFamily': '-apple-system, BlinkMacSystemFont, Segoe UI, Inter, Roboto, Helvetica Neue, sans-serif' }}}%%
 flowchart TD
     %% PART 1 %%
     Title1["<div style='font-size: 24px; font-weight: bold; margin-bottom: 20px; min-width: 1100px; text-align: center;'>📘 Part 1: Upstream Digital Pipeline (Data → Blueprint)</div>"]
@@ -67,10 +67,14 @@ flowchart TD
     Phase8 --> NodeEnd
     NodeEnd[/"<div style='font-size: 16px; font-weight: bold;'>Final Vaccine Vial</div>"/]
 
-    classDef process fill:#ffffff,stroke:#333,stroke-width:2px,text-align:left;
-    classDef titleNode fill:#ffffff,stroke:#555,stroke-width:2px,color:#222;
-    class Phase1,Phase2,Phase3,Phase4,Phase5,Phase6,Phase7,Phase8 process;
-    class Title1,Title2 titleNode;
+    classDef processBlue fill:#EFF6FF,stroke:#3B82F6,stroke-width:2px,text-align:left,color:#1E3A5F;
+    classDef processAmber fill:#FFF7ED,stroke:#F59E0B,stroke-width:2px,text-align:left,color:#78350F;
+    classDef titleBlue fill:#DBEAFE,stroke:#2563EB,stroke-width:2px,color:#1E40AF;
+    classDef titleAmber fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E;
+    class Phase1,Phase2,Phase3,Phase4 processBlue;
+    class Phase5,Phase6,Phase7,Phase8 processAmber;
+    class Title1 titleBlue;
+    class Title2 titleAmber;
 
-    linkStyle default stroke:#000,stroke-width:3px
+    linkStyle default stroke:#64748B,stroke-width:3px
 ```
