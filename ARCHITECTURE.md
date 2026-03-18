@@ -13,7 +13,7 @@ flowchart TD
     NodeIn1 --> Phase1
     Phase1["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 6px;'>Phase 1 · Reading the Blueprint</div><div style='font-size: 14px; color: #374151;'>The machine reads extracted DNA/RNA, turning biological chemistry into digital text.<br><b>Hardware:</b> Next-Generation Sequencer (e.g., Illumina NextSeq 2000 or Element AVITI, ~$300k)<br><b>Cost:</b> ~$1,000 / pt</div>"]
     Phase1 --> NodeIn2
-    NodeIn2(["<div style='font-size: 15px; font-weight: 600;'>📄 Billions of patient genetic reads (.fastq)</div><div style='font-size: 13px; opacity: 0.85;'>@Machine_Read_ID_001<br>GATTTGG...</div>"])
+    NodeIn2(["<div style='font-size: 15px; font-weight: 600;'>📄 4 Patient genetic & HLA files</div><div style='font-size: 13px; opacity: 0.85;'>baseline-normal.fastq<br>tumor-exome.fastq<br>tumor-rna.fastq<br>patient-hla.txt</div>"])
     
     %% Phase 2
     NodeRef(["<div style='font-size: 15px; font-weight: 600;'>🧬 Human Reference Genome (.fasta)</div><div style='font-size: 13px; opacity: 0.85;'>(e.g. Human Genome Project)<br>>chr1 NNNNNNNNNN...</div>"])
@@ -21,7 +21,7 @@ flowchart TD
     NodeRef -.-> Phase2
     Phase2["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 6px;'>Phase 2 · Spotting the Typos</div><div style='font-size: 14px; color: #374151;'>Aligns reads and mathematically subtracts healthy DNA from tumor DNA to isolate somatic mutations.<br><b>Software:</b> GATK Mutect2</div>"]
     Phase2 --> NodeIn3
-    NodeIn3(["<div style='font-size: 15px; font-weight: 600;'>📄 Condensed list of mutations (.vcf)</div><div style='font-size: 13px; opacity: 0.85;'>#CHROM POS ID REF ALT...<br>chr7 14045313...</div>"])
+    NodeIn3(["<div style='font-size: 15px; font-weight: 600;'>📄 2 Condensed mutation lists (.vcf)</div><div style='font-size: 13px; opacity: 0.85;'>somatic-variants.vcf<br>filtered-variants.vcf</div>"])
     
     %% Phase 3
     NodeHLA(["<div style='font-size: 15px; font-weight: 600;'>🔬 Patient HLA profile (.txt)</div><div style='font-size: 13px; opacity: 0.85;'>Immune system receptor map<br>HLA-A*02:01, HLA-B*07:02...</div>"])
@@ -30,17 +30,19 @@ flowchart TD
     NodeIn3 --> Phase3
     Phase3["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 6px;'>Phase 3 · Picking the Targets</div><div style='font-size: 14px; color: #374151;'>Neural networks predict which mutations will most effectively trigger an immune response based on the patient's HLA receptors.<br><b>Software:</b> pVACseq running MHCflurry neural networks</div>"]
     Phase3 --> NodeIn4
-    NodeIn4(["<div style='font-size: 15px; font-weight: 600;'>📊 Ranked leaderboard of targets (.tsv)</div><div style='font-size: 13px; opacity: 0.85;'>Target_Rank Peptide_Sequence...<br>1 YLLPAIVHI...</div>"])
+    NodeIn4(["<div style='font-size: 15px; font-weight: 600;'>📊 Ranked leaderboard of targets (.tsv)</div><div style='font-size: 13px; opacity: 0.85;'>ranked-predictions.tsv<br>HLA_Allele Peptide_Sequence Best_MT_IC50...</div>"])
     
     %% Phase 4
     NodeIn4 --> Phase4
     Phase4["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 16px;'>Phase 4 · Writing the New Code</div><div style='font-size: 14px; color: #374151;'>Strings targets together, adds structural instructions (5' Cap, Poly-A tail), and optimizes codons for folding stability.<br><b>Software:</b> pVACvector + LinearDesign</div>"]
+    Phase4 --> NodeIn5
+    NodeIn5(["<div style='font-size: 15px; font-weight: 600;'>📜 Optimized mRNA blueprint (.fasta)</div><div style='font-size: 13px; opacity: 0.85;'>vaccine-construct.fasta</div>"])
     
     %% PART 2 %%
     Title2["<div style='font-size: 24px; font-weight: 700; min-width: 1100px; text-align: center; letter-spacing: -0.5px;'>🧪 Part 2: Downstream Physical Pipeline · Blueprint → Vial</div>"]
     %% Phase 5
     Title2 ~~~ Phase5
-    Phase4 --> Phase5
+    NodeIn5 --> Phase5
     Phase5["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 6px;'>Phase 5 · Printing the Master Copy</div><div style='font-size: 14px; color: #374151;'>Automated Gibson Assembly stitches synthetic oligonucleotides into a complete DNA plasmid, which is then linearized with restriction enzymes.<br><b>Hardware:</b> Benchtop DNA Synthesizer (e.g., Telesis Bio BioXp, ~$100k)<br><b>Cost:</b> ~$600 / rxn</div>"]
     Phase5 --> NodeIn6
     NodeIn6(["<div style='font-size: 15px; font-weight: 600;'>🧫 Purified linear DNA template</div>"])
@@ -75,7 +77,7 @@ flowchart TD
     classDef titleTeal fill:#0D9488,stroke:#0F766E,stroke-width:2px,color:#FFFFFF;
     class Phase1,Phase2,Phase3,Phase4 phaseViolet;
     class Phase5,Phase6,Phase7,Phase8 phaseTeal;
-    class NodeIn1,NodeIn2,NodeRef,NodeIn3,NodeHLA,NodeIn4 dataViolet;
+    class NodeIn1,NodeIn2,NodeRef,NodeIn3,NodeHLA,NodeIn4,NodeIn5 dataViolet;
     class NodeIn6,NodeIVT,NodeIn7,NodeLipids,NodeIn8,NodeEnd dataTeal;
     class Title1 titleViolet;
     class Title2 titleTeal;

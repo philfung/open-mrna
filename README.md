@@ -38,10 +38,14 @@ This pipeline is divided into two continuous halves:
   * **Tumor Biopsy (DNA):** WES at deep ~100X–500X coverage (to find rare solid tumor mutations).
   * **Tumor Biopsy (RNA):** RNA-Seq at ~50M–100M reads (to verify that the mutated genes are actually expressed).
 * **Process:** The machine reads extracted DNA/RNA, turning biological chemistry into digital text.
-* **Outputs:** Billions of short, unorganized genetic reads.
-* **File Format:** `.fastq`
+* **Outputs:** 4 files including billions of short genetic reads and the patient's immune profile:
+  1. `baseline-normal.fastq` — Normal blood WES (~30X–50X)
+  2. `tumor-exome.fastq` — Tumor biopsy WES (~100X–500X)
+  3. `tumor-rna.fastq` — Tumor biopsy RNA-Seq (~50M–100M reads)
+  4. `patient-hla.txt` — Patient HLA profile (MHC Class I & II typing)
+* **File Format:** `.fastq` & `.txt`
 ```text
-@Machine_Read_ID_001
+@Patient_001:Baseline_Normal:1:1101:1234:5678
 GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCC
 +
 !''*((((***+))%%%++)(%%%%).1***-+*''))**
@@ -50,37 +54,47 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCC
 ### Phase 2: Spotting the Typos (Finding the Mutations)
 **Goal:** Compare the healthy code against the tumor code to isolate specific cancer-causing errors.
 * **Software:** [GATK Mutect2](https://github.com/broadinstitute/gatk)
-* **Inputs:** Patient `.fastq` + Human Reference Genome.
+* **Inputs:** 3 patient `.fastq` files (`baseline-normal`, `tumor-exome`, `tumor-rna`) + Human Reference Genome (`.fasta`).
 * **Process:** Aligns reads and mathematically subtracts healthy DNA from tumor DNA to isolate somatic mutations.
-* **Outputs:** A condensed list of specific genetic mutations.
+* **Outputs:** 2 `.vcf` files containing a condensed list of specific genetic mutations:
+  1. `somatic-variants.vcf` — All raw mutation candidates.
+  2. `filtered-variants.vcf` — High-confidence, tumor-only mutations.
 * **File Format:** `.vcf` (Variant Call Format)
 ```text
+##fileformat=VCFv4.2
+##source=Mutect2
+##FILTER=<ID=PASS,Description="All filters passed">
 #CHROM  POS       ID       REF  ALT  QUAL  FILTER  INFO
-chr7    14045313  Mut_01   A    T    99    PASS    Somatic;TumorOnly
+chr7    14045313  Mut_01   A    T    .     PASS    SOMATIC;DP=152;AF=0.24
 ```
 
 ### Phase 3: Picking the Targets (AI Neoantigen Prediction)
 **Goal:** Use AI to predict which mutations the immune system will recognize as a threat.
 * **Software:** [pVACseq](https://github.com/griffithlab/pVACtools) running [MHCflurry](https://github.com/openvax/mhcflurry) neural networks.
-* **Inputs:** `.vcf` mutation list + Patient HLA profile.
+* **Inputs:** `filtered-variants.vcf` + Patient HLA profile (`.txt`).
 * **Process:** Neural networks predict which mutations will most effectively trigger an immune response based on the patient's specific HLA receptors.
 * **Outputs:** A ranked leaderboard of the best targets (neoantigens).
-* **File Format:** `.tsv`
+* **File Format:** `ranked-predictions.tsv`
 ```text
-Target_Rank  Peptide_Sequence  HLA_Type  Affinity_Score_nM
-1            YLLPAIVHI         HLA-A*02  24.5
+HLA_Allele  Peptide_Sequence  Best_MT_IC50_Score  Median_MT_IC50_Score  MHCflurry_EL_Score
+HLA-A*02:01 YLLPAIVHI         24.5                32.1                  0.98
+HLA-A*02:01 LLDVPTAAV         45.2                58.4                  0.92
+HLA-B*07:02 APRGVFLLS         112.4               145.2                 0.85
 ```
 
 ### Phase 4: Writing the New Code (Sequence Assembly)
 **Goal:** Compile the top predicted targets into a single, printable digital blueprint.
 * **Software:** [pVACvector](https://github.com/griffithlab/pVACtools) + [LinearDesign](https://github.com/LinearDesignSoftware/LinearDesign)
-* **Inputs:** Top targets from `.tsv`.
+* **Inputs:** Top targets from `ranked-predictions.tsv`.
 * **Process:** Strings targets together, adds structural instructions (5' Cap, Poly-A tail), and optimizes codons for folding stability.
-* **Outputs:** The master digital sequence of the mRNA vaccine.
-* **File Format:** `.fasta` (The master manufacturing blueprint)
+* **Outputs:** 1 `.fasta` file representing the complete, optimized mRNA blueprint.
+  * `vaccine-construct.fasta` — Master mRNA sequence (5' UTR, Kozak, Start, Epitopes, Linkers, Stop, 3' UTR, Poly-A).
+* **File Format:** `.fasta`
 ```text
->Patient_001_Custom_Vaccine_Construct_v1
-AUGGGCUACUUGCUGCCAGCGAUUGUCCAUAUCCUCCUCUUCUUGGGCAAAAUUUGGCCG...
+>Patient_001_Custom_Vaccine_v1 | 5'UTR-Kozak-AUG-Epitopes-AAY_Linkers-Stop-3'UTR-PolyA
+GGGAAAUAAGAGAGAAAAGAAGAGUAAGAAGAAAUAUAAGAGCCACCAUGGGCUACUUGCUGCCAGCGAU
+UGUCCAUAUCCUCCUCUUCUUGGGCAAAAUUUGGCCGCUGCUUAUAUCCUCCUCUUCUUGGGCAAAAUUU
+GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 ```
 
 ---
