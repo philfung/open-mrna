@@ -99,7 +99,7 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCC
 
 ### Phase 2: Spotting the Typos (Finding the Mutations)
 **Goal:** Compare the healthy code against the tumor code to isolate specific cancer-causing errors.
-* **Software:** GATK Mutect2
+* **Software:** [GATK Mutect2](https://github.com/broadinstitute/gatk)
 * **Inputs:** Patient `.fastq` + Human Reference Genome.
 * **Process:** Aligns reads and mathematically subtracts healthy DNA from tumor DNA to isolate somatic mutations.
 * **Outputs:** A condensed list of specific genetic mutations.
@@ -111,7 +111,7 @@ chr7    14045313  Mut_01   A    T    99    PASS    Somatic;TumorOnly
 
 ### Phase 3: Picking the Targets (AI Neoantigen Prediction)
 **Goal:** Use AI to predict which mutations the immune system will recognize as a threat.
-* **Software:** pVACseq running MHCflurry neural networks.
+* **Software:** [pVACseq](https://github.com/griffithlab/pVACtools) running [MHCflurry](https://github.com/openvax/mhcflurry) neural networks.
 * **Inputs:** `.vcf` mutation list + Patient HLA profile.
 * **Process:** Neural networks predict which mutations will most effectively trigger an immune response based on the patient's specific HLA receptors.
 * **Outputs:** A ranked leaderboard of the best targets (neoantigens).
@@ -123,7 +123,7 @@ Target_Rank  Peptide_Sequence  HLA_Type  Affinity_Score_nM
 
 ### Phase 4: Writing the New Code (Sequence Assembly)
 **Goal:** Compile the top predicted targets into a single, printable digital blueprint.
-* **Software:** pVACvector + LinearDesign
+* **Software:** [pVACvector](https://github.com/griffithlab/pVACtools) + [LinearDesign](https://github.com/LinearDesignSoftware/LinearDesign)
 * **Inputs:** Top targets from `.tsv`.
 * **Process:** Strings targets together, adds structural instructions (5' Cap, Poly-A tail), and optimizes codons for folding stability.
 * **Outputs:** The master digital sequence of the mRNA vaccine.
