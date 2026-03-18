@@ -31,7 +31,7 @@ This pipeline is divided into two continuous halves:
 
 ### Phase 1: Reading the Blueprint (Digitizing the Cells)
 **Goal:** Convert physical biological samples into unorganized genetic code to establish a baseline and identify tumor anomalies.
-* **Hardware:** Next-Generation Sequencer (e.g., Illumina NextSeq 2000 or Element AVITI, ~$300k)
+* **Hardware:** Next-Generation Sequencer (e.g., [Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) or [Element AVITI](https://www.elementbiosciences.com/products/aviti), ~$300k)
 * **Est. Cost:** ~$1,000 / pt
 * **Inputs:** Tumor biopsy & Normal blood (healthy baseline).
   * **Normal Blood (DNA):** Whole Exome Sequencing (WES) at ~30X–50X depth.
@@ -103,7 +103,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ### Phase 5: Printing the Master Copy (DNA Synthesis)
 **Goal:** Convert the digital blueprint back into a physical, readable linear DNA template.
-* **Hardware:** Benchtop DNA Synthesizer (e.g., Telesis Bio BioXp, ~$100,000).
+* **Hardware:** Benchtop DNA Synthesizer (e.g., [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/), ~$100,000).
 * **Est. Cost:** ~$600 / rxn
 * **Inputs:** The `.fasta` file.
 * **Process:** Automated Gibson Assembly stitches synthetic oligonucleotides into a complete DNA plasmid, which is then linearized with restriction enzymes (e.g., BspQI).
@@ -114,7 +114,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ### Phase 6: Mass Production (Automated mRNA Synthesis)
 **Goal:** Execute the code by transcribing the DNA into functional, immune-cloaked mRNA.
-* **Hardware:** NTxscribe System / Telesis Bio BioXp (~$250k / ~$100k).
+* **Hardware:** [NTxscribe System](https://www.ntxbio.com/ntxscribe/) / [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/) (~$250k / ~$100k).
 * **Est. Cost:** ~$2,000 / rxn
 * **Inputs:** Linear DNA template + IVT Reagents.
 * **Process:** Continuous-flow In Vitro Transcription (IVT) bioreactors read the DNA and print the corresponding mRNA strand.
@@ -128,7 +128,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ### Phase 7: Packaging for Delivery (LNP Formulation)
 **Goal:** Wrap the fragile mRNA in a protective lipid nanoparticle to allow human cell entry.
-* **Hardware:** Unchained Labs Sunshine / NanoAssemblr Ignite / Spark (~$150k / ~$150k).
+* **Hardware:** [Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / [NanoAssemblr Ignite / Spark](https://www.cytivalifesciences.com/en/us/solutions/genomic-medicine/brands/nanoassemblr/ignite) (~$150k / ~$150k).
 * **Est. Cost:** ~$500 / rxn
 * **Inputs:** Purified mRNA + 4-Lipid Cocktail.
 * **Process:** Precise microfluidic collisions force the negatively charged mRNA and positively charged lipids to self-assemble into nanoparticles.
@@ -139,7 +139,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ### Phase 8: Quality Check & Bottling (QC & Finalization)
 **Goal:** Validate structural integrity, size, and concentration before finalizing for injection.
-* **Hardware:** Unchained Labs Stunner (~$80,000) & TFF System.
+* **Hardware:** [Unchained Labs Stunner](https://www.unchainedlabs.com/stunner/) (~$80,000) & TFF System.
 * **Est. Cost:** ~$100 / rxn
 * **Inputs:** Raw mRNA-LNP mixture.
 * **Process:**
@@ -156,11 +156,11 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 | Phase | Subsystem | Primary Hardware | Est. HW Cost (new) | Core Consumables | Est. Run Cost |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Sequencing | Illumina NextSeq 2000 / Element AVITI | ~$300,000 | Extraction Kits, Flow Cells | ~$1,000 / pt |
-| 5 | DNA Prep | Telesis Bio BioXp | ~$100,000 | Gibson Kits, AMPure XP Beads | ~$600 / rxn |
-| 6 | mRNA Synth | NTxscribe / Telesis Bio BioXp | ~$250k / ~$100k | T7 Polymerase, Mod-NTPs, CleanCap | ~$2,000 / rxn |
-| 7 | LNP Mix | Unchained Labs Sunshine / NanoAssemblr Ignite / Spark | ~$150k / ~$150k | Sunny Chips, 4-Lipid Cocktail | ~$500 / rxn |
-| 8 | Validation | Unchained Labs Stunner | ~$80,000 | Stunner Plates, RiboGreen Assay | ~$100 / rxn |
+| 1 | Sequencing | [Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) / [Element AVITI](https://www.elementbiosciences.com/products/aviti) | ~$300,000 | Extraction Kits, Flow Cells | ~$1,000 / pt |
+| 5 | DNA Prep | [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/) | ~$100,000 | Gibson Kits, AMPure XP Beads | ~$600 / rxn |
+| 6 | mRNA Synth | [NTxscribe](https://www.ntxbio.com/ntxscribe/) / [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/) | ~$250k / ~$100k | T7 Polymerase, Mod-NTPs, CleanCap | ~$2,000 / rxn |
+| 7 | LNP Mix | [Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / [NanoAssemblr Ignite / Spark](https://www.cytivalifesciences.com/en/us/solutions/genomic-medicine/brands/nanoassemblr/ignite) | ~$150k / ~$150k | Sunny Chips, 4-Lipid Cocktail | ~$500 / rxn |
+| 8 | Validation | [Unchained Labs Stunner](https://www.unchainedlabs.com/stunner/) | ~$80,000 | Stunner Plates, RiboGreen Assay | ~$100 / rxn |
 
 ---
 
