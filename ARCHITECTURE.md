@@ -45,7 +45,7 @@ flowchart TD
     NodeIn5 --> Phase5
     Phase5["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 6px;'>Phase 5 · Printing the Master Copy</div><div style='font-size: 14px; color: #374151;'>Automated Gibson Assembly stitches synthetic oligonucleotides into a complete DNA plasmid, which is then linearized with restriction enzymes.<br><b>Hardware:</b> Benchtop DNA Synthesizer (e.g., Telesis Bio BioXp, ~$100k)<br><b>Cost:</b> ~$600 / rxn</div>"]
     Phase5 --> NodeIn6
-    NodeIn6(["<div style='font-size: 15px; font-weight: 600;'>🧫 Purified linear DNA template</div>"])
+    NodeIn6(["<div style='font-size: 15px; font-weight: 600;'>📜 1.5 mL Purified linear DNA template</div>"])
     
     %% Phase 6
     NodeIVT(["<div style='font-size: 15px; font-weight: 600;'>⚗️ IVT Reagents</div>"])
@@ -53,7 +53,7 @@ flowchart TD
     NodeIn6 --> Phase6
     Phase6["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 6px;'>Phase 6 · Mass Production</div><div style='font-size: 14px; color: #374151;'>Continuous-flow In Vitro Transcription (IVT) bioreactors read the DNA and print the corresponding mRNA strand.<br><b>Hardware:</b> NTxscribe System / Telesis Bio BioXp (~$250k / ~$100k)<br><b>Cost:</b> ~$2,000 / rxn</div>"]
     Phase6 --> NodeIn7
-    NodeIn7(["<div style='font-size: 15px; font-weight: 600;'>💉 Highly pure, naked mRNA</div>"])
+    NodeIn7(["<div style='font-size: 15px; font-weight: 600;'>💉 5.0 mL Highly pure mRNA</div>"])
     
     %% Phase 7
     NodeLipids(["<div style='font-size: 15px; font-weight: 600;'>🧴 4-Lipid Cocktail</div>"])
@@ -61,13 +61,13 @@ flowchart TD
     NodeIn7 --> Phase7
     Phase7["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 6px;'>Phase 7 · Packaging for Delivery</div><div style='font-size: 14px; color: #374151;'>Precise microfluidic collisions force the negatively charged mRNA and positively charged lipids to self-assemble into nanoparticles.<br><b>Hardware:</b> Unchained Labs Sunshine / NanoAssemblr Ignite / Spark (~$150k / ~$150k)<br><b>Cost:</b> ~$500 / rxn</div>"]
     Phase7 --> NodeIn8
-    NodeIn8(["<div style='font-size: 15px; font-weight: 600;'>🧪 Formulated mRNA-LNP mixture</div>"])
+    NodeIn8(["<div style='font-size: 15px; font-weight: 600;'>🧪 12 mL Raw mRNA-LNP mixture</div>"])
     
     %% Phase 8
     NodeIn8 --> Phase8
     Phase8["<div style='font-size: 19px; font-weight: 700; color: #DC2626 !important; margin-bottom: 6px;'>Phase 8 · Quality Check & Bottling</div><div style='font-size: 14px; color: #374151;'>Dynamic Light Scattering verifies particles are exactly 60-100nm and Tangential Flow Filtration washes out the toxic ethanol used during mixing.<br><b>Hardware:</b> Unchained Labs Stunner (~$80k) & TFF System<br><b>Cost:</b> ~$100 / rxn</div>"]
     Phase8 --> NodeEnd
-    NodeEnd(["<div style='font-size: 15px; font-weight: 600;'>💊 Final Vaccine Vial</div>"])
+    NodeEnd(["<div style='font-size: 15px; font-weight: 600;'>💊 10 x 1.0 mL Vaccine Vials</div>"])
 
     classDef phaseViolet fill:#F5F3FF,stroke:#8B5CF6,stroke-width:2px,text-align:left,color:#4C1D95;
     classDef phaseTeal fill:#F0FDFA,stroke:#14B8A6,stroke-width:2px,text-align:left,color:#134E4A;

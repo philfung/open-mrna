@@ -107,7 +107,9 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 * **Est. Cost:** ~$600 / rxn
 * **Inputs:** The `.fasta` file.
 * **Process:** Automated Gibson Assembly stitches synthetic oligonucleotides into a complete DNA plasmid, which is then linearized with restriction enzymes (e.g., BspQI).
-* **Outputs:** Physical, purified linear DNA template.
+* **Outputs:** ~1.5 mL of purified, linearized DNA template in a sterile 2.0 mL microcentrifuge tube.
+  * **Yield:** ~75 µg of total DNA (typically at ~50 ng/µL concentration).
+  * **Physical Form:** Clear, colorless liquid; stable at -20°C.
 * **Key Reagents:** Oligonucleotides, BspQI restriction enzymes, AMPure XP purification beads.
 
 ### Phase 6: Mass Production (Automated mRNA Synthesis)
@@ -116,7 +118,9 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 * **Est. Cost:** ~$2,000 / rxn
 * **Inputs:** Linear DNA template + IVT Reagents.
 * **Process:** Continuous-flow In Vitro Transcription (IVT) bioreactors read the DNA and print the corresponding mRNA strand.
-* **Outputs:** Highly pure, naked mRNA.
+* **Outputs:** ~5.0 mL of highly pure, naked mRNA in a sterile 15 mL conical tube.
+  * **Yield:** ~1.0 mg of mRNA (typically at ~200 ng/µL concentration).
+  * **Physical Form:** Slightly viscous, clear liquid; stored at -80°C.
 * **Key Reagents:**
   * T7 RNA Polymerase (the "printer")
   * N1-methylpseudouridine (cloaking)
@@ -128,7 +132,9 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 * **Est. Cost:** ~$500 / rxn
 * **Inputs:** Purified mRNA + 4-Lipid Cocktail.
 * **Process:** Precise microfluidic collisions force the negatively charged mRNA and positively charged lipids to self-assemble into nanoparticles.
-* **Outputs:** Formulated mRNA Lipid Nanoparticles (LNPs).
+* **Outputs:** ~10–12 mL of raw mRNA-LNP mixture in a sterile 50 mL centrifuge tube.
+  * **Yield:** ~0.9 mg of encapsulated mRNA (>90% encapsulation efficiency).
+  * **Physical Form:** Opalescent, slightly milky liquid (contains ~25% ethanol before filtration).
 * **Key Reagents:** Ionizable Lipid (e.g., ALC-0315), PEG-Lipid, DSPC (Helper Lipid), Cholesterol, Ethanol, Acidic Buffer.
 
 ### Phase 8: Quality Check & Bottling (QC & Finalization)
@@ -139,7 +145,9 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 * **Process:**
   * **Stunner:** Dynamic Light Scattering (DLS) verifies particles are exactly 60–100nm.
   * **TFF:** Tangential Flow Filtration washes out the toxic ethanol used during mixing.
-* **Outputs:** Final, injectable, personalized cancer vaccine suspended in a cryoprotectant.
+* **Outputs:** 10 x 1.0 mL sterile, glass vials (approx. 10 doses).
+  * **Concentration:** ~100 µg/mL of encapsulated mRNA.
+  * **Physical Form:** Clear to slightly opalescent liquid; stored at -80°C in a cryoprotectant buffer.
 * **Key Reagents:** Tris-Sucrose Buffer (cryoprotectant), RiboGreen Assay (encapsulation verification).
 
 ---
