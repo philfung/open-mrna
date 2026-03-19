@@ -1,6 +1,8 @@
-# 💉 mRNA Cancer Vaccine in Your Garage: An End-to-End Workflow
+# 💉 OpenVAXX: DIY Personalized mRNA Cancer Vaccines
 
-A complete reference architecture for building a personalized mRNA cancer vaccine from scratch—sequencer to syringe—entirely in your own lab. This repository documents every phase of the pipeline, from raw patient biopsies to a final injectable lipid nanoparticle (LNP) vaccine, including the specific software, benchtop hardware, and reagents required at each step.
+A visualization of everything you need to build a personalized mRNA cancer vaccine in your garage—from biopsy to syringe. 
+
+Practical, open-source, and state-of-the-art tools at every step.
 
 > [!CAUTION]
 > **⚠️ RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE.**
