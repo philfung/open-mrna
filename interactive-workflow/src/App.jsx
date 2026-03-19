@@ -13,10 +13,12 @@ import { ChevronLeft, ChevronRight, Maximize } from 'lucide-react';
 import 'reactflow/dist/style.css';
 
 import WorkflowNode from './components/WorkflowNode';
+import GroupNode from './components/GroupNode';
 import { initialNodes, initialEdges, workflowSteps } from './data';
 
 const nodeTypes = {
   workflowNode: WorkflowNode,
+  group: GroupNode,
 };
 
 const NavigationControls = ({ currentStep, onNext, onPrev, onReset }) => {
@@ -25,7 +27,10 @@ const NavigationControls = ({ currentStep, onNext, onPrev, onReset }) => {
   return (
     <div className="nav-controls">
       <div className="step-info">
-        <span className="step-count">Step {currentStep} of {workflowSteps.length}</span>
+        <span className="part-name">{step?.part}</span>
+        <div className="step-meta">
+          <span className="step-count">Step {currentStep} of {workflowSteps.length}</span>
+        </div>
         <h4 className="step-name">{step?.title}</h4>
       </div>
       <div className="button-group">
