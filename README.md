@@ -12,6 +12,7 @@ Focuses on open-source, state-of-the-art software tools paired with "best-tool-f
 - [Workflow, Part 1: Upstream Digital Pipeline ("Data to Blueprint")](#part-1-upstream-digital-pipeline-data-to-blueprint)
 - [Workflow, Part 2: Downstream Physical Pipeline ("Blueprint to Vial")](#part-2-downstream-physical-pipeline-blueprint-to-vial)
 - [Hardware & Reagent Stack Summary](#hardware--reagent-stack-summary)
+- [Interactive System Architecture (Web App)](#interactive-system-architecture)
 
 ---
 
@@ -175,3 +176,29 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 # License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
+---
+
+# Interactive System Architecture
+
+You can explore the system architecture interactively through our React-based diagnostic tool.
+
+### Running it locally
+The interactive workflow is a Vite-based application. To run it:
+
+1.  **Navigate to the directory:**
+    ```bash
+    cd interactive-workflow
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+4.  **Open the URL:** The terminal will provide a URL (e.g., `http://localhost:5173`) to view the application in your browser.
+
+> [!CAUTION]
+> Do not use `python -m http.server` to serve the source files directly, as modern browsers require transpilation for `.jsx` files and strict MIME types for modules.
