@@ -38,7 +38,7 @@ final List<WorkflowNodeData> initialNodes = [
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'database',
-    image: 'lib/assets/hardware/illumina_nextseq.jpeg',
+    image: 'lib/assets/hardware/illumina_nextseq.png',
   ),
   WorkflowNodeData(
     id: 'NodeIn2',

@@ -2,7 +2,7 @@ import { Database, Zap, Target, PenTool, Printer, Factory, Package, FlaskConical
 import { MarkerType } from 'reactflow';
 
 import bioxpImg from './assets/hardware/bioxp.jpeg';
-import illuminaImg from './assets/hardware/illumina_nextseq.jpeg';
+import illuminaImg from './assets/hardware/illumina_nextseq.png';
 import stunnerImg from './assets/hardware/unchained_stunner.jpeg';
 import sunshineImg from './assets/hardware/unchained_sunshine.png';
 
