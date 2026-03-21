@@ -109,11 +109,12 @@ class WorkflowNode extends StatelessWidget {
               ),
             ),
           ],
-          if (data.hardware != null || data.outsourced != null || data.cost != null) ...[
+          if (data.hardware != null || data.software != null || data.outsourced != null || data.cost != null) ...[
             const SizedBox(height: 20),
             const Divider(),
             const SizedBox(height: 12),
-            if (data.hardware != null) _buildFooterItem('Hardware', data.hardware!),
+            if (data.hardware != null) _buildFooterItem('Lab Equipment', data.hardware!),
+            if (data.software != null) _buildFooterItem('Software', data.software!),
             if (data.outsourced != null) _buildFooterItem('Outsourced', data.outsourced!),
             if (data.cost != null) _buildFooterItem('Cost', data.cost!, isCost: true, color: color),
           ],

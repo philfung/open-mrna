@@ -1,6 +1,6 @@
 # 💉 OpenVAXX: DIY Personalized mRNA Cancer Vaccines
 From biopsy to syringe: everything you need to synthesize personalized mRNA cancer vaccines in your garage. 
-Focuses on open-source, state-of-the-art software tools paired with "best-tool-for-the-job" benchtop hardware.
+Focuses on open-source, state-of-the-art software tools paired with "best-tool-for-the-job" benchtop lab equipment.
 
 > [!CAUTION]
 > **⚠️ RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE.**
@@ -11,7 +11,7 @@ Focuses on open-source, state-of-the-art software tools paired with "best-tool-f
 - [System Architecture](#system-architecture)
 - [Workflow, Part 1: Upstream Digital Pipeline ("Data to Blueprint")](#part-1-upstream-digital-pipeline-data-to-blueprint)
 - [Workflow, Part 2: Downstream Physical Pipeline ("Blueprint to Vial")](#part-2-downstream-physical-pipeline-blueprint-to-vial)
-- [Hardware & Reagent Stack Summary](#hardware--reagent-stack-summary)
+- [Lab Equipment & Reagent Stack Summary](#lab-equipment--reagent-stack-summary)
 - [Interactive System Architecture (Web App)](#interactive-system-architecture)
 
 ---
@@ -33,7 +33,7 @@ This pipeline is divided into two continuous halves:
 
 ## Step 1: Reading the Blueprint (Digitizing the Cells)
 **Goal:** Convert physical biological samples into unorganized genetic code to establish a baseline and identify tumor anomalies.
-* **Hardware:** Next-Generation Sequencer (e.g., [Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) or [Element AVITI](https://www.elementbiosciences.com/products/aviti), ~$300k)
+* **Lab Equipment:** Next-Generation Sequencer (e.g., [Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) or [Element AVITI](https://www.elementbiosciences.com/products/aviti), ~$300k)
 * **Alt. (Outsourced):** Commercial labs (e.g., [Novogene](https://www.novogene.com/), [Azenta](https://www.azenta.com/), [Eurofins](https://www.eurofinsgenomics.com/)) or academic core facilities.
 * **Est. Cost:** ~$1,000 / pt (In-House) or ~$2,500 / pt (Outsourced trio)
 * **Inputs:** Tumor biopsy & Normal blood (healthy baseline).
@@ -106,7 +106,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ## Step 5: Printing the Master Copy (DNA Synthesis)
 **Goal:** Convert the digital blueprint back into a physical, readable linear DNA template.
-* **Hardware:** Benchtop DNA Synthesizer (e.g., [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/), ~$100,000).
+* **Lab Equipment:** Benchtop DNA Synthesizer (e.g., [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/), ~$100,000).
 * **Alt. (Outsourced):** Custom gene synthesis (e.g., [Twist Bioscience](https://www.twistbioscience.com/), [IDT](https://www.idtdna.com/), [GenScript](https://www.genscript.com/), [Azenta](https://www.azenta.com/)).
 * **Est. Cost:** ~$600 / rxn (In-House) or ~$200 - $900 (Outsourced gene)
 * **Inputs:** The `.fasta` file.
@@ -119,7 +119,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ## Step 6: Mass Production (Automated mRNA Synthesis)
 **Goal:** Execute the code by transcribing the DNA into functional, immune-cloaked mRNA.
-* **Hardware:** [NTxscribe System](https://www.ntxbio.com/ntxscribe/) / [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/) (~$250k / ~$100k).
+* **Lab Equipment:** [NTxscribe System](https://www.ntxbio.com/ntxscribe/) / [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/) (~$250k / ~$100k).
 * **Alt. (Outsourced):** Custom mRNA synthesis (e.g., [TriLink BioTechnologies](https://www.trilinkbiotech.com/), [GenScript](https://www.genscript.com/), [BiCell Scientific](https://bicellscientific.com/)).
 * **Est. Cost:** ~$2,000 / rxn (In-House) or ~$1,000 - $3,000 / mg (Outsourced)
 * **Inputs:** Linear DNA template + IVT Reagents.
@@ -134,7 +134,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ## Step 7: Packaging for Delivery (LNP Formulation)
 **Goal:** Wrap the fragile mRNA in a protective lipid nanoparticle to allow human cell entry.
-* **Hardware:** [Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / [NanoAssemblr Ignite / Spark](https://www.cytivalifesciences.com/en/us/solutions/genomic-medicine/brands/nanoassemblr/ignite) (~$150k / ~$150k).
+* **Lab Equipment:** [Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / [NanoAssemblr Ignite / Spark](https://www.cytivalifesciences.com/en/us/solutions/genomic-medicine/brands/nanoassemblr/ignite) (~$150k / ~$150k).
 * **Alt. (Outsourced):** LNP formulation CROs (e.g., [VectorBuilder](https://www.vectorbuilder.com/), [Creative Biogene](https://www.creative-biogene.com/), [Lonza](https://www.lonza.com/), [Vernal Biosciences](https://www.vernal.bio/)).
 * **Est. Cost:** ~$500 / rxn (In-House) or ~$2,000 - $5,000 / batch (Outsourced)
 * **Inputs:** Purified mRNA + 4-Lipid Cocktail.
@@ -147,7 +147,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ## Step 8: Quality Check & Bottling (QC & Finalization)
 **Goal:** Validate structural integrity, size, and concentration before finalizing for injection.
-* **Hardware:** [Unchained Labs Stunner](https://www.unchainedlabs.com/stunner/) (~$80,000) & TFF System.
+* **Lab Equipment:** [Unchained Labs Stunner](https://www.unchainedlabs.com/stunner/) (~$80,000) & TFF System.
 * **Alt. (Outsourced):** Analytical & Purification services (e.g., [CordenPharma](https://www.cordenpharma.com/), [PreciGenome](https://www.precigenome.com/), [uBriGene](https://www.ubrigene.com/), [VectorBuilder](https://www.vectorbuilder.com/), [RIBOPRO](https://ribopro.eu/)).
 * **Est. Cost:** ~$100 / rxn (In-House) or ~$1,000 - $3,000 / batch (Outsourced)
 * **Inputs:** Raw mRNA-LNP mixture.
@@ -161,9 +161,9 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ---
 
-# Hardware & Reagent Bill of Materials
+# Lab Equipment & Reagent Bill of Materials
 
-| Step | Subsystem | In-House Hardware | HW Cost | Outsourced Alt | Est. Run Cost (In-House vs. Out) | Est. Time (In-House vs. Out) |
+| Step | Subsystem | In-House Lab Equipment | Cost | Outsourced Alt | Est. Run Cost (In-House vs. Out) | Est. Time (In-House vs. Out) |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Sequencing | [NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) | ~$300k | [Novogene](https://www.novogene.com/), [Azenta](https://www.azenta.com/) | ~$1,000 vs. ~$2,500 / pt | 1-2 Days vs. 2-4 Weeks |
 | 5 | DNA Prep | [BioXp System](https://telesisbio.com/products/bioxp-system/) | ~$100k | [Twist](https://www.twistbioscience.com/), [IDT](https://www.idtdna.com/), [GenScript](https://www.genscript.com/) | ~$600 vs. ~$200-$900 / gene | 1 Day vs. 1-2 Weeks |

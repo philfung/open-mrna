@@ -9,6 +9,7 @@ class WorkflowNodeData {
   final String? description;
   final String? goal;
   final String? hardware;
+  final String? software;
   final String? outsourced;
   final String? cost;
   final String? color;
@@ -27,6 +28,7 @@ class WorkflowNodeData {
     this.description,
     this.goal,
     this.hardware,
+    this.software,
     this.outsourced,
     this.cost,
     this.color,

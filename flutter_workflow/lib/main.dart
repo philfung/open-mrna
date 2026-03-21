@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'dart:math' as math;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'providers/workflow_provider.dart';
-import 'widgets/workflow_node.dart';
 import 'widgets/workflow_node.dart';
 import 'models/workflow_data.dart';
 import 'models/mock_data.dart';
@@ -80,36 +80,53 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
   void _focusOnStep(int stepId) {
     debugPrint('Focusing on step $stepId');
     final step = workflowSteps.firstWhere((s) => s.id == stepId);
-    final activeStepNodeId = step.nodeIds.firstWhere((id) => id.startsWith('Step'));
     
-    final key = _nodeKeys[activeStepNodeId];
-    if (key == null || key.currentContext == null || _canvasKey.currentContext == null) {
+    if (_canvasKey.currentContext == null) {
        Future.delayed(const Duration(milliseconds: 100), () => _focusOnStep(stepId));
        return;
     }
 
-    final RenderBox nodeBox = key.currentContext!.findRenderObject() as RenderBox;
     final RenderBox canvasBox = _canvasKey.currentContext!.findRenderObject() as RenderBox;
-    
-    // Position of node relative to the canvas stack
-    final positionInCanvas = nodeBox.localToGlobal(Offset.zero, ancestor: canvasBox);
-    final size = nodeBox.size;
+    Rect? combinedRect;
 
-    // Position of node relative to the InteractiveViewer's child (Container)
+    for (final nodeId in step.nodeIds) {
+      final key = _nodeKeys[nodeId];
+      if (key?.currentContext != null) {
+        final RenderBox nodeBox = key!.currentContext!.findRenderObject() as RenderBox;
+        final position = nodeBox.localToGlobal(Offset.zero, ancestor: canvasBox);
+        final rect = position & nodeBox.size;
+        if (combinedRect == null) {
+          combinedRect = rect;
+        } else {
+          combinedRect = combinedRect!.expandToInclude(rect);
+        }
+      }
+    }
+
+    if (combinedRect == null) return;
+
+    // Viewport relative coordinates
     // The Container has padding (100, 600, 100, 1200)
-    final double paddingLeft = 100.0;
-    final double paddingTop = 600.0;
+    const double paddingLeft = 100.0;
+    const double paddingTop = 600.0;
     
-    final double x = positionInCanvas.dx + paddingLeft;
-    final double y = positionInCanvas.dy + paddingTop;
+    final double x = combinedRect.center.dx + paddingLeft;
+    final double y = combinedRect.center.dy + paddingTop;
 
     final viewportSize = MediaQuery.of(context).size;
-    final double scale = 1.0;
+    
+    // Calculate scale with some padding
+    const double viewPadding = 80.0;
+    final double scaleX = (viewportSize.width - viewPadding * 2) / combinedRect.width;
+    final double scaleY = (viewportSize.height - viewPadding * 2) / combinedRect.height;
+    
+    // Limit maximum scale to 1.0 (actual size) and minimum scale to 0.4
+    final double scale = math.min(math.min(scaleX, scaleY), 1.0).clamp(0.4, 1.0);
     
     final targetMatrix = Matrix4.identity()
       ..translate(viewportSize.width / 2, viewportSize.height / 2)
       ..scale(scale)
-      ..translate(-x - size.width / 2, -y - size.height / 2);
+      ..translate(-x, -y);
 
     _animateToMatrix(targetMatrix);
   }
@@ -128,56 +145,86 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
     });
   }
 
+  void _onNextPressed(WorkflowState state) {
+    if (state.currentStepId < workflowSteps.length) {
+      ref.read(workflowProvider.notifier).nextStep();
+      Future.microtask(() => _focusOnStep(state.currentStepId + 1));
+    }
+  }
+
+  void _onPrevPressed(WorkflowState state) {
+    if (state.currentStepId > 1) {
+      ref.read(workflowProvider.notifier).prevStep();
+      Future.microtask(() => _focusOnStep(state.currentStepId - 1));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(workflowProvider);
     final step = state.currentStep;
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
-      body: Stack(
-        children: [
-          // Dynamic Layout Canvas
-          InteractiveViewer(
-            transformationController: _transformationController,
-            constrained: false,
-            minScale: 0.1,
-            maxScale: 2.5,
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(100, 600, 100, 1200),
-              width: 1400, // Constrain width based on NODE_WIDTH and margins
-              child: Stack(
-                key: _canvasKey,
-                children: [
-                   // Edges Layer
-                   Positioned.fill(
-                     child: IgnorePointer(
-                       child: AnimatedBuilder(
-                         animation: _animationController,
-                         builder: (context, child) {
-                           return CustomPaint(
-                             painter: DynamicEdgePainter(
-                               edges: state.edges,
-                               nodeKeys: _nodeKeys,
-                               canvasKey: _canvasKey,
-                               animationValue: _animationController.value,
-                             ),
-                           );
-                         },
+    return Focus(
+      autofocus: true,
+      onKeyEvent: (node, event) {
+        if (event is KeyDownEvent) {
+          if (event.logicalKey == LogicalKeyboardKey.arrowDown || 
+              event.logicalKey == LogicalKeyboardKey.arrowRight) {
+             _onNextPressed(state);
+             return KeyEventResult.handled;
+          } else if (event.logicalKey == LogicalKeyboardKey.arrowUp || 
+                     event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+             _onPrevPressed(state);
+             return KeyEventResult.handled;
+          }
+        }
+        return KeyEventResult.ignored;
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF8FAFC),
+        body: Stack(
+          children: [
+            // Dynamic Layout Canvas
+            InteractiveViewer(
+              transformationController: _transformationController,
+              constrained: false,
+              minScale: 0.1,
+              maxScale: 2.5,
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(100, 600, 100, 1200),
+                width: 1400, // Constrain width based on NODE_WIDTH and margins
+                child: Stack(
+                  key: _canvasKey,
+                  children: [
+                     // Edges Layer
+                     Positioned.fill(
+                       child: IgnorePointer(
+                         child: AnimatedBuilder(
+                           animation: _animationController,
+                           builder: (context, child) {
+                             return CustomPaint(
+                               painter: DynamicEdgePainter(
+                                 edges: state.edges,
+                                 nodeKeys: _nodeKeys,
+                                 canvasKey: _canvasKey,
+                                 animationValue: _animationController.value,
+                               ),
+                             );
+                           },
+                         ),
                        ),
                      ),
-                   ),
-                   // Content Layer
-                   _buildWorkflowLayout(state),
-                ],
+                     // Content Layer
+                     _buildWorkflowLayout(state),
+                  ],
+                ),
               ),
             ),
-          ),
-
-          // Header & Controls (Same as before)
-          _buildHeader(),
-          _buildBottomControls(step, state),
-        ],
+            // Header & Controls
+            _buildHeader(),
+            _buildBottomControls(step, state),
+          ],
+        ),
       ),
     );
   }
@@ -214,13 +261,13 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
           WorkflowNode(data: titleNode, key: _nodeKeys[titleNode.id]),
           const SizedBox(height: 80),
           // We need to order the steps and their data nodes
-          ..._buildStepsInGroup(otherNodes, state, renderedNodeIds),
+          ..._buildStepsInGroup(otherNodes, state, renderedNodeIds, group.id),
         ],
       ),
     );
   }
 
-  List<Widget> _buildStepsInGroup(List<WorkflowNodeData> nodes, WorkflowState state, Set<String> renderedNodeIds) {
+  List<Widget> _buildStepsInGroup(List<WorkflowNodeData> nodes, WorkflowState state, Set<String> renderedNodeIds, String groupId) {
     final stepNodes = nodes.where((n) => n.type == NodeType.step).toList();
     stepNodes.sort((a, b) => a.id.compareTo(b.id));
 
@@ -234,7 +281,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
       final inboundNodes = state.edges
           .where((e) => e.target == step.id)
           .map((e) => state.nodes.firstWhere((n) => n.id == e.source))
-          .where((n) => n.type == NodeType.data && !renderedNodeIds.contains(n.id))
+          .where((n) => n.type == NodeType.data && n.parentNode == groupId && !renderedNodeIds.contains(n.id))
           .toList();
 
       if (inboundNodes.isNotEmpty) {
@@ -294,8 +341,49 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('OpenVaxx: DIY mRNA Vaccine Workflow', style: GoogleFonts.outfit(fontSize: 32, fontWeight: FontWeight.bold, color: const Color(0xFF1E293B))),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'OpenVaxx',
+                          style: GoogleFonts.outfit(
+                            fontSize: 32,
+                            fontWeight: FontWeight.w900,
+                            color: const Color(0xFF1E293B),
+                          ),
+                        ),
+                        TextSpan(
+                          text: '  DIY mRNA Vaccine Workflow',
+                          style: GoogleFonts.outfit(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: const Color(0xFF94A3B8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'From biopsy to syringe: documenting the entire flow to synthesize personalized mRNA vaccine from your private lab, including all software tools and benchtop lab equipment.',
+                    style: GoogleFonts.inter(
+                      fontSize: 15,
+                      height: 1.5,
+                      color: const Color(0xFF64748B),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 24),
             Container(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), decoration: BoxDecoration(color: const Color(0xFF6366F1), borderRadius: BorderRadius.circular(20)), child: Text('v1.2.0', style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14))),
           ],
         ),
@@ -326,15 +414,9 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
               const SizedBox(width: 48),
               Row(
                 children: [
-                  _buildNavButton(icon: LucideIcons.chevronLeft, label: 'Prev', onPressed: state.currentStepId > 1 ? () { 
-                    ref.read(workflowProvider.notifier).prevStep(); 
-                    Future.microtask(() => _focusOnStep(state.currentStepId - 1));
-                  } : null),
+                  _buildNavButton(icon: LucideIcons.chevronLeft, label: 'Prev', onPressed: state.currentStepId > 1 ? () => _onPrevPressed(state) : null),
                   const SizedBox(width: 16),
-                  _buildNavButton(icon: LucideIcons.chevronRight, label: 'Next', isPrimary: true, onPressed: state.currentStepId < workflowSteps.length ? () { 
-                    ref.read(workflowProvider.notifier).nextStep(); 
-                    Future.microtask(() => _focusOnStep(state.currentStepId + 1));
-                  } : null),
+                  _buildNavButton(icon: LucideIcons.chevronRight, label: 'Next', isPrimary: true, onPressed: state.currentStepId < workflowSteps.length ? () => _onNextPressed(state) : null),
                   const SizedBox(width: 16),
                   _buildNavButton(icon: LucideIcons.maximize, label: '', onPressed: () { _focusOnStep(state.currentStepId); }),
                 ],

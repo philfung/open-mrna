@@ -19,14 +19,24 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'indigo',
   ),
   WorkflowNodeData(
-    id: 'NodeIn1',
+    id: 'NodeIn1A',
     type: NodeType.data,
-    title: '🧬 Tumor biopsy & Normal blood',
-    description: '• Normal DNA: ~30X WES<br/>• Tumor DNA: ~100X-500X WES<br/>• Tumor RNA: RNA-Seq (50M-100M reads)',
+    title: 'Patient tumor biopsy sample',
+    description: '',
     parentNode: 'Part1Group',
     color: 'blue',
     images: [
-      'lib/assets/icons/icon_tissue.png',
+      'lib/assets/icons/icon_tissue.png'
+    ],
+  ),
+    WorkflowNodeData(
+    id: 'NodeIn1B',
+    type: NodeType.data,
+    title: 'Patient normal blood sample',
+    description: '',
+    parentNode: 'Part1Group',
+    color: 'blue',
+    images: [
       'lib/assets/icons/icon_blood.png',
     ],
   ),
@@ -66,10 +76,12 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Step 2 · Spotting the Typos',
     goal: 'Finding the Mutations',
     description: 'Aligns reads and mathematically subtracts healthy DNA from tumor DNA to isolate somatic mutations.',
-    hardware: 'Software: GATK Mutect2',
+    hardware: 'None',
+    software: 'GATK Mutect2',
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'zap',
+    image: 'lib/assets/icons/icon_ai_script.png',
   ),
   WorkflowNodeData(
     id: 'NodeIn3',
@@ -93,10 +105,12 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Step 3 · Picking the Targets',
     goal: 'AI Neoantigen Prediction',
     description: 'Neural networks predict which mutations will most effectively trigger an immune response based on the patient HLA receptors.',
-    hardware: 'Software: pVACseq running MHCflurry',
+    hardware: 'None',
+    software: 'pVACseq running MHCflurry',
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'target',
+    image: 'lib/assets/icons/icon_ai_script.png',
   ),
   WorkflowNodeData(
     id: 'NodeIn4',
@@ -112,10 +126,12 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Step 4 · Writing the New Code',
     goal: 'Sequence Assembly',
     description: 'Strings targets together, adds structural instructions (5 Cap, Poly-A tail), and optimizes codons for stability.',
-    hardware: 'Software: pVACvector + LinearDesign',
+    hardware: 'None',
+    software: 'pVACvector + LinearDesign',
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'pen-tool',
+    image: 'lib/assets/icons/icon_ai_script.png',
   ),
   WorkflowNodeData(
     id: 'NodeIn5',
@@ -253,7 +269,8 @@ final List<WorkflowNodeData> initialNodes = [
 ];
 
 final List<WorkflowEdgeData> initialEdges = [
-  WorkflowEdgeData(id: 'e1-step1', source: 'NodeIn1', target: 'Step1', animated: true),
+  WorkflowEdgeData(id: 'e1a-step1', source: 'NodeIn1A', target: 'Step1', animated: true),
+  WorkflowEdgeData(id: 'e1b-step1', source: 'NodeIn1B', target: 'Step1', animated: true),
   WorkflowEdgeData(id: 'step1-e2', source: 'Step1', target: 'NodeIn2', animated: true),
   WorkflowEdgeData(id: 'e2-step2', source: 'NodeIn2', target: 'Step2', animated: true),
   WorkflowEdgeData(id: 'ref-step2', source: 'NodeRef', target: 'Step2', dashed: true, label: 'Reference'),
@@ -276,7 +293,7 @@ final List<WorkflowEdgeData> initialEdges = [
 ];
 
 final List<WorkflowStep> workflowSteps = [
-  WorkflowStep(id: 1, title: 'Reading the Blueprint', part: 'Part A: Upstream Digital Pipeline', nodeIds: ['Step1', 'NodeIn1', 'NodeIn2']),
+  WorkflowStep(id: 1, title: 'Reading the Blueprint', part: 'Part A: Upstream Digital Pipeline', nodeIds: ['Step1', 'NodeIn1A', 'NodeIn1B', 'NodeIn2']),
   WorkflowStep(id: 2, title: 'Spotting the Typos', part: 'Part A: Upstream Digital Pipeline', nodeIds: ['Step2', 'NodeIn2', 'NodeRef', 'NodeIn3']),
   WorkflowStep(id: 3, title: 'Picking the Targets', part: 'Part A: Upstream Digital Pipeline', nodeIds: ['Step3', 'NodeIn3', 'NodeHLA', 'NodeIn4']),
   WorkflowStep(id: 4, title: 'Writing the New Code', part: 'Part A: Upstream Digital Pipeline', nodeIds: ['Step4', 'NodeIn4', 'NodeIn5']),
