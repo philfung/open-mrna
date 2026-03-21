@@ -9,6 +9,8 @@ import 'providers/workflow_provider.dart';
 import 'widgets/workflow_node.dart';
 import 'models/workflow_data.dart';
 import 'models/mock_data.dart';
+import 'widgets/workflow_detail_view.dart';
+import 'widgets/welcome_modal.dart';
 
 const double MARGIN_VERTICAL_GROUP_NODES = 200.0;
 const double MARGIN_VERTICAL_DATA_NODES = 60.0;
@@ -65,7 +67,16 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
     // Initial focus on step 1
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _focusOnStep(1);
+      _showWelcomeModal();
     });
+  }
+
+  void _showWelcomeModal() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const WelcomeModal(),
+    );
   }
 
   @override
@@ -121,8 +132,11 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
     // Limit maximum scale to 1.0 (actual size) and minimum scale to 0.4
     final double scale = math.min(math.min(scaleX, scaleY), 1.0).clamp(0.4, 1.0);
     
+    const double detailPanelWidth = 450.0;
+    final double availableWidth = viewportSize.width - detailPanelWidth;
+    
     final targetMatrix = Matrix4.identity()
-      ..translate(viewportSize.width / 2, viewportSize.height / 2)
+      ..translate(availableWidth / 2, viewportSize.height / 2)
       ..scale(scale)
       ..translate(-x, -y);
 
@@ -180,61 +194,69 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
       },
       child: Scaffold(
         backgroundColor: const Color(0xFFF8FAFC),
-        body: Stack(
+        body: Row(
           children: [
-            // Dynamic Layout Canvas
-            InteractiveViewer(
-              transformationController: _transformationController,
-              constrained: false,
-              boundaryMargin: const EdgeInsets.symmetric(horizontal: 2000, vertical: 2000),
-              minScale: 0.1,
-              maxScale: 2.5,
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  final viewportWidth = MediaQuery.of(context).size.width;
-                  final canvasWidth = math.max(1400.0, viewportWidth);
-                  
-                  return Container(
-                    padding: const EdgeInsets.fromLTRB(100, 600, 100, 1200),
-                    width: canvasWidth,
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: SizedBox(
-                        width: 1200, // Inner width (1400 total - 200 padding)
-                        child: Stack(
-                          key: _canvasKey,
-                          children: [
-                             // Edges Layer
-                             Positioned.fill(
-                               child: IgnorePointer(
-                                 child: AnimatedBuilder(
-                                   animation: _animationController,
-                                   builder: (context, child) {
-                                     return CustomPaint(
-                                       painter: DynamicEdgePainter(
-                                         edges: state.edges,
-                                         nodeKeys: _nodeKeys,
-                                         canvasKey: _canvasKey,
-                                         animationValue: _animationController.value,
+            Expanded(
+              child: Stack(
+                children: [
+                  // Dynamic Layout Canvas
+                  InteractiveViewer(
+                    transformationController: _transformationController,
+                    constrained: false,
+                    boundaryMargin: const EdgeInsets.symmetric(horizontal: 2000, vertical: 2000),
+                    minScale: 0.1,
+                    maxScale: 2.5,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        const double detailPanelWidth = 450.0;
+                        final viewportWidth = MediaQuery.of(context).size.width - detailPanelWidth;
+                        final canvasWidth = math.max(1200.0, viewportWidth);
+                        
+                        return Container(
+                          padding: const EdgeInsets.fromLTRB(100, 600, 100, 1200),
+                          width: canvasWidth,
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: SizedBox(
+                              width: 1000, // Inner width
+                              child: Stack(
+                                key: _canvasKey,
+                                children: [
+                                   // Edges Layer
+                                   Positioned.fill(
+                                     child: IgnorePointer(
+                                       child: AnimatedBuilder(
+                                         animation: _animationController,
+                                         builder: (context, child) {
+                                           return CustomPaint(
+                                             painter: DynamicEdgePainter(
+                                               edges: state.edges,
+                                               nodeKeys: _nodeKeys,
+                                               canvasKey: _canvasKey,
+                                               animationValue: _animationController.value,
+                                             ),
+                                           );
+                                         },
                                        ),
-                                     );
-                                   },
-                                 ),
-                               ),
-                             ),
-                             // Content Layer
-                             _buildWorkflowLayout(state),
-                          ],
-                        ),
-                      ),
+                                     ),
+                                   ),
+                                   // Content Layer
+                                   _buildWorkflowLayout(state),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }
                     ),
-                  );
-                }
+                  ),
+                  // Header & Controls
+                  _buildHeader(state),
+                  _buildBottomControls(step, state),
+                ],
               ),
             ),
-            // Header & Controls
-            _buildHeader(state),
-            _buildBottomControls(step, state),
+            const WorkflowDetailView(),
           ],
         ),
       ),
@@ -383,40 +405,6 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
                     ),
                   ),
                   const SizedBox(height: 12),
-                  // Current Step Indicator
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF6366F1).withOpacity(0.08),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: const Color(0xFF6366F1).withOpacity(0.2)),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(LucideIcons.list, color: Color(0xFF6366F1), size: 16),
-                        const SizedBox(width: 8),
-                        Text(
-                          state.currentStep.title,
-                          style: GoogleFonts.inter(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF6366F1),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'From biopsy to syringe: documenting the entire flow to synthesize personalized mRNA vaccine from your private lab.',
-                    style: GoogleFonts.inter(
-                      fontSize: 15,
-                      height: 1.5,
-                      color: const Color(0xFF64748B),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
                 ],
               ),
             ),

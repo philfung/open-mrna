@@ -30,7 +30,7 @@ final List<WorkflowNodeData> initialNodes = [
     ],
     isHighlighted: false,
   ),
-    WorkflowNodeData(
+  WorkflowNodeData(
     id: 'NodeIn1B',
     type: NodeType.data,
     title: 'Patient normal blood sample',
@@ -55,6 +55,14 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'rose',
     iconName: 'database',
     image: 'lib/assets/hardware/illumina_nextseq.png',
+    inputs: ['Tumor biopsy', 'Normal blood (healthy baseline)'],
+    outputs: [
+      'baseline-normal.fastq — Normal blood WES (~30X–50X)',
+      'tumor-exome.fastq — Tumor biopsy WES (~100X–500X)',
+      'tumor-rna.fastq — Tumor biopsy RNA-Seq (~50M–100M reads)',
+      'patient-hla.txt — Patient HLA profile (MHC Class I & II typing)'
+    ],
+    fileFormat: '.fastq & .txt',
   ),
   WorkflowNodeData(
     id: 'NodeIn2',
@@ -84,6 +92,12 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'rose',
     iconName: 'zap',
     image: 'lib/assets/icons/icon_ai_script.png',
+    inputs: ['3 patient .fastq files', 'Human Reference Genome (.fasta)'],
+    outputs: [
+      'somatic-variants.vcf — All raw mutation candidates',
+      'filtered-variants.vcf — High-confidence, tumor-only mutations'
+    ],
+    fileFormat: '.vcf',
   ),
   WorkflowNodeData(
     id: 'NodeIn3',
@@ -113,6 +127,9 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'rose',
     iconName: 'target',
     image: 'lib/assets/icons/icon_ai_script.png',
+    inputs: ['filtered-variants.vcf', 'Patient HLA profile (.txt)'],
+    outputs: ['ranked-predictions.tsv — Leaderboard of best targets'],
+    fileFormat: '.tsv',
   ),
   WorkflowNodeData(
     id: 'NodeIn4',
@@ -134,6 +151,9 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'rose',
     iconName: 'pen-tool',
     image: 'lib/assets/icons/icon_ai_script.png',
+    inputs: ['Top targets from ranked-predictions.tsv'],
+    outputs: ['vaccine-construct.fasta — Master mRNA sequence'],
+    fileFormat: '.fasta',
   ),
   WorkflowNodeData(
     id: 'NodeIn5',
@@ -173,6 +193,9 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'teal',
     iconName: 'printer',
     image: 'lib/assets/hardware/bioxp.jpeg',
+    inputs: ['vaccine-construct.fasta blueprint'],
+    outputs: ['~1.5 mL Purified linear DNA template (~75 µg)'],
+    fileFormat: 'Liquid DNA',
   ),
   WorkflowNodeData(
     id: 'NodeIn6',
@@ -204,6 +227,9 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'teal',
     iconName: 'factory',
     image: 'lib/assets/hardware/bioxp.jpeg',
+    inputs: ['Linear DNA template', 'IVT Reagents'],
+    outputs: ['~5.0 mL Highly pure mRNA (~1.0 mg)'],
+    fileFormat: 'Liquid mRNA',
   ),
   WorkflowNodeData(
     id: 'NodeIn7',
@@ -235,6 +261,9 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'teal',
     iconName: 'package',
     image: 'lib/assets/hardware/unchained_sunshine.png',
+    inputs: ['Purified mRNA', '4-Lipid Cocktail'],
+    outputs: ['~12 mL Raw mRNA-LNP mixture (~0.9 mg encapsulated)'],
+    fileFormat: 'LNP Mixture',
   ),
   WorkflowNodeData(
     id: 'NodeIn8',
@@ -258,6 +287,9 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'teal',
     iconName: 'flask-conical',
     image: 'lib/assets/hardware/unchained_stunner.jpeg',
+    inputs: ['Raw mRNA-LNP mixture'],
+    outputs: ['10 x 1.0 mL sterile glass vials (approx. 10 doses)'],
+    fileFormat: 'Final Vaccine Product',
   ),
   WorkflowNodeData(
     id: 'NodeEnd',
