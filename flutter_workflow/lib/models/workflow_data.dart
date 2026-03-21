@@ -14,6 +14,7 @@ class WorkflowNodeData {
   final String? color;
   final String? iconName;
   final String? image;
+  final List<String>? images;
   final String? parentNode;
   final Offset? position;
   final Size? size;
@@ -31,6 +32,7 @@ class WorkflowNodeData {
     this.color,
     this.iconName,
     this.image,
+    this.images,
     this.parentNode,
     this.position,
     this.size,

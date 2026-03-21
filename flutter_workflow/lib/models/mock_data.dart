@@ -25,6 +25,10 @@ final List<WorkflowNodeData> initialNodes = [
     description: '• Normal DNA: ~30X WES<br/>• Tumor DNA: ~100X-500X WES<br/>• Tumor RNA: RNA-Seq (50M-100M reads)',
     parentNode: 'Part1Group',
     color: 'blue',
+    images: [
+      'lib/assets/icons/icon_tissue.png',
+      'lib/assets/icons/icon_blood.png',
+    ],
   ),
   WorkflowNodeData(
     id: 'Step1',
@@ -159,6 +163,7 @@ final List<WorkflowNodeData> initialNodes = [
     description: 'Yield: ~75 µg (at ~50 ng/µL)<br/>Stable at -20°C',
     parentNode: 'Part2Group',
     color: 'teal',
+    images: ['lib/assets/icons/icon_dna.png'],
   ),
   WorkflowNodeData(
     id: 'NodeIVT',
@@ -189,6 +194,7 @@ final List<WorkflowNodeData> initialNodes = [
     description: 'Yield: ~1.0 mg (at ~200 ng/µL)<br/>Stored at -80°C',
     parentNode: 'Part2Group',
     color: 'teal',
+    images: ['lib/assets/icons/icon_5ml_dna.png'],
   ),
   WorkflowNodeData(
     id: 'NodeLipids',
@@ -219,6 +225,7 @@ final List<WorkflowNodeData> initialNodes = [
     description: 'Yield: ~0.9 mg encapsulated (>90% efficiency)<br/>Opalescent liquid',
     parentNode: 'Part2Group',
     color: 'teal',
+    images: ['lib/assets/icons/icon_12ml.png'],
   ),
   WorkflowNodeData(
     id: 'Step8',
@@ -241,6 +248,7 @@ final List<WorkflowNodeData> initialNodes = [
     description: 'Concentration: ~100 µg/mL<br/>10 Doses ready for clinic',
     parentNode: 'Part2Group',
     color: 'teal',
+    images: ['lib/assets/icons/icon_vaccine.png'],
   ),
 ];
 
