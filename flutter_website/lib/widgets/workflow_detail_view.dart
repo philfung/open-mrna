@@ -283,7 +283,7 @@ class WorkflowDetailView extends ConsumerWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(imagePath, width: 24, height: 24),
+          Image.asset(imagePath, width: 48, height: 48),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
@@ -306,7 +306,7 @@ class WorkflowDetailView extends ConsumerWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(imagePath, width: 20, height: 20),
+          Image.asset(imagePath, width: 48, height: 48),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
