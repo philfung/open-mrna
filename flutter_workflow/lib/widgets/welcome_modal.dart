@@ -10,7 +10,7 @@ class WelcomeModal extends StatelessWidget {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
       elevation: 20,
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF1C1C1E),
       child: Container(
         width: 650,
         padding: const EdgeInsets.all(40),
@@ -26,13 +26,13 @@ class WelcomeModal extends StatelessWidget {
                     style: GoogleFonts.outfit(
                       fontSize: 32,
                       fontWeight: FontWeight.w900,
-                      color: const Color(0xFF1E293B),
+                      color: Colors.white,
                     ),
                   ),
                   const Spacer(),
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(LucideIcons.x, color: Color(0xFF94A3B8)),
+                    icon: Icon(LucideIcons.x, color: Colors.grey[400]),
                   ),
                 ],
               ),
@@ -51,7 +51,7 @@ class WelcomeModal extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: const Color(0xFF475569),
+                  color: Colors.grey[300],
                   height: 1.6,
                 ),
               ),
@@ -59,9 +59,9 @@ class WelcomeModal extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFEF2F2),
+                  color: const Color(0xFF3F1D1D),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: const Color(0xFFFEE2E2), width: 1),
+                  border: Border.all(color: const Color(0xFF7F1D1D), width: 1),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +75,7 @@ class WelcomeModal extends StatelessWidget {
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w800,
-                            color: const Color(0xFFEF4444),
+                            color: Colors.red[400],
                             letterSpacing: 1.2,
                           ),
                         ),
@@ -83,11 +83,11 @@ class WelcomeModal extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      '⚠️ RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE. This repository is a technical reference architecture for educational and research purposes only. Building and administering a personalized mRNA vaccine involves significant biological hazards, legal regulations, and requires regulatory oversight, institutional biosafety review, and qualified personnel. The authors do not advocate for the self-administration of any biological or medical products and assume no liability for the use or misuse of any information provided herein. Consult with qualified medical, scientific, and regulatory professionals before attempting any part of this workflow.',
+                      '⚠️ RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE. This is a technical reference for educational purposes. Building mRNA vaccines involves severe biological hazards, requiring strict oversight and qualified personnel. The authors assume no liability for misuse. Consult professionals before attempting any part of this workflow.',
                       style: GoogleFonts.inter(
                         fontSize: 13,
                         fontWeight: FontWeight.w500,
-                        color: const Color(0xFF991B1B),
+                        color: Colors.red[200],
                         height: 1.5,
                       ),
                     ),

@@ -30,9 +30,14 @@ class MyApp extends StatelessWidget {
       title: 'OpenVaxx Workflow',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6366F1)),
+        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF6366F1),
+          brightness: Brightness.dark,
+        ),
+        scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
-        textTheme: GoogleFonts.interTextTheme(),
+        textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
       ),
       home: const WorkflowScreen(),
     );
@@ -197,7 +202,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
         return KeyEventResult.ignored;
       },
       child: Scaffold(
-        backgroundColor: const Color(0xFFF8FAFC),
+        backgroundColor: Colors.black,
         body: Row(
           children: [
             Expanded(
@@ -379,10 +384,10 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
           return Container(
             padding: const EdgeInsets.all(24),
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: Color(0xFF111111),
               border: Border(
                 bottom: BorderSide(
-                  color: Color(0xFFE2E8F0),
+                  color: Color(0xFF2C2C2E),
                   width: 1,
                 ),
               ),
@@ -404,7 +409,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
                             style: GoogleFonts.outfit(
                               fontSize: 32,
                               fontWeight: FontWeight.w900,
-                              color: const Color(0xFF1E293B),
+                              color: Colors.white,
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -413,7 +418,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
                             style: GoogleFonts.outfit(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
-                              color: const Color(0xFF94A3B8),
+                              color: Colors.grey[400],
                             ),
                           ),
                         ],
@@ -461,6 +466,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
               _AnimatedArrow(
                 icon: LucideIcons.chevronUp,
                 onPressed: () => _onPrevPressed(state),
+                color: const Color(0xFF6366F1).withOpacity(0.15),
               ),
             const SizedBox(height: 12),
             if (state.currentStepId < workflowSteps.length)
@@ -469,7 +475,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen> with TickerProv
                 onPressed: () => _onNextPressed(state),
                 isDown: true,
                 label: 'Next Step',
-                color: Colors.yellow.withOpacity(0.6),
+                color: const Color(0xFF6366F1).withOpacity(0.15),
               ),
           ],
         ),
@@ -533,24 +539,24 @@ class _AnimatedArrowState extends State<_AnimatedArrow> with SingleTickerProvide
                     ? const EdgeInsets.symmetric(horizontal: 24, vertical: 12)
                     : const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: widget.color ?? Colors.white.withOpacity(0.4),
+                  color: widget.color ?? Colors.white.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(32),
-                  border: Border.all(color: Colors.white.withOpacity(0.5), width: 2),
+                  border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
                   boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 15, spreadRadius: 2, offset: const Offset(0, 5)),
+                    BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 15, spreadRadius: 2, offset: const Offset(0, 5)),
                   ],
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     if (widget.label != null && !widget.isDown) ...[
-                      Text(widget.label!, style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: const Color(0xFF1E293B).withOpacity(0.8))),
+                      Text(widget.label!, style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                       const SizedBox(width: 8),
                     ],
-                    Icon(widget.icon, color: const Color(0xFF1E293B).withOpacity(0.7), size: widget.label != null ? 32 : 48),
+                    Icon(widget.icon, color: Colors.white, size: widget.label != null ? 32 : 48),
                     if (widget.label != null && widget.isDown) ...[
                       const SizedBox(width: 8),
-                      Text(widget.label!, style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: const Color(0xFF1E293B).withOpacity(0.8))),
+                      Text(widget.label!, style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                     ],
                   ],
                 ),
@@ -573,8 +579,8 @@ class DynamicEdgePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = const Color(0xFF94A3B8)..strokeWidth = 2.0..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
-    final arrowPaint = Paint()..color = const Color(0xFF94A3B8)..style = PaintingStyle.fill;
+    final paint = Paint()..color = Colors.grey[700]!..strokeWidth = 2.0..style = PaintingStyle.stroke..strokeCap = StrokeCap.round;
+    final arrowPaint = Paint()..color = Colors.grey[700]!..style = PaintingStyle.fill;
 
     for (final edge in edges) {
       final sourceKey = nodeKeys[edge.source];

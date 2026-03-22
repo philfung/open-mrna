@@ -38,7 +38,7 @@ class WorkflowNode extends StatelessWidget {
       width: 600,
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF1C1C1E),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: color.withOpacity(0.5), width: 2),
         boxShadow: [
@@ -73,7 +73,7 @@ class WorkflowNode extends StatelessWidget {
                       style: GoogleFonts.outfit(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF1E293B),
+                        color: Colors.white,
                       ),
                     ),
                     if (data.goal != null)
@@ -95,7 +95,7 @@ class WorkflowNode extends StatelessWidget {
             data.description ?? '',
             style: GoogleFonts.inter(
               fontSize: 15,
-              color: const Color(0xFF64748B),
+              color: Colors.grey[400],
               height: 1.5,
             ),
           ),
@@ -140,7 +140,7 @@ class WorkflowNode extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: data.size?.width ?? 450),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF1C1C1E),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: color.withOpacity(0.3), width: 1.5),
         boxShadow: [
@@ -161,7 +161,7 @@ class WorkflowNode extends StatelessWidget {
             style: GoogleFonts.outfit(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFF1E293B),
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 8),
@@ -169,7 +169,7 @@ class WorkflowNode extends StatelessWidget {
             (data.description ?? '').replaceAll('<br/>', '\n'),
             style: GoogleFonts.inter(
               fontSize: 14,
-              color: const Color(0xFF64748B),
+              color: Colors.grey[400],
               height: 1.4,
             ),
           ),
@@ -238,7 +238,7 @@ class WorkflowNode extends StatelessWidget {
       width: data.size?.width ?? 1400,
       height: data.size?.height ?? 2500,
       decoration: BoxDecoration(
-        color: color.withOpacity(0.03),
+        color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(40),
         border: Border.all(
           color: color.withOpacity(0.3),
@@ -286,7 +286,7 @@ class WorkflowNode extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 13,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFF475569),
+              color: Colors.grey[300],
             ),
           ),
           Expanded(
@@ -295,7 +295,7 @@ class WorkflowNode extends StatelessWidget {
               style: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: isCost ? FontWeight.bold : FontWeight.w500,
-                color: isCost ? color : const Color(0xFF64748B),
+                color: isCost ? color : Colors.grey[400],
               ),
             ),
           ),

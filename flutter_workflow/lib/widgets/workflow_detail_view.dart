@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../providers/workflow_provider.dart';
 import '../models/workflow_data.dart';
 
@@ -27,10 +28,10 @@ class WorkflowDetailView extends ConsumerWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF111111),
         border: Border(
           left: BorderSide(
-            color: const Color(0xFFE2E8F0),
+            color: const Color(0xFF2C2C2E),
             width: 1,
           ),
         ),
@@ -46,33 +47,33 @@ class WorkflowDetailView extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header
-          _buildHeader(currentStep),
+          _buildHeader(currentStep, stepNode),
           
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(32),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (stepNode != null) ...[
                     _buildSectionTitle('GOAL'),
                     _buildStepGoal(stepNode.goal ?? ''),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 16),
                     
                     _buildSectionTitle('PROCESS'),
                     _buildDescription(stepNode.description ?? ''),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 16),
                     
                     if (stepNode.inputs != null && stepNode.inputs!.isNotEmpty) ...[
                       _buildSectionTitle('INPUTS'),
                       ...stepNode.inputs!.map((input) => _buildResourceItem(LucideIcons.arrowRightCircle, input, const Color(0xFF3B82F6))),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 16),
                     ],
                     
                     if (stepNode.outputs != null && stepNode.outputs!.isNotEmpty) ...[
                       _buildSectionTitle('OUTPUTS'),
                       ...stepNode.outputs!.map((output) => _buildResourceItem(LucideIcons.checkCircle2, output, const Color(0xFF10B981))),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 16),
                     ],
                     
                     _buildSectionTitle('LOGISTICS'),
@@ -87,19 +88,19 @@ class WorkflowDetailView extends ConsumerWidget {
                     
                   ] else if (currentStep.id == 1) ...[
                     _buildStepGoal('Procuring Biological Starting Material'),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 16),
                     _buildDescription('Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:'),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
                     _buildSectionTitle('REQUIRED SAMPLES'),
                     _buildImageResourceItem('lib/assets/icons/icon_tissue.png', 'Tumor Biopsy: Provides tumor DNA & RNA to identify cancer-specific somatic mutations (neoantigens) unique to the patient.'),
                     _buildImageResourceItem('lib/assets/icons/icon_blood.png', 'Normal Blood: Serves as a healthy genetic reference to filter out inherited (germline) mutations and isolate immune cells for HLA typing.'),
                   ] else if (currentStep.id == 10) ...[
                     _buildStepGoal('Final Vaccine Formulation'),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 16),
                     _buildDescription('The personalized mRNA vaccine formulation encapsulated in lipid nanoparticles, quality verified and ready for clinical administration.'),
                   ] else ...[
                     _buildStepGoal('Overview of required inputs and baseline data.'),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 16),
                     _buildDescription('This stage prepares the necessary patient samples and reference data required for the digital pipeline.'),
                   ],
                 ],
@@ -111,15 +112,15 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildHeader(WorkflowStep step) {
+  Widget _buildHeader(WorkflowStep step, WorkflowNodeData? stepNode) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(32, 48, 32, 32),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
+      padding: const EdgeInsets.fromLTRB(24, 32, 24, 20),
+      decoration: const BoxDecoration(
+        color: Color(0xFF1C1C1E),
         border: Border(
           bottom: BorderSide(
-            color: const Color(0xFFE2E8F0),
+            color: Color(0xFF2C2C2E),
             width: 1,
           ),
         ),
@@ -143,15 +144,34 @@ class WorkflowDetailView extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16),
-          Text(
-            step.title,
-            style: GoogleFonts.outfit(
-              fontSize: 28,
-              fontWeight: FontWeight.w700,
-              color: const Color(0xFF1E293B),
-              height: 1.2,
-            ),
+          const SizedBox(height: 12),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Text(
+                  step.title,
+                  style: GoogleFonts.outfit(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    height: 1.2,
+                  ),
+                ),
+              ),
+              if (stepNode?.image != null) ...[
+                const SizedBox(width: 16),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    stepNode!.image!,
+                    width: 52,
+                    height: 52,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ],
           ),
         ],
       ),
@@ -166,7 +186,7 @@ class WorkflowDetailView extends ConsumerWidget {
         style: GoogleFonts.inter(
           fontSize: 12,
           fontWeight: FontWeight.w800,
-          color: const Color(0xFF94A3B8),
+          color: Colors.grey[500],
           letterSpacing: 1.5,
         ),
       ),
@@ -179,7 +199,7 @@ class WorkflowDetailView extends ConsumerWidget {
       style: GoogleFonts.inter(
         fontSize: 18,
         fontWeight: FontWeight.w600,
-        color: const Color(0xFF334155),
+        color: Colors.grey[300],
         height: 1.4,
       ),
     );
@@ -191,7 +211,7 @@ class WorkflowDetailView extends ConsumerWidget {
       style: GoogleFonts.inter(
         fontSize: 15,
         fontWeight: FontWeight.w400,
-        color: const Color(0xFF64748B),
+        color: Colors.grey[400],
         height: 1.6,
       ),
     );
@@ -211,7 +231,7 @@ class WorkflowDetailView extends ConsumerWidget {
               style: GoogleFonts.inter(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: const Color(0xFF475569),
+                color: Colors.grey[300],
               ),
             ),
           ),
@@ -234,7 +254,7 @@ class WorkflowDetailView extends ConsumerWidget {
               style: GoogleFonts.inter(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: const Color(0xFF475569),
+                color: Colors.grey[300],
               ),
             ),
           ),
@@ -244,6 +264,9 @@ class WorkflowDetailView extends ConsumerWidget {
   }
 
   Widget _buildDetailRow(IconData icon, String label, String value) {
+    if (label == 'Software') {
+      return _buildSoftwareDetailRow(icon, label, value);
+    }
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: Row(
@@ -251,10 +274,10 @@ class WorkflowDetailView extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: const Color(0xFFF1F5F9),
+              color: const Color(0xFF2C2C2E),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, size: 16, color: const Color(0xFF64748B)),
+            child: Icon(icon, size: 16, color: Colors.grey[400]),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -266,7 +289,7 @@ class WorkflowDetailView extends ConsumerWidget {
                   style: GoogleFonts.inter(
                     fontSize: 11,
                     fontWeight: FontWeight.w500,
-                    color: const Color(0xFF94A3B8),
+                    color: Colors.grey[500],
                   ),
                 ),
                 Text(
@@ -274,7 +297,115 @@ class WorkflowDetailView extends ConsumerWidget {
                   style: GoogleFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: const Color(0xFF1E293B),
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSoftwareDetailRow(IconData icon, String label, String value) {
+    final Map<String, String> links = {
+      'GATK Mutect2': 'https://github.com/broadinstitute/gatk',
+      'pVACseq': 'https://github.com/griffithlab/pVACtools',
+      'MHCflurry': 'https://github.com/openvax/mhcflurry',
+      'pVACvector': 'https://github.com/griffithlab/pVACtools',
+      'LinearDesign': 'https://github.com/LinearDesignSoftware/LinearDesign',
+    };
+
+    List<InlineSpan> spans = [];
+    String remaining = value;
+
+    while (remaining.isNotEmpty) {
+      String? foundKey;
+      int minIndex = remaining.length;
+
+      for (var key in links.keys) {
+        int index = remaining.indexOf(key);
+        if (index != -1 && index < minIndex) {
+          minIndex = index;
+          foundKey = key;
+        }
+      }
+
+      if (foundKey == null) {
+        spans.add(TextSpan(text: remaining));
+        break;
+      }
+
+      if (minIndex > 0) {
+        spans.add(TextSpan(text: remaining.substring(0, minIndex)));
+      }
+
+      spans.add(
+        WidgetSpan(
+          alignment: PlaceholderAlignment.baseline,
+          baseline: TextBaseline.alphabetic,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () async {
+                final url = Uri.parse(links[foundKey]!);
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                }
+              },
+              child: Text(
+                foundKey,
+                style: GoogleFonts.inter(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.blueAccent,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.blueAccent,
+                ),
+              ),
+            ),
+          ),
+        )
+      );
+
+      remaining = remaining.substring(minIndex + foundKey.length);
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: const Color(0xFF2C2C2E),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(icon, size: 16, color: Colors.grey[400]),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label.toUpperCase(),
+                  style: GoogleFonts.inter(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[500],
+                  ),
+                ),
+                RichText(
+                  text: TextSpan(
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                    children: spans,
                   ),
                 ),
               ],
