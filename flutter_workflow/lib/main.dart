@@ -19,6 +19,7 @@ const double MARGIN_HORIZONTAL_BETWEEN_DATA_NODES = 40.0;
 const double NODE_WIDTH = 600.0;
 
 void main() {
+  GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.black,
         useMaterial3: true,
+        fontFamily: 'Inter',
         textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
       ),
       home: const WorkflowScreen(),

@@ -107,7 +107,7 @@ class WelcomeModal extends StatelessWidget {
                     elevation: 0,
                   ),
                   child: Text(
-                    'I Understand & Want to Proceed',
+                    'I Understand',
                     style: GoogleFonts.inter(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
