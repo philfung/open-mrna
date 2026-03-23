@@ -193,5 +193,9 @@ The interactive workflow is a Vite-based application. To run it:
     ```bash
     flutter run -d chrome
     ```
+4.  **Build for production:**
+    ```bash
+    flutter build web --release --base_href="/openvaxx/"
+    ```
 
 
