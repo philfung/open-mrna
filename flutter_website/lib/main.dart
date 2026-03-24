@@ -585,7 +585,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
                 onPressed: () => _onNextPressed(state),
                 isDown: true,
                 label: 'Next Step',
-                color: const Color(0xFF6366F1).withOpacity(0.15),
+                color: const Color(0xFF6366F1).withOpacity(0.3),
               ),
           ],
         ),
@@ -677,10 +677,18 @@ class _AnimatedArrowState extends State<_AnimatedArrow>
                   color: widget.color ?? Colors.white.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(32),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.2),
-                    width: 1,
+                    color: (widget.color ?? const Color(0xFF6366F1))
+                        .withOpacity(0.5),
+                    width: 2,
                   ),
                   boxShadow: [
+                    BoxShadow(
+                      color: (widget.color ?? const Color(0xFF6366F1))
+                          .withOpacity(0.3),
+                      blurRadius: 20,
+                      spreadRadius: 2,
+                      offset: const Offset(0, 0),
+                    ),
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3),
                       blurRadius: 15,
