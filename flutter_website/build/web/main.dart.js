@@ -72047,7 +72047,7 @@ return A.N($async$vY,r)}}
 A.a4q.prototype={}
 A.Ic.prototype={
 S(a){var s=null
-return new A.xf(B.R0,"\ud83d\udc89 OpenVaxx",A.aao(B.a7,A.apc(B.a7,s,s,B.af),"Inter",B.k,A.aBO(A.aao(B.a7,s,s,s,s,s).ok),!0),!1,s)}}
+return new A.xf(B.R0,"\ud83d\udc89\ud83d\udc15 OpenVaxx",A.aao(B.a7,A.apc(B.a7,s,s,B.af),"Inter",B.k,A.aBO(A.aao(B.a7,s,s,s,s,s).ok),!0),!1,s)}}
 A.Au.prototype={
 ak(){return new A.S9(A.aE0(),A.o(t.N,t.yi),new A.bA(null,t.C),null,null)}}
 A.S9.prototype={
@@ -72282,7 +72282,7 @@ s=A.uk(a)
 r=12*s
 q=32*s
 p=t.p
-o=A.b([A.qJ(A.GQ(l,A.ei("\ud83d\udc89 OpenVaxx",l,A.pn().$3$color$fontSize$fontWeight(B.j,q,B.cC),l),B.aO,!1,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,new A.aia(this.a),l,l,l,!1,B.dN),B.e3,l,l,l,l)],p)
+o=A.b([A.qJ(A.GQ(l,A.ei("\ud83d\udc89\ud83d\udc36 OpenVaxx",l,A.pn().$3$color$fontSize$fontWeight(B.j,q,B.cC),l),B.aO,!1,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,new A.aia(this.a),l,l,l,!1,B.dN),B.e3,l,l,l,l)],p)
 if(k>350*s){k=16*s
 n=8*s
 m=A.dn(20*s)
@@ -72487,7 +72487,7 @@ A.akf.prototype={
 $0(){return new A.km()},
 $S:470}
 A.t6.prototype={
-S(a){var s=null,r=A.dn(28),q=t.w,p=A.bF(a,s,q).w,o=Math.min(A.bF(a,s,q).w.a.a*0.05,40),n=t.p,m=A.fj(A.b([A.l_(A.aln(B.ha,A.ei("\ud83d\udc89 OpenVAXX",s,A.pn().$3$color$fontSize$fontWeight(B.j,32,B.cC),s),B.el)),B.jz,A.aAz(s,A.Hb(B.G8,B.bL,s,s),s,s,new A.abc(a),s,s,s)],n),B.a9,B.ap,B.P,s),l=A.ei("From biopsy to syringe, this demonstrates an end-to-end workflow for producing a personalized mRNA cancer vaccine. ",s,A.du().$4$color$fontSize$fontWeight$height(B.c0,Math.min(A.bF(a,s,q).w.a.a*0.04,16),B.B,1.6),s),k=A.dn(20),j=A.uX(B.zX,B.z,1)
+S(a){var s=null,r=A.dn(28),q=t.w,p=A.bF(a,s,q).w,o=Math.min(A.bF(a,s,q).w.a.a*0.05,40),n=t.p,m=A.fj(A.b([A.l_(A.aln(B.ha,A.ei("\ud83d\udc89\ud83d\udc36 OpenVAXX",s,A.pn().$3$color$fontSize$fontWeight(B.j,32,B.cC),s),B.el)),B.jz,A.aAz(s,A.Hb(B.G8,B.bL,s,s),s,s,new A.abc(a),s,s,s)],n),B.a9,B.ap,B.P,s),l=A.ei("From biopsy to syringe, this demonstrates an end-to-end workflow for producing a personalized mRNA cancer vaccine. ",s,A.du().$4$color$fontSize$fontWeight$height(B.c0,Math.min(A.bF(a,s,q).w.a.a*0.04,16),B.B,1.6),s),k=A.dn(20),j=A.uX(B.zX,B.z,1)
 return A.nh(!0,s,new A.G3(B.d9,20,new A.d1(r,B.q),new A.iG(new A.ae(320,650,0,p.a.b*0.85),A.d8(A.amn(A.dS(A.b([m,B.wH,l,B.wH,A.d8(A.dS(A.b([A.fj(A.b([B.BV,B.KF,A.ei("Caution",s,A.du().$4$color$fontSize$fontWeight$letterSpacing(B.Aq,14,B.cB,1.2),s)],n),B.a9,B.ap,B.P,s),B.KK,A.ei("\u26a0\ufe0f RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE. This is a reference for educational purposes. Building mRNA vaccines involves severe biological hazards, requiring strict oversight and qualified personnel. The authors assume no liability for misuse.  Do not attempt any part of this workflow.",s,A.du().$4$color$fontSize$fontWeight$height(B.zR,Math.min(A.bF(a,s,q).w.a.a*0.035,13),B.B,1.5),s)],n),B.M,B.P),B.t,s,s,new A.cd(B.Am,s,j,k,s,s,B.T),s,s,s,B.Bb,s),B.KI,A.bT(new A.Gm(new A.abd(a),s,s,s,A.azL(s,s,B.af,s,s,s,0,s,s,B.j,s,s,B.B9,s,new A.d1(A.dn(16),B.q),s,s,s,s,s),s,s,!1,s,!0,s,A.ei("I Understand",s,A.du().$2$fontSize$fontWeight(16,B.aj),s),s),s,1/0)],n),B.M,B.ba),s,s,B.aW),B.t,s,s,s,s,s,s,new A.ax(o,o,o,o),s),s),s),s,s,s,s,!0,s,s,s,new A.abe(a),s,s)}}
 A.abe.prototype={
 $2(a,b){if(b instanceof A.hZ){A.xJ(this.a,!1).de()
@@ -72506,36 +72506,36 @@ try{s=d.a=B.b.lR(c.b,new A.abn(b))}catch(r){s=d.a=null}q=A.b([new A.f3(0,B.cu,A.
 p=b
 o=24*a
 n=20*a
-m=10*a
-l=4*a
-k=A.an(B.d.ag(25.5),B.af.v()>>>16&255,B.af.v()>>>8&255,B.af.v()&255)
-j=A.dn(6*a)
+m=4*a
+l=A.an(B.d.ag(25.5),B.af.v()>>>16&255,B.af.v()>>>8&255,B.af.v()&255)
+k=A.dn(6*a)
+j=10*a
 i=t.p
-p=A.d8(A.dS(A.b([A.d8(A.ei(p.c.toUpperCase(),e,A.du().$4$color$fontSize$fontWeight$letterSpacing(B.af,m,B.aj,1.2*a),e),B.t,e,e,new A.cd(k,e,e,j,e,e,B.T),e,e,e,new A.ax(m,l,m,l),e),A.bT(e,12*a,e),A.aln(B.ha,A.ei(p.b,e,A.pn().$4$color$fontSize$fontWeight$height(B.j,28*a,B.aj,1.2),e),B.el)],i),B.M,B.P),B.t,e,e,B.y6,e,e,e,new A.ax(o,32*a,o,n),1/0)
-l=A.b([],i)
-if(s!=null){k=f.li("GOAL",a)
-j=s.e
-j=f.tt(a0,j==null?"":j,a)
-h=A.bT(e,m,e)
+p=A.d8(A.dS(A.b([A.d8(A.ei(p.c.toUpperCase(),e,A.du().$4$color$fontSize$fontWeight$letterSpacing(B.af,j,B.aj,1.2*a),e),B.t,e,e,new A.cd(l,e,e,k,e,e,B.T),e,e,e,new A.ax(a,m,a,m),e),A.bT(e,12*a,e),A.aln(B.ha,A.ei(p.b,e,A.pn().$4$color$fontSize$fontWeight$height(B.j,28*a,B.aj,1.2),e),B.el)],i),B.M,B.P),B.t,e,e,B.y6,e,e,e,new A.ax(o,n,o,n),1/0)
+m=A.b([],i)
+if(s!=null){l=f.li("GOAL",a)
+k=s.e
+k=f.tt(a0,k==null?"":k,a)
+h=A.bT(e,j,e)
 g=f.li("PROCESS",a)
 s=s.d
-s=A.b([k,j,h,g,f.tr(a0,s==null?"":s,a),A.bT(e,m,e),A.alO(new A.abo(d,f,a)),A.bT(e,8*a,e)],i)
+s=A.b([l,k,h,g,f.tr(a0,s==null?"":s,a),A.bT(e,j,e),A.alO(new A.abo(d,f,a)),A.bT(e,8*a,e)],i)
+l=d.a.cx
+if(l!=null&&l.length!==0){l=A.b([f.li("INPUTS",a)],i)
 k=d.a.cx
-if(k!=null&&k.length!==0){k=A.b([f.li("INPUTS",a)],i)
-j=d.a.cx
-j.toString
-B.b.I(k,new A.Z(j,new A.abp(f,a0,a),A.U(j).h("Z<1,h>")))
-k.push(A.bT(e,m,e))
-B.b.I(s,k)}k=d.a.cy
-if(k!=null&&k.length!==0){k=A.b([f.li("OUTPUTS",a)],i)
+k.toString
+B.b.I(l,new A.Z(k,new A.abp(f,a0,a),A.U(k).h("Z<1,h>")))
+l.push(A.bT(e,j,e))
+B.b.I(s,l)}l=d.a.cy
+if(l!=null&&l.length!==0){l=A.b([f.li("OUTPUTS",a)],i)
 d=d.a.cy
 d.toString
-B.b.I(k,new A.Z(d,new A.abq(f,a0,a),A.U(d).h("Z<1,h>")))
-k.push(A.bT(e,m,e))
-B.b.I(s,k)}B.b.I(l,s)}else if(b.a===1){d=16*a
-B.b.I(l,A.b([f.tt(a0,"Procuring Biological Starting Material",a),A.bT(e,d,e),f.tr(a0,"Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:",a),A.bT(e,d,e),f.li("REQUIRED SAMPLES",a),f.ys(a0,"lib/assets/icons/icon_tissue.png","Tumor Biopsy: Provides tumor DNA & RNA to identify cancer-specific somatic mutations (neoantigens) unique to the patient.",a),f.ys(a0,"lib/assets/icons/icon_blood.png","Normal Blood: Serves as a healthy genetic reference to filter out inherited (germline) mutations and isolate immune cells for HLA typing.",a)],i))}else{d=16*a
-if(b.a===10)B.b.I(l,A.b([f.tt(a0,"Final Vaccine Formulation",a),A.bT(e,d,e),f.tr(a0,"The personalized mRNA vaccine formulation encapsulated in lipid nanoparticles.",a),A.bT(e,d,e),f.li("FINAL PRODUCT",a),f.ys(a0,"lib/assets/icons/icon_vaccine.png","Finished Vaccine: 10 doses of sterile, personalized mRNA-LNP formulation.",a)],i))
-else B.b.I(l,A.b([f.tt(a0,"Overview of required inputs and baseline data.",a),A.bT(e,d,e),f.tr(a0,"This stage prepares the necessary patient samples and reference data required for the digital pipeline.",a)],i))}return A.d8(A.dS(A.b([p,A.l_(A.amn(A.dS(l,B.M,B.P),e,new A.ax(o,n,o,n),B.aW))],i),B.M,B.P),B.t,e,e,new A.cd(B.kI,e,new A.cJ(B.q,new A.bp(B.hn,1,B.z,-1),B.q,B.q),e,q,e,B.T),e,e,e,e,1/0)},
+B.b.I(l,new A.Z(d,new A.abq(f,a0,a),A.U(d).h("Z<1,h>")))
+l.push(A.bT(e,j,e))
+B.b.I(s,l)}B.b.I(m,s)}else if(b.a===1){d=16*a
+B.b.I(m,A.b([f.tt(a0,"Obtain Biological Starting Material",a),A.bT(e,d,e),f.tr(a0,"Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:",a),A.bT(e,d,e),f.li("REQUIRED SAMPLES",a),f.ys(a0,"lib/assets/icons/icon_tissue.png","Tumor Biopsy: Provides tumor DNA & RNA to identify cancer-specific somatic mutations (neoantigens) unique to the patient.",a),f.ys(a0,"lib/assets/icons/icon_blood.png","Normal Blood: Serves as a healthy genetic reference to filter out inherited (germline) mutations and isolate immune cells for HLA typing.",a)],i))}else{d=16*a
+if(b.a===10)B.b.I(m,A.b([f.tt(a0,"Final Vaccine Formulation",a),A.bT(e,d,e),f.tr(a0,"The personalized mRNA vaccine formulation encapsulated in lipid nanoparticles.",a),A.bT(e,d,e),f.li("FINAL PRODUCT",a),f.ys(a0,"lib/assets/icons/icon_vaccine.png","Finished Vaccine: 10 doses of sterile, personalized mRNA-LNP formulation.",a)],i))
+else B.b.I(m,A.b([f.tt(a0,"Overview of required inputs and baseline data.",a),A.bT(e,d,e),f.tr(a0,"This stage prepares the necessary patient samples and reference data required for the digital pipeline.",a)],i))}return A.d8(A.dS(A.b([p,A.l_(A.amn(A.dS(m,B.M,B.P),e,new A.ax(o,n,o,n),B.aW))],i),B.M,B.P),B.t,e,e,new A.cd(B.kI,e,new A.cJ(B.q,new A.bp(B.hn,1,B.z,-1),B.q,B.q),e,q,e,B.T),e,e,e,e,1/0)},
 li(a,b){var s=10*b
 return new A.cO(new A.ax(0,0,0,s),A.ei(a,null,A.du().$4$color$fontSize$fontWeight$letterSpacing(B.eA,s,B.cB,1.5*b),null),null)},
 tt(a,b,c){return A.ei(b,null,A.du().$4$color$fontSize$fontWeight$height(B.c0,Math.min(A.bF(a,null,t.w).w.a.a*0.05,18*c),B.cA,1.4),null)},
@@ -81840,7 +81840,7 @@ return A.b([A.cw("indigo",o,o,o,o,o,o,o,q,o,o,o,!1,p,o,o,o,o,o,p,B.j_),A.cw("ind
 s($,"aOk","axD",()=>{var q="Step1",p=null,o="Step2",n="Step3",m="Step6",l="Step7"
 return A.b([A.dr(!0,!1,"e1a-step1",p,"NodeIn1A",q),A.dr(!0,!1,"e1b-step1",p,"NodeIn1B",q),A.dr(!0,!1,"step1-e2",p,q,"NodeIn2"),A.dr(!0,!1,"e2-step2",p,"NodeIn2",o),A.dr(!1,!0,"ref-step2","Reference","NodeRef",o),A.dr(!0,!1,"step2-e3",p,o,"NodeIn3"),A.dr(!1,!0,"hla-step3",p,"NodeHLA",n),A.dr(!0,!1,"e3-step3",p,"NodeIn3",n),A.dr(!0,!1,"step3-e4",p,n,"NodeIn4"),A.dr(!0,!1,"e4-step4",p,"NodeIn4","Step4"),A.dr(!0,!1,"step4-e5",p,"Step4","NodeIn5"),A.dr(!0,!1,"e5-step5",p,"NodeIn5","Step5"),A.dr(!0,!1,"step5-e6",p,"Step5","NodeIn6"),A.dr(!1,!0,"ivt-step6",p,"NodeIVT",m),A.dr(!0,!1,"e6-step6",p,"NodeIn6",m),A.dr(!0,!1,"step6-e7",p,m,"NodeIn7"),A.dr(!1,!0,"lipids-step7",p,"NodeLipids",l),A.dr(!0,!1,"e7-step7",p,"NodeIn7",l),A.dr(!0,!1,"step7-e8",p,l,"NodeIn8"),A.dr(!0,!1,"e8-step8",p,"NodeIn8","Step8"),A.dr(!0,!1,"step8-end",p,"Step8","NodeEnd")],A.a8("u<m_>"))})
 s($,"aON","TM",()=>{var q="Part A: Upstream Digital Pipeline",p="Part B: Downstream Physical Pipeline",o=t.s
-return A.b([A.ko(1,A.b(["NodeIn1A","NodeIn1B"],o),q,"Patient Samples"),A.ko(2,A.b(["Step1","NodeIn1A","NodeIn1B","NodeIn2"],o),q,"Step 1: Reading the Blueprint"),A.ko(3,A.b(["Step2","NodeIn2","NodeRef","NodeIn3"],o),q,"Step 2: Spotting the Typos"),A.ko(4,A.b(["Step3","NodeIn3","NodeHLA","NodeIn4"],o),q,"Step 3: Picking the Targets"),A.ko(5,A.b(["Step4","NodeIn4","NodeIn5"],o),q,"Step 4: Writing the New Code"),A.ko(6,A.b(["Step5","NodeIn5","NodeIn6"],o),p,"Step 5: Printing the Master Copy"),A.ko(7,A.b(["Step6","NodeIn6","NodeIVT","NodeIn7"],o),p,"Step 6: Creating the mRNA"),A.ko(8,A.b(["Step7","NodeIn7","NodeLipids","NodeIn8"],o),p,"Step 7: Packaging for Delivery"),A.ko(9,A.b(["Step8","NodeIn8","NodeEnd"],o),p,"Step 8: Quality Check & Bottling"),A.ko(10,A.b(["NodeEnd"],o),p,"Final Vaccine Product")],A.a8("u<t9>"))})
+return A.b([A.ko(1,A.b(["NodeIn1A","NodeIn1B"],o),q,"Initial Step: Procure Patient Samples"),A.ko(2,A.b(["Step1","NodeIn1A","NodeIn1B","NodeIn2"],o),q,"Step 1: Reading the Blueprint"),A.ko(3,A.b(["Step2","NodeIn2","NodeRef","NodeIn3"],o),q,"Step 2: Spotting the Typos"),A.ko(4,A.b(["Step3","NodeIn3","NodeHLA","NodeIn4"],o),q,"Step 3: Picking the Targets"),A.ko(5,A.b(["Step4","NodeIn4","NodeIn5"],o),q,"Step 4: Writing the New Code"),A.ko(6,A.b(["Step5","NodeIn5","NodeIn6"],o),p,"Step 5: Printing the Master Copy"),A.ko(7,A.b(["Step6","NodeIn6","NodeIVT","NodeIn7"],o),p,"Step 6: Creating the mRNA"),A.ko(8,A.b(["Step7","NodeIn7","NodeLipids","NodeIn8"],o),p,"Step 7: Packaging for Delivery"),A.ko(9,A.b(["Step8","NodeIn8","NodeEnd"],o),p,"Step 8: Quality Check & Bottling"),A.ko(10,A.b(["NodeEnd"],o),p,"Final Vaccine Product")],A.a8("u<t9>"))})
 s($,"aOM","TL",()=>{var q=null
 return new A.qR(new A.akf(),q,q,q,q,q,A.aHO(q),!1,A.a8("qR<km,kn>"))})
 s($,"aKe","ao2",()=>new A.VK())
