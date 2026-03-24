@@ -17,7 +17,7 @@ class WorkflowDetailView extends ConsumerWidget {
     final state = ref.watch(workflowProvider);
     final currentStep = state.currentStep;
     final scale = getBoxScalingFactor(context);
-    
+
     // Find the primary step node for this workflow step
     WorkflowNodeData? stepNode;
     try {
@@ -34,10 +34,7 @@ class WorkflowDetailView extends ConsumerWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF111111),
         border: Border(
-          left: BorderSide(
-            color: const Color(0xFF2C2C2E),
-            width: 1,
-          ),
+          left: BorderSide(color: const Color(0xFF2C2C2E), width: 1),
         ),
         boxShadow: [
           BoxShadow(
@@ -52,10 +49,13 @@ class WorkflowDetailView extends ConsumerWidget {
         children: [
           // Header
           _buildHeader(currentStep, stepNode, scale),
-          
+
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 24 * scale, vertical: 20 * scale),
+              padding: EdgeInsets.symmetric(
+                horizontal: 24 * scale,
+                vertical: 20 * scale,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,25 +65,57 @@ class WorkflowDetailView extends ConsumerWidget {
                     SizedBox(height: 16 * scale),
 
                     _buildSectionTitle('PROCESS', scale),
-                    _buildDescription(context, stepNode.description ?? '', scale),
+                    _buildDescription(
+                      context,
+                      stepNode.description ?? '',
+                      scale,
+                    ),
                     SizedBox(height: 16 * scale),
 
                     LayoutBuilder(
                       builder: (context, constraints) {
-                        final bool isNarrow = constraints.maxWidth < 340 * scale;
-                        
+                        final bool isNarrow =
+                            constraints.maxWidth < 340 * scale;
+
                         final textColumn = Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _buildSectionTitle('TOOLS AND EQUIPMENT', scale),
-                            if (stepNode!.hardware != null && stepNode.hardware != 'None')
-                              _buildDetailRow(context, LucideIcons.microscope, 'Lab Equipment', stepNode.hardware!, scale),
-                            if (stepNode.software != null && stepNode.software != 'None')
-                              _buildDetailRow(context, LucideIcons.code, 'Software', stepNode.software!, scale),
-                            if (stepNode.outsourced != null && stepNode.outsourced != 'None')
-                              _buildDetailRow(context, LucideIcons.externalLink, 'Outsourced Alternatives', stepNode.outsourced!, scale),
+                            if (stepNode!.hardware != null &&
+                                stepNode.hardware != 'None')
+                              _buildDetailRow(
+                                context,
+                                LucideIcons.microscope,
+                                'Lab Equipment',
+                                stepNode.hardware!,
+                                scale,
+                              ),
+                            if (stepNode.software != null &&
+                                stepNode.software != 'None')
+                              _buildDetailRow(
+                                context,
+                                LucideIcons.code,
+                                'Software',
+                                stepNode.software!,
+                                scale,
+                              ),
+                            if (stepNode.outsourced != null &&
+                                stepNode.outsourced != 'None')
+                              _buildDetailRow(
+                                context,
+                                LucideIcons.externalLink,
+                                'Outsourced Alternatives',
+                                stepNode.outsourced!,
+                                scale,
+                              ),
                             if (stepNode.cost != null)
-                              _buildDetailRow(context, LucideIcons.dollarSign, 'Est. Cost', stepNode.cost!, scale),
+                              _buildDetailRow(
+                                context,
+                                LucideIcons.dollarSign,
+                                'Est. Cost',
+                                stepNode.cost!,
+                                scale,
+                              ),
                           ],
                         );
 
@@ -92,18 +124,20 @@ class WorkflowDetailView extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               textColumn,
-                                if (stepNode.image != null) ...[
-                                  SizedBox(height: 16 * scale),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8 * scale),
-                                    child: Image.asset(
-                                      stepNode.image!,
-                                      width: double.infinity,
-                                      height: 200 * scale,
-                                      fit: BoxFit.cover,
-                                    ),
+                              if (stepNode.image != null) ...[
+                                SizedBox(height: 16 * scale),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                    8 * scale,
                                   ),
-                                ],
+                                  child: Image.asset(
+                                    stepNode.image!,
+                                    width: double.infinity,
+                                    height: 200 * scale,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ],
                             ],
                           );
                         }
@@ -129,36 +163,88 @@ class WorkflowDetailView extends ConsumerWidget {
                       },
                     ),
                     SizedBox(height: 8 * scale),
-                    
-                    if (stepNode.inputs != null && stepNode.inputs!.isNotEmpty) ...[
+
+                    if (stepNode.inputs != null &&
+                        stepNode.inputs!.isNotEmpty) ...[
                       _buildSectionTitle('INPUTS', scale),
-                      ...stepNode.inputs!.map((input) => _buildResourceItem(context, input, scale, isOutput: false)),
-                      SizedBox(height: 16 * scale),
-                    ],
-                    
-                    if (stepNode.outputs != null && stepNode.outputs!.isNotEmpty) ...[
-                      _buildSectionTitle('OUTPUTS', scale),
-                      ...stepNode.outputs!.map((output) => _buildResourceItem(context, output, scale, isOutput: true)),
+                      ...stepNode.inputs!.map(
+                        (input) => _buildResourceItem(
+                          context,
+                          input,
+                          scale,
+                          isOutput: false,
+                        ),
+                      ),
                       SizedBox(height: 16 * scale),
                     ],
 
-                    
+                    if (stepNode.outputs != null &&
+                        stepNode.outputs!.isNotEmpty) ...[
+                      _buildSectionTitle('OUTPUTS', scale),
+                      ...stepNode.outputs!.map(
+                        (output) => _buildResourceItem(
+                          context,
+                          output,
+                          scale,
+                          isOutput: true,
+                        ),
+                      ),
+                      SizedBox(height: 16 * scale),
+                    ],
                   ] else if (currentStep.id == 1) ...[
-                    _buildStepGoal(context, 'Procuring Biological Starting Material', scale),
+                    _buildStepGoal(
+                      context,
+                      'Procuring Biological Starting Material',
+                      scale,
+                    ),
                     SizedBox(height: 16 * scale),
-                    _buildDescription(context, 'Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:', scale),
+                    _buildDescription(
+                      context,
+                      'Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:',
+                      scale,
+                    ),
                     SizedBox(height: 16 * scale),
                     _buildSectionTitle('REQUIRED SAMPLES', scale),
-                    _buildImageResourceItem(context, 'lib/assets/icons/icon_tissue.png', 'Tumor Biopsy: Provides tumor DNA & RNA to identify cancer-specific somatic mutations (neoantigens) unique to the patient.', scale),
-                    _buildImageResourceItem(context, 'lib/assets/icons/icon_blood.png', 'Normal Blood: Serves as a healthy genetic reference to filter out inherited (germline) mutations and isolate immune cells for HLA typing.', scale),
+                    _buildImageResourceItem(
+                      context,
+                      'lib/assets/icons/icon_tissue.png',
+                      'Tumor Biopsy: Provides tumor DNA & RNA to identify cancer-specific somatic mutations (neoantigens) unique to the patient.',
+                      scale,
+                    ),
+                    _buildImageResourceItem(
+                      context,
+                      'lib/assets/icons/icon_blood.png',
+                      'Normal Blood: Serves as a healthy genetic reference to filter out inherited (germline) mutations and isolate immune cells for HLA typing.',
+                      scale,
+                    ),
                   ] else if (currentStep.id == 10) ...[
                     _buildStepGoal(context, 'Final Vaccine Formulation', scale),
                     SizedBox(height: 16 * scale),
-                    _buildDescription(context, 'The personalized mRNA vaccine formulation encapsulated in lipid nanoparticles.', scale),
-                  ] else ...[
-                    _buildStepGoal(context, 'Overview of required inputs and baseline data.', scale),
+                    _buildDescription(
+                      context,
+                      'The personalized mRNA vaccine formulation encapsulated in lipid nanoparticles.',
+                      scale,
+                    ),
                     SizedBox(height: 16 * scale),
-                    _buildDescription(context, 'This stage prepares the necessary patient samples and reference data required for the digital pipeline.', scale),
+                    _buildSectionTitle('FINAL PRODUCT', scale),
+                    _buildImageResourceItem(
+                      context,
+                      'lib/assets/icons/icon_vaccine.png',
+                      'Finished Vaccine: 10 doses of sterile, personalized mRNA-LNP formulation.',
+                      scale,
+                    ),
+                  ] else ...[
+                    _buildStepGoal(
+                      context,
+                      'Overview of required inputs and baseline data.',
+                      scale,
+                    ),
+                    SizedBox(height: 16 * scale),
+                    _buildDescription(
+                      context,
+                      'This stage prepares the necessary patient samples and reference data required for the digital pipeline.',
+                      scale,
+                    ),
                   ],
                 ],
               ),
@@ -169,24 +255,31 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildHeader(WorkflowStep step, WorkflowNodeData? stepNode, double scale) {
+  Widget _buildHeader(
+    WorkflowStep step,
+    WorkflowNodeData? stepNode,
+    double scale,
+  ) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(24 * scale, 32 * scale, 24 * scale, 20 * scale),
+      padding: EdgeInsets.fromLTRB(
+        24 * scale,
+        32 * scale,
+        24 * scale,
+        20 * scale,
+      ),
       decoration: const BoxDecoration(
         color: Color(0xFF1C1C1E),
-        border: Border(
-          bottom: BorderSide(
-            color: Color(0xFF2C2C2E),
-            width: 1,
-          ),
-        ),
+        border: Border(bottom: BorderSide(color: Color(0xFF2C2C2E), width: 1)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10 * scale, vertical: 4 * scale),
+            padding: EdgeInsets.symmetric(
+              horizontal: 10 * scale,
+              vertical: 4 * scale,
+            ),
             decoration: BoxDecoration(
               color: const Color(0xFF6366F1).withOpacity(0.1),
               borderRadius: BorderRadius.circular(6 * scale),
@@ -247,15 +340,23 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildDescription(BuildContext context, String description, double scale) {
+  Widget _buildDescription(
+    BuildContext context,
+    String description,
+    double scale,
+  ) {
     return MarkdownBody(
       data: description,
-      styleSheet: _markdownStyle(context, GoogleFonts.inter(
-        fontSize: min(MediaQuery.of(context).size.width * 0.04, 15 * scale),
-        fontWeight: FontWeight.w400,
-        color: Colors.grey[400],
-        height: 1.6,
-      ), scale),
+      styleSheet: _markdownStyle(
+        context,
+        GoogleFonts.inter(
+          fontSize: min(MediaQuery.of(context).size.width * 0.04, 15 * scale),
+          fontWeight: FontWeight.w400,
+          color: Colors.grey[400],
+          height: 1.6,
+        ),
+        scale,
+      ),
       onTapLink: (text, href, title) async {
         if (href != null) {
           final url = Uri.parse(href);
@@ -267,7 +368,12 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildResourceItem(BuildContext context, WorkflowNodeInOut item, double scale, {required bool isOutput}) {
+  Widget _buildResourceItem(
+    BuildContext context,
+    WorkflowNodeInOut item,
+    double scale, {
+    required bool isOutput,
+  }) {
     String imagePath = 'lib/assets/icons/${item.icon}';
 
     return Padding(
@@ -280,11 +386,15 @@ class WorkflowDetailView extends ConsumerWidget {
           Expanded(
             child: MarkdownBody(
               data: item.text,
-              styleSheet: _markdownStyle(context, GoogleFonts.inter(
-                fontSize: 14 * scale,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey[300],
-              ), scale),
+              styleSheet: _markdownStyle(
+                context,
+                GoogleFonts.inter(
+                  fontSize: 14 * scale,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey[300],
+                ),
+                scale,
+              ),
               onTapLink: (text, href, title) async {
                 if (href != null) {
                   final url = Uri.parse(href);
@@ -300,7 +410,12 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildImageResourceItem(BuildContext context, String imagePath, String text, double scale) {
+  Widget _buildImageResourceItem(
+    BuildContext context,
+    String imagePath,
+    String text,
+    double scale,
+  ) {
     return Padding(
       padding: EdgeInsets.only(bottom: 12 * scale),
       child: Row(
@@ -311,11 +426,15 @@ class WorkflowDetailView extends ConsumerWidget {
           Expanded(
             child: MarkdownBody(
               data: text,
-              styleSheet: _markdownStyle(context, GoogleFonts.inter(
-                fontSize: 14 * scale,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey[300],
-              ), scale),
+              styleSheet: _markdownStyle(
+                context,
+                GoogleFonts.inter(
+                  fontSize: 14 * scale,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey[300],
+                ),
+                scale,
+              ),
               onTapLink: (text, href, title) async {
                 if (href != null) {
                   final url = Uri.parse(href);
@@ -331,7 +450,13 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildDetailRow(BuildContext context, IconData icon, String label, String value, double scale) {
+  Widget _buildDetailRow(
+    BuildContext context,
+    IconData icon,
+    String label,
+    String value,
+    double scale,
+  ) {
     return Padding(
       padding: EdgeInsets.only(bottom: 16 * scale),
       child: Row(
@@ -360,11 +485,15 @@ class WorkflowDetailView extends ConsumerWidget {
                 ),
                 MarkdownBody(
                   data: value,
-                  styleSheet: _markdownStyle(context, GoogleFonts.inter(
-                    fontSize: 14 * scale,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ), scale),
+                  styleSheet: _markdownStyle(
+                    context,
+                    GoogleFonts.inter(
+                      fontSize: 14 * scale,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                    scale,
+                  ),
                   onTapLink: (text, href, title) async {
                     if (href != null) {
                       final url = Uri.parse(href);
@@ -382,7 +511,11 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  MarkdownStyleSheet _markdownStyle(BuildContext context, TextStyle baseStyle, double scale) {
+  MarkdownStyleSheet _markdownStyle(
+    BuildContext context,
+    TextStyle baseStyle,
+    double scale,
+  ) {
     return MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
       p: baseStyle,
       pPadding: EdgeInsets.zero,

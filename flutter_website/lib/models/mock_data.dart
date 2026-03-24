@@ -412,7 +412,7 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'NodeEnd',
     type: NodeType.data,
     title: '💊 10 x 1.0 mL Vaccine Vials',
-    description: 'Concentration: ~100 µg/mL  \n10 Doses ready for clinic',
+    description: 'Concentration: ~100 µg/mL  \n10 Doses',
     parentNode: 'Part2Group',
     color: 'teal',
     images: ['lib/assets/icons/icon_vaccine.png'],

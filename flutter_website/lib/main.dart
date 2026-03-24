@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'OpenVaxx Workflow',
+      title: '💉 OpenVaxx',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -488,7 +488,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
                       child: GestureDetector(
                         onTap: () => _focusOnStep(1),
                         child: Text(
-                          'OpenVaxx',
+                          '💉 OpenVaxx',
                           style: GoogleFonts.outfit(
                             fontSize: 32 * scale,
                             fontWeight: FontWeight.w900,
