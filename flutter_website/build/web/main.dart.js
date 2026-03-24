@@ -18292,7 +18292,7 @@ default:s=null}return s},
 FW:function FW(a,b){this.c=a
 this.a=b},
 azf(a){var s
-switch(a.ar(t.I).w.a){case 0:s=B.Hi
+switch(a.ar(t.I).w.a){case 0:s=B.Hj
 break
 case 1:s=B.i
 break
@@ -49408,7 +49408,7 @@ A.Ri.prototype={
 gfV(){var s,r=this.d
 if(r===0)return B.i
 s=this.a
-if(!isFinite(s.c.gfo()))return B.Hg
+if(!isFinite(s.c.gfo()))return B.Hh
 return new A.p(r*(this.c-s.c.gfo()),0)},
 a6q(a,b,c){var s,r,q=this,p=q.c
 if(b===p&&a===p){q.c=q.a.yT(a,b,c)
@@ -72124,7 +72124,7 @@ S(a){var s=this,r=null,q=s.gwX().SH($.TL(),t.VK),p=q.gOO(),o=t.w,n=A.bF(a,r,o).w
 if(m!=null&&!m.j(0,n))$.a2.RG$.push(new A.ais(s,q))
 s.Q=n
 m=t.p
-return A.nh(!0,r,new A.yT(A.dS(A.b([s.Z2(q),A.l_(A.fj(A.b([A.l_(A.zz(B.d1,A.b([new A.wK(B.Bg,A.alO(new A.ait(s,q)),!1,2.5,0.1,s.w,r),s.YW(p,q)],m),B.ae,B.e2,r)),A.bT(B.R_,r,Math.min(A.bF(a,r,o).w.a.a*0.5,450))],m),B.a9,B.ap,B.P,r))],m),B.a9,B.P),B.k,r),r,r,r,r,!0,r,r,r,new A.aiu(s,q),r,r)},
+return A.nh(!0,r,new A.yT(A.dS(A.b([s.Z2(q),A.l_(A.fj(A.b([A.bT(B.R_,r,Math.min(A.bF(a,r,o).w.a.a*0.5,450)),A.l_(A.zz(B.d1,A.b([new A.wK(B.Bg,A.alO(new A.ait(s,q)),!1,2.5,0.1,s.w,r),s.YW(p,q)],m),B.ae,B.e2,r))],m),B.a9,B.ap,B.P,r))],m),B.a9,B.P),B.k,r),r,r,r,r,!0,r,r,r,new A.aiu(s,q),r,r)},
 Zj(a){var s,r,q=a.b,p=A.U(q).h("ak<1>"),o=A.W(new A.ak(q,new A.ail(),p),p.h("q.E")),n=A.ay(t.N)
 q=t.p
 p=A.b([],q)
@@ -72276,16 +72276,17 @@ A.aik.prototype={
 $1(a){return!this.a.u(0,a.a)},
 $S:21}
 A.aic.prototype={
-$2(a,b){var s,r,q,p,o,n,m=null,l=b.b
-if(l<100)return B.bg
+$2(a,b){var s,r,q,p,o,n,m,l=null,k=b.b
+if(k<100)return B.bg
 s=A.uk(a)
-r=24*s
-q=t.p
-p=A.b([A.qJ(A.GQ(m,A.ei("\ud83d\udc89 OpenVaxx",m,A.pn().$3$color$fontSize$fontWeight(B.j,32*s,B.cC),m),B.aO,!1,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,new A.aia(this.a),m,m,m,!1,B.dN),B.e3,m,m,m,m)],q)
-if(l>350*s){l=16*s
-o=8*s
-n=A.dn(20*s)
-p.push(A.qJ(A.GQ(m,A.d8(A.fj(A.b([A.Hb(B.G6,B.j,m,l),A.bT(m,m,o),A.ei("v1.0.0",m,A.du().$3$color$fontSize$fontWeight(B.j,14*s,B.aj),m)],q),B.a9,B.ap,B.ba,m),B.t,m,m,new A.cd(B.af,m,m,n,m,m,B.T),m,m,m,new A.ax(l,o,l,o),m),B.aO,!1,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,new A.aib(),m,m,m,!1,B.dN),B.e3,m,m,m,m))}return A.d8(A.dS(A.b([A.fj(p,B.a9,B.qL,B.P,m),A.bT(m,4*s,m),A.aln(B.ha,A.ei("A guide to producing a personalized mRNA vaccine",m,A.pn().$3$color$fontSize$fontWeight(B.bL,16*s,B.B),m),B.k5)],q),B.M,B.ba),B.t,m,m,B.y4,m,m,m,new A.ax(r,r,r,r),m)},
+r=12*s
+q=32*s
+p=t.p
+o=A.b([A.qJ(A.GQ(l,A.ei("\ud83d\udc89 OpenVaxx",l,A.pn().$3$color$fontSize$fontWeight(B.j,q,B.cC),l),B.aO,!1,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,new A.aia(this.a),l,l,l,!1,B.dN),B.e3,l,l,l,l)],p)
+if(k>350*s){k=16*s
+n=8*s
+m=A.dn(20*s)
+o.push(A.qJ(A.GQ(l,A.d8(A.fj(A.b([A.Hb(B.G6,B.j,l,k),A.bT(l,l,n),A.ei("v1.0.0",l,A.du().$3$color$fontSize$fontWeight(B.j,14*s,B.aj),l)],p),B.a9,B.ap,B.ba,l),B.t,l,l,new A.cd(B.af,l,l,m,l,l,B.T),l,l,l,new A.ax(k,n,k,n),l),B.aO,!1,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,new A.aib(),l,l,l,!1,B.dN),B.e3,l,l,l,l))}return A.d8(A.dS(A.b([A.fj(o,B.a9,B.qL,B.P,l),A.bT(l,4*s,l),A.aln(B.ha,A.ei("A guide to producing a personalized mRNA cancer vaccine",l,A.pn().$3$color$fontSize$fontWeight(B.bL,16*s,B.B),l),B.k5)],p),B.M,B.ba),B.t,l,l,B.y4,l,l,l,new A.ax(q,r,q,r),l)},
 $S:468}
 A.aia.prototype={
 $0(){return this.a.mS(1)},
@@ -72486,7 +72487,7 @@ A.akf.prototype={
 $0(){return new A.km()},
 $S:470}
 A.t6.prototype={
-S(a){var s=null,r=A.dn(28),q=t.w,p=A.bF(a,s,q).w,o=Math.min(A.bF(a,s,q).w.a.a*0.05,40),n=t.p,m=A.fj(A.b([A.l_(A.aln(B.ha,A.ei("\ud83d\udc89 OpenVAXX",s,A.pn().$3$color$fontSize$fontWeight(B.j,32,B.cC),s),B.el)),B.jz,A.aAz(s,A.Hb(B.G8,B.bL,s,s),s,s,new A.abc(a),s,s,s)],n),B.a9,B.ap,B.P,s),l=A.ei("From biopsy to syringe, this demonstrates an end-to-end workflow for producing a personalized mRNA vaccine. ",s,A.du().$4$color$fontSize$fontWeight$height(B.c0,Math.min(A.bF(a,s,q).w.a.a*0.04,16),B.B,1.6),s),k=A.dn(20),j=A.uX(B.zX,B.z,1)
+S(a){var s=null,r=A.dn(28),q=t.w,p=A.bF(a,s,q).w,o=Math.min(A.bF(a,s,q).w.a.a*0.05,40),n=t.p,m=A.fj(A.b([A.l_(A.aln(B.ha,A.ei("\ud83d\udc89 OpenVAXX",s,A.pn().$3$color$fontSize$fontWeight(B.j,32,B.cC),s),B.el)),B.jz,A.aAz(s,A.Hb(B.G8,B.bL,s,s),s,s,new A.abc(a),s,s,s)],n),B.a9,B.ap,B.P,s),l=A.ei("From biopsy to syringe, this demonstrates an end-to-end workflow for producing a personalized mRNA cancer vaccine. ",s,A.du().$4$color$fontSize$fontWeight$height(B.c0,Math.min(A.bF(a,s,q).w.a.a*0.04,16),B.B,1.6),s),k=A.dn(20),j=A.uX(B.zX,B.z,1)
 return A.nh(!0,s,new A.G3(B.d9,20,new A.d1(r,B.q),new A.iG(new A.ae(320,650,0,p.a.b*0.85),A.d8(A.amn(A.dS(A.b([m,B.wH,l,B.wH,A.d8(A.dS(A.b([A.fj(A.b([B.BV,B.KF,A.ei("Caution",s,A.du().$4$color$fontSize$fontWeight$letterSpacing(B.Aq,14,B.cB,1.2),s)],n),B.a9,B.ap,B.P,s),B.KK,A.ei("\u26a0\ufe0f RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE. This is a reference for educational purposes. Building mRNA vaccines involves severe biological hazards, requiring strict oversight and qualified personnel. The authors assume no liability for misuse.  Do not attempt any part of this workflow.",s,A.du().$4$color$fontSize$fontWeight$height(B.zR,Math.min(A.bF(a,s,q).w.a.a*0.035,13),B.B,1.5),s)],n),B.M,B.P),B.t,s,s,new A.cd(B.Am,s,j,k,s,s,B.T),s,s,s,B.Bb,s),B.KI,A.bT(new A.Gm(new A.abd(a),s,s,s,A.azL(s,s,B.af,s,s,s,0,s,s,B.j,s,s,B.B9,s,new A.d1(A.dn(16),B.q),s,s,s,s,s),s,s,!1,s,!0,s,A.ei("I Understand",s,A.du().$2$fontSize$fontWeight(16,B.aj),s),s),s,1/0)],n),B.M,B.ba),s,s,B.aW),B.t,s,s,s,s,s,s,new A.ax(o,o,o,o),s),s),s),s,s,s,s,!0,s,s,s,new A.abe(a),s,s)}}
 A.abe.prototype={
 $2(a,b){if(b instanceof A.hZ){A.xJ(this.a,!1).de()
@@ -72501,7 +72502,7 @@ $S:0}
 A.Ly.prototype={
 BM(a0,a1){var s,r,q,p,o,n,m,l,k,j,i,h,g,f=this,e=null,d={},c=a1.SH($.TL(),t.VK),b=c.gOO(),a=A.uk(a0)
 d.a=null
-try{s=d.a=B.b.lR(c.b,new A.abn(b))}catch(r){s=d.a=null}q=A.b([new A.f3(0,B.cu,A.an(5,B.k.v()>>>16&255,B.k.v()>>>8&255,B.k.v()&255),B.Hl,10)],t.sq)
+try{s=d.a=B.b.lR(c.b,new A.abn(b))}catch(r){s=d.a=null}q=A.b([new A.f3(0,B.cu,A.an(5,B.k.v()>>>16&255,B.k.v()>>>8&255,B.k.v()&255),B.Hc,10)],t.sq)
 p=b
 o=24*a
 n=20*a
@@ -72534,7 +72535,7 @@ k.push(A.bT(e,m,e))
 B.b.I(s,k)}B.b.I(l,s)}else if(b.a===1){d=16*a
 B.b.I(l,A.b([f.tt(a0,"Procuring Biological Starting Material",a),A.bT(e,d,e),f.tr(a0,"Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:",a),A.bT(e,d,e),f.li("REQUIRED SAMPLES",a),f.ys(a0,"lib/assets/icons/icon_tissue.png","Tumor Biopsy: Provides tumor DNA & RNA to identify cancer-specific somatic mutations (neoantigens) unique to the patient.",a),f.ys(a0,"lib/assets/icons/icon_blood.png","Normal Blood: Serves as a healthy genetic reference to filter out inherited (germline) mutations and isolate immune cells for HLA typing.",a)],i))}else{d=16*a
 if(b.a===10)B.b.I(l,A.b([f.tt(a0,"Final Vaccine Formulation",a),A.bT(e,d,e),f.tr(a0,"The personalized mRNA vaccine formulation encapsulated in lipid nanoparticles.",a),A.bT(e,d,e),f.li("FINAL PRODUCT",a),f.ys(a0,"lib/assets/icons/icon_vaccine.png","Finished Vaccine: 10 doses of sterile, personalized mRNA-LNP formulation.",a)],i))
-else B.b.I(l,A.b([f.tt(a0,"Overview of required inputs and baseline data.",a),A.bT(e,d,e),f.tr(a0,"This stage prepares the necessary patient samples and reference data required for the digital pipeline.",a)],i))}return A.d8(A.dS(A.b([p,A.l_(A.amn(A.dS(l,B.M,B.P),e,new A.ax(o,n,o,n),B.aW))],i),B.M,B.P),B.t,e,e,new A.cd(B.kI,e,new A.cJ(B.q,B.q,B.q,new A.bp(B.hn,1,B.z,-1)),e,q,e,B.T),e,e,e,e,1/0)},
+else B.b.I(l,A.b([f.tt(a0,"Overview of required inputs and baseline data.",a),A.bT(e,d,e),f.tr(a0,"This stage prepares the necessary patient samples and reference data required for the digital pipeline.",a)],i))}return A.d8(A.dS(A.b([p,A.l_(A.amn(A.dS(l,B.M,B.P),e,new A.ax(o,n,o,n),B.aW))],i),B.M,B.P),B.t,e,e,new A.cd(B.kI,e,new A.cJ(B.q,new A.bp(B.hn,1,B.z,-1),B.q,B.q),e,q,e,B.T),e,e,e,e,1/0)},
 li(a,b){var s=10*b
 return new A.cO(new A.ax(0,0,0,s),A.ei(a,null,A.du().$4$color$fontSize$fontWeight$letterSpacing(B.eA,s,B.cB,1.5*b),null),null)},
 tt(a,b,c){return A.ei(b,null,A.du().$4$color$fontSize$fontWeight$height(B.c0,Math.min(A.bF(a,null,t.w).w.a.a*0.05,18*c),B.cA,1.4),null)},
@@ -79267,12 +79268,12 @@ B.Cf=new A.nv("\ufffc",null,null,null,!0,!0,B.ak)
 B.BG=new A.XV(1,"auto")
 B.yv=new A.GG()
 B.Cg=new A.Ho(null,null,null,null,null,null,null,null,null,B.BG,B.yv,!1,null,!1,null,null,null,null,null,null,null,null,!1,null,null,null,null,null,null,null,null,null,null,null,!1,null,null)
-B.Hh=new A.p(0.05,0)
-B.Hj=new A.p(0.133333,0.06)
+B.Hi=new A.p(0.05,0)
+B.Hk=new A.p(0.133333,0.06)
 B.Hm=new A.p(0.166666,0.4)
-B.Hd=new A.p(0.208333,0.82)
+B.He=new A.p(0.208333,0.82)
 B.Hn=new A.p(0.25,1)
-B.e7=new A.A0(B.Hh,B.Hj,B.Hm,B.Hd,B.Hn)
+B.e7=new A.A0(B.Hi,B.Hk,B.Hm,B.He,B.Hn)
 B.lA=new A.hi(0,0.8888888888888888,B.e7)
 B.lB=new A.hi(0.5,1,B.aY)
 B.Ci=new A.hi(0.6,1,B.at)
@@ -80389,11 +80390,11 @@ B.H8=new A.p(0,10)
 B.H9=new A.p(0,4)
 B.Ha=new A.p(0,5)
 B.Hb=new A.p(1,0)
-B.He=new A.p(-0.3333333333333333,0)
-B.Hg=new A.p(1/0,0)
+B.Hc=new A.p(5,0)
+B.Hf=new A.p(-0.3333333333333333,0)
+B.Hh=new A.p(1/0,0)
 B.r7=new A.p(-0.25,0)
-B.Hi=new A.p(17976931348623157e292,0)
-B.Hl=new A.p(-5,0)
+B.Hj=new A.p(17976931348623157e292,0)
 B.dN=new A.p(0,-0.005)
 B.r8=new A.p(0.25,0)
 B.Hq=new A.p(1/0,1/0)
@@ -81075,12 +81076,12 @@ B.OS=new A.m(!0,B.k,null,".AppleSystemUIFont",null,null,null,null,null,null,null
 B.M1=new A.m(!0,B.k,null,".AppleSystemUIFont",null,null,null,null,null,null,null,null,null,null,null,null,null,B.e,null,null,null,"blackRedwoodCity labelSmall",null,null,null,null)
 B.PX=new A.di(B.NN,B.MK,B.NO,B.Oe,B.Mp,B.Mx,B.N2,B.O9,B.Nf,B.OB,B.LV,B.Mc,B.Oy,B.OS,B.M1)
 B.SQ=new A.aat(0,"system")
-B.Hf=new A.p(0.056,0.024)
+B.Hg=new A.p(0.056,0.024)
 B.Hp=new A.p(0.108,0.3085)
-B.Hc=new A.p(0.198,0.541)
-B.Hk=new A.p(0.3655,1)
+B.Hd=new A.p(0.198,0.541)
+B.Hl=new A.p(0.3655,1)
 B.Ho=new A.p(0.5465,0.989)
-B.fM=new A.A0(B.Hf,B.Hp,B.Hc,B.Hk,B.Ho)
+B.fM=new A.A0(B.Hg,B.Hp,B.Hd,B.Hl,B.Ho)
 B.PY=new A.A1(null)
 B.x0=new A.L5(0,"clamp")
 B.jE=new A.L5(3,"decal")
@@ -81590,7 +81591,7 @@ r($,"aNy","akt",()=>{A.aDI()
 return B.yy})
 s($,"aMY","aoi",()=>new A.a4o())
 s($,"aNr","ax7",()=>A.e2(B.Hb,B.i,t.o))
-s($,"aNk","aon",()=>A.e2(B.i,B.He,t.o))
+s($,"aNk","aon",()=>A.e2(B.i,B.Hf,t.o))
 r($,"aMn","awn",()=>new A.FQ(B.R9,B.R8))
 r($,"aOm","axE",()=>$.axB().u(0,"windowing"))
 s($,"aO9","axB",()=>A.dC(A.b("".split(","),t.s),t.N))

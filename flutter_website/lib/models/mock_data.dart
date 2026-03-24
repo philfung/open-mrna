@@ -553,7 +553,7 @@ final List<WorkflowEdgeData> initialEdges = [
 final List<WorkflowStep> workflowSteps = [
   WorkflowStep(
     id: 1,
-    title: 'Patient Samples',
+    title: 'Initial Step: Procure Patient Samples',
     part: 'Part A: Upstream Digital Pipeline',
     nodeIds: ['NodeIn1A', 'NodeIn1B'],
   ),

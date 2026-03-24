@@ -34,13 +34,13 @@ class WorkflowDetailView extends ConsumerWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF111111),
         border: Border(
-          left: BorderSide(color: const Color(0xFF2C2C2E), width: 1),
+          right: BorderSide(color: const Color(0xFF2C2C2E), width: 1),
         ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.02),
             blurRadius: 10,
-            offset: const Offset(-5, 0),
+            offset: const Offset(5, 0),
           ),
         ],
       ),
@@ -194,7 +194,7 @@ class WorkflowDetailView extends ConsumerWidget {
                   ] else if (currentStep.id == 1) ...[
                     _buildStepGoal(
                       context,
-                      'Procuring Biological Starting Material',
+                      'Obtain Biological Starting Material',
                       scale,
                     ),
                     SizedBox(height: 16 * scale),
@@ -264,7 +264,7 @@ class WorkflowDetailView extends ConsumerWidget {
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(
         24 * scale,
-        32 * scale,
+        20 * scale,
         24 * scale,
         20 * scale,
       ),
@@ -277,7 +277,7 @@ class WorkflowDetailView extends ConsumerWidget {
         children: [
           Container(
             padding: EdgeInsets.symmetric(
-              horizontal: 10 * scale,
+              horizontal: 1 * scale,
               vertical: 4 * scale,
             ),
             decoration: BoxDecoration(
