@@ -380,9 +380,9 @@ class WorkflowNode extends StatelessWidget {
       blockSpacing: 8,
       textAlign: WrapAlignment.start,
       a: baseStyle.copyWith(
-        color: const Color(0xFF6366F1),
+        color: const Color(0xFFA5B4FC),
         decoration: TextDecoration.underline,
-        decorationColor: const Color(0xFF6366F1).withOpacity(0.5),
+        decorationColor: const Color(0xFFA5B4FC).withOpacity(0.5),
       ),
     );
   }

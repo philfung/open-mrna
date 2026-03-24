@@ -523,9 +523,9 @@ class WorkflowDetailView extends ConsumerWidget {
       listIndent: 20 * scale,
       blockSpacing: 8 * scale,
       a: baseStyle.copyWith(
-        color: const Color(0xFF6366F1),
+        color: const Color(0xFFA5B4FC),
         decoration: TextDecoration.underline,
-        decorationColor: const Color(0xFF6366F1).withOpacity(0.5),
+        decorationColor: const Color(0xFFA5B4FC).withOpacity(0.5),
       ),
     );
   }
