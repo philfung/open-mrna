@@ -34,25 +34,13 @@ class WorkflowNode extends StatelessWidget {
     return node;
   }
 
-  double _getNodeWidth(BuildContext context) {
-    // print(MediaQuery.of(context).size.width);
-    double width = MediaQuery.of(context).size.width;
-    if (width / 2.0 < 200) {
-      return 200;
-    } else if (width / 2.0 > 500) {
-      return 500;
-    } else {
-      return width / 2.0;
-    }
-  }
-
   Widget _buildStepNode(BuildContext context) {
     final color = _getColor(data.color);
     final scale = getBoxScalingFactor(context);
     double width = MediaQuery.of(context).size.width;
 
     return Container(
-      width: (width/2.0),
+      width: (width / 2.0),
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
       decoration: BoxDecoration(
         color: const Color(0xFF1C1C1E),
@@ -87,21 +75,27 @@ class WorkflowNode extends StatelessWidget {
                   children: [
                     MarkdownBody(
                       data: data.title,
-                      styleSheet: _markdownStyle(context, GoogleFonts.outfit(
-                        fontSize: 20 * scale,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )),
+                      styleSheet: _markdownStyle(
+                        context,
+                        GoogleFonts.outfit(
+                          fontSize: 20 * scale,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
                       onTapLink: (text, href, title) => _launchUrl(href),
                     ),
                     if (data.goal != null)
                       MarkdownBody(
                         data: 'Goal: ${data.goal}',
-                        styleSheet: _markdownStyle(context, GoogleFonts.inter(
-                          fontSize: 14 * scale,
-                          fontWeight: FontWeight.w600,
-                          color: color,
-                        )),
+                        styleSheet: _markdownStyle(
+                          context,
+                          GoogleFonts.inter(
+                            fontSize: 14 * scale,
+                            fontWeight: FontWeight.w600,
+                            color: color,
+                          ),
+                        ),
                         onTapLink: (text, href, title) => _launchUrl(href),
                       ),
                   ],
@@ -112,11 +106,14 @@ class WorkflowNode extends StatelessWidget {
           SizedBox(height: (16 * scale)),
           MarkdownBody(
             data: data.description ?? '',
-            styleSheet: _markdownStyle(context, GoogleFonts.inter(
-              fontSize: 15 * scale,
-              color: Colors.grey[400],
-              height: 1.5,
-            )),
+            styleSheet: _markdownStyle(
+              context,
+              GoogleFonts.inter(
+                fontSize: 15 * scale,
+                color: Colors.grey[400],
+                height: 1.5,
+              ),
+            ),
             onTapLink: (text, href, title) => _launchUrl(href),
           ),
           if (data.image != null) ...[
@@ -139,14 +136,27 @@ class WorkflowNode extends StatelessWidget {
               ),
             ),
           ],
-          if (data.hardware != null || data.software != null || data.outsourced != null || data.cost != null) ...[
+          if (data.hardware != null ||
+              data.software != null ||
+              data.outsourced != null ||
+              data.cost != null) ...[
             SizedBox(height: 20 * scale),
             const Divider(),
             SizedBox(height: 12 * scale),
-            if (data.hardware != null) _buildFooterItem(context, 'Lab Equipment', data.hardware!),
-            if (data.software != null) _buildFooterItem(context, 'Software', data.software!),
-            if (data.outsourced != null) _buildFooterItem(context, 'Outsourced', data.outsourced!),
-            if (data.cost != null) _buildFooterItem(context, 'Cost', data.cost!, isCost: true, color: color),
+            if (data.hardware != null)
+              _buildFooterItem(context, 'Lab Equipment', data.hardware!),
+            if (data.software != null)
+              _buildFooterItem(context, 'Software', data.software!),
+            // if (data.outsourced != null)
+            //   _buildFooterItem(context, 'Outsourced', data.outsourced!),
+            // if (data.cost != null)
+            //   _buildFooterItem(
+            //     context,
+            //     'Cost',
+            //     data.cost!,
+            //     isCost: true,
+            //     color: color,
+            //   ),
           ],
         ],
       ),
@@ -162,7 +172,10 @@ class WorkflowNode extends StatelessWidget {
     return Container(
       width: constraintWidth,
       constraints: BoxConstraints(maxWidth: constraintWidth),
-      padding: EdgeInsets.symmetric(horizontal: 24 * scale, vertical: 16 * scale),
+      padding: EdgeInsets.symmetric(
+        horizontal: 24 * scale,
+        vertical: 16 * scale,
+      ),
       decoration: BoxDecoration(
         color: const Color(0xFF1C1C1E),
         borderRadius: BorderRadius.circular(16),
@@ -180,56 +193,65 @@ class WorkflowNode extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          MarkdownBody(
-            data: data.title,
-            styleSheet: _markdownStyle(context, GoogleFonts.outfit(
-              fontSize: 16 * scale,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            )),
-            onTapLink: (text, href, title) => _launchUrl(href),
-          ),
-          SizedBox(height: 8 * scale),
-          MarkdownBody(
-            data: (data.description ?? '').replaceAll('<br/>', '  \n'),
-            styleSheet: _markdownStyle(context, GoogleFonts.inter(
-              fontSize: 14 * scale,
-              color: Colors.grey[400],
-              height: 1.4,
-            )),
-            onTapLink: (text, href, title) => _launchUrl(href),
-          ),
-          if (data.images != null && data.images!.isNotEmpty) ...[
-            SizedBox(height: 16 * scale),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (var imagePath in data.images!) ...[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      imagePath,
-                      height: 80 * scale,
-                      width: 80 * scale,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => Container(
+            MarkdownBody(
+              data: data.title,
+              styleSheet: _markdownStyle(
+                context,
+                GoogleFonts.outfit(
+                  fontSize: 16 * scale,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              onTapLink: (text, href, title) => _launchUrl(href),
+            ),
+            SizedBox(height: 8 * scale),
+            MarkdownBody(
+              data: (data.description ?? '').replaceAll('<br/>', '  \n'),
+              styleSheet: _markdownStyle(
+                context,
+                GoogleFonts.inter(
+                  fontSize: 14 * scale,
+                  color: Colors.grey[400],
+                  height: 1.4,
+                ),
+              ),
+              onTapLink: (text, href, title) => _launchUrl(href),
+            ),
+            if (data.images != null && data.images!.isNotEmpty) ...[
+              SizedBox(height: 16 * scale),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (var imagePath in data.images!) ...[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        imagePath,
                         height: 80 * scale,
                         width: 80 * scale,
-                        color: Colors.grey[200],
-                        child: const Icon(Icons.broken_image, color: Colors.grey),
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          height: 80 * scale,
+                          width: 80 * scale,
+                          color: Colors.grey[200],
+                          child: const Icon(
+                            Icons.broken_image,
+                            color: Colors.grey,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 12 * scale),
+                    SizedBox(width: 12 * scale),
+                  ],
                 ],
-              ],
-            ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Widget _buildTitleNode(BuildContext context) {
     final color = _getColor(data.color);
@@ -239,22 +261,28 @@ class WorkflowNode extends StatelessWidget {
       children: [
         MarkdownBody(
           data: data.title,
-          styleSheet: _markdownStyle(context, GoogleFonts.outfit(
-            fontSize: (data.fontSize ?? 48) * scale,
-            fontWeight: FontWeight.w800,
-            color: color,
-            letterSpacing: -1 * scale,
-          )),
+          styleSheet: _markdownStyle(
+            context,
+            GoogleFonts.outfit(
+              fontSize: (data.fontSize ?? 48) * scale,
+              fontWeight: FontWeight.w800,
+              color: color,
+              letterSpacing: -1 * scale,
+            ),
+          ),
           onTapLink: (text, href, title) => _launchUrl(href),
         ),
         SizedBox(height: 8 * scale),
         MarkdownBody(
           data: data.description ?? '',
-          styleSheet: _markdownStyle(context, GoogleFonts.inter(
-            fontSize: 24 * scale,
-            fontWeight: FontWeight.w500,
-            color: const Color(0xFF64748B),
-          )),
+          styleSheet: _markdownStyle(
+            context,
+            GoogleFonts.inter(
+              fontSize: 24 * scale,
+              fontWeight: FontWeight.w500,
+              color: const Color(0xFF64748B),
+            ),
+          ),
           onTapLink: (text, href, title) => _launchUrl(href),
         ),
       ],
@@ -284,18 +312,24 @@ class WorkflowNode extends StatelessWidget {
             right: 0,
             child: Center(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 24 * scale, vertical: 8 * scale),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 24 * scale,
+                  vertical: 8 * scale,
+                ),
                 decoration: BoxDecoration(
                   color: color.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(20 * scale),
                 ),
                 child: MarkdownBody(
                   data: data.label ?? '',
-                  styleSheet: _markdownStyle(context, GoogleFonts.outfit(
-                    fontSize: 18 * scale,
-                    fontWeight: FontWeight.bold,
-                    color: color,
-                  )),
+                  styleSheet: _markdownStyle(
+                    context,
+                    GoogleFonts.outfit(
+                      fontSize: 18 * scale,
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                    ),
+                  ),
                   onTapLink: (text, href, title) => _launchUrl(href),
                 ),
               ),
@@ -306,22 +340,32 @@ class WorkflowNode extends StatelessWidget {
     );
   }
 
-  Widget _buildFooterItem(BuildContext context, String label, String value, {bool isCost = false, Color? color}) {
+  Widget _buildFooterItem(
+    BuildContext context,
+    String label,
+    String value, {
+    bool isCost = false,
+    Color? color,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 6),
       child: MarkdownBody(
         data: '**$label:** $value',
-        styleSheet: _markdownStyle(context, GoogleFonts.inter(
-          fontSize: 13,
-          fontWeight: isCost ? FontWeight.bold : FontWeight.w500,
-          color: isCost ? color : Colors.grey[400],
-        )).copyWith(
-          strong: GoogleFonts.inter(
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[300],
-          ),
-        ),
+        styleSheet:
+            _markdownStyle(
+              context,
+              GoogleFonts.inter(
+                fontSize: 13,
+                fontWeight: isCost ? FontWeight.bold : FontWeight.w500,
+                color: isCost ? color : Colors.grey[400],
+              ),
+            ).copyWith(
+              strong: GoogleFonts.inter(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[300],
+              ),
+            ),
         onTapLink: (text, href, title) => _launchUrl(href),
       ),
     );
@@ -378,7 +422,8 @@ class _PulsingHighlight extends StatefulWidget {
   State<_PulsingHighlight> createState() => _PulsingHighlightState();
 }
 
-class _PulsingHighlightState extends State<_PulsingHighlight> with SingleTickerProviderStateMixin {
+class _PulsingHighlightState extends State<_PulsingHighlight>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -389,9 +434,10 @@ class _PulsingHighlightState extends State<_PulsingHighlight> with SingleTickerP
       duration: const Duration(milliseconds: 1000),
       vsync: this,
     )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _animation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
