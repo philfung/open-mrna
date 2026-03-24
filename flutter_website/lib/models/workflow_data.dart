@@ -26,6 +26,7 @@ class WorkflowNodeData {
   final String? parentNode;
   final Offset? position;
   final Size? size;
+  final double? fontSize;
   final String? label;
   final List<WorkflowNodeInOut>? inputs;
   final List<WorkflowNodeInOut>? outputs;
@@ -49,6 +50,7 @@ class WorkflowNodeData {
     this.parentNode,
     this.position,
     this.size,
+    this.fontSize,
     this.label,
     this.inputs,
     this.outputs,

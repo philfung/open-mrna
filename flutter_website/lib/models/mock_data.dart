@@ -16,6 +16,7 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Part A: Upstream Digital Pipeline',
     description: 'Data → Blueprint',
     parentNode: 'Part1Group',
+    fontSize: 48,
     color: 'indigo',
   ),
   WorkflowNodeData(
@@ -195,6 +196,7 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Part B: Downstream Physical Pipeline',
     description: 'Blueprint → Vial',
     parentNode: 'Part2Group',
+    fontSize: 48,
     color: 'teal',
   ),
   WorkflowNodeData(

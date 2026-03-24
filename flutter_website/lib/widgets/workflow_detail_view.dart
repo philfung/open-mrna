@@ -7,6 +7,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'dart:math';
 import '../providers/workflow_provider.dart';
 import '../models/workflow_data.dart';
+import '../utils/ui_utils.dart';
 
 class WorkflowDetailView extends ConsumerWidget {
   const WorkflowDetailView({super.key});
@@ -15,6 +16,7 @@ class WorkflowDetailView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(workflowProvider);
     final currentStep = state.currentStep;
+    final scale = getBoxScalingFactor(context);
     
     // Find the primary step node for this workflow step
     WorkflowNodeData? stepNode;
@@ -49,39 +51,39 @@ class WorkflowDetailView extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header
-          _buildHeader(currentStep, stepNode),
+          _buildHeader(currentStep, stepNode, scale),
           
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 24 * scale, vertical: 20 * scale),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (stepNode != null) ...[
-                    _buildSectionTitle('GOAL'),
-                    _buildStepGoal(context, stepNode.goal ?? ''),
-                    const SizedBox(height: 16),
+                    _buildSectionTitle('GOAL', scale),
+                    _buildStepGoal(context, stepNode.goal ?? '', scale),
+                    SizedBox(height: 16 * scale),
 
-                    _buildSectionTitle('PROCESS'),
-                    _buildDescription(context, stepNode.description ?? ''),
-                    const SizedBox(height: 16),
+                    _buildSectionTitle('PROCESS', scale),
+                    _buildDescription(context, stepNode.description ?? '', scale),
+                    SizedBox(height: 16 * scale),
 
                     LayoutBuilder(
                       builder: (context, constraints) {
-                        final bool isNarrow = constraints.maxWidth < 340;
+                        final bool isNarrow = constraints.maxWidth < 340 * scale;
                         
                         final textColumn = Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _buildSectionTitle('TOOLS AND EQUIPMENT'),
+                            _buildSectionTitle('TOOLS AND EQUIPMENT', scale),
                             if (stepNode!.hardware != null && stepNode.hardware != 'None')
-                              _buildDetailRow(context, LucideIcons.microscope, 'Lab Equipment', stepNode.hardware!),
+                              _buildDetailRow(context, LucideIcons.microscope, 'Lab Equipment', stepNode.hardware!, scale),
                             if (stepNode.software != null && stepNode.software != 'None')
-                              _buildDetailRow(context, LucideIcons.code, 'Software', stepNode.software!),
+                              _buildDetailRow(context, LucideIcons.code, 'Software', stepNode.software!, scale),
                             if (stepNode.outsourced != null && stepNode.outsourced != 'None')
-                              _buildDetailRow(context, LucideIcons.externalLink, 'Outsourced Alternatives', stepNode.outsourced!),
+                              _buildDetailRow(context, LucideIcons.externalLink, 'Outsourced Alternatives', stepNode.outsourced!, scale),
                             if (stepNode.cost != null)
-                              _buildDetailRow(context, LucideIcons.dollarSign, 'Est. Cost', stepNode.cost!),
+                              _buildDetailRow(context, LucideIcons.dollarSign, 'Est. Cost', stepNode.cost!, scale),
                           ],
                         );
 
@@ -90,18 +92,18 @@ class WorkflowDetailView extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               textColumn,
-                              if (stepNode.image != null) ...[
-                                const SizedBox(height: 16),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.asset(
-                                    stepNode.image!,
-                                    width: double.infinity,
-                                    height: 200,
-                                    fit: BoxFit.cover,
+                                if (stepNode.image != null) ...[
+                                  SizedBox(height: 16 * scale),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8 * scale),
+                                    child: Image.asset(
+                                      stepNode.image!,
+                                      width: double.infinity,
+                                      height: 200 * scale,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
                             ],
                           );
                         }
@@ -111,13 +113,13 @@ class WorkflowDetailView extends ConsumerWidget {
                           children: [
                             Expanded(child: textColumn),
                             if (stepNode.image != null) ...[
-                              const SizedBox(width: 16),
+                              SizedBox(width: 16 * scale),
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8 * scale),
                                 child: Image.asset(
                                   stepNode.image!,
-                                  width: 120,
-                                  height: 120,
+                                  width: 120 * scale,
+                                  height: 120 * scale,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -126,37 +128,37 @@ class WorkflowDetailView extends ConsumerWidget {
                         );
                       },
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8 * scale),
                     
                     if (stepNode.inputs != null && stepNode.inputs!.isNotEmpty) ...[
-                      _buildSectionTitle('INPUTS'),
-                      ...stepNode.inputs!.map((input) => _buildResourceItem(context, input, isOutput: false)),
-                      const SizedBox(height: 16),
+                      _buildSectionTitle('INPUTS', scale),
+                      ...stepNode.inputs!.map((input) => _buildResourceItem(context, input, scale, isOutput: false)),
+                      SizedBox(height: 16 * scale),
                     ],
                     
                     if (stepNode.outputs != null && stepNode.outputs!.isNotEmpty) ...[
-                      _buildSectionTitle('OUTPUTS'),
-                      ...stepNode.outputs!.map((output) => _buildResourceItem(context, output, isOutput: true)),
-                      const SizedBox(height: 16),
+                      _buildSectionTitle('OUTPUTS', scale),
+                      ...stepNode.outputs!.map((output) => _buildResourceItem(context, output, scale, isOutput: true)),
+                      SizedBox(height: 16 * scale),
                     ],
 
                     
                   ] else if (currentStep.id == 1) ...[
-                    _buildStepGoal(context, 'Procuring Biological Starting Material'),
-                    const SizedBox(height: 16),
-                    _buildDescription(context, 'Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:'),
-                    const SizedBox(height: 16),
-                    _buildSectionTitle('REQUIRED SAMPLES'),
-                    _buildImageResourceItem(context, 'lib/assets/icons/icon_tissue.png', 'Tumor Biopsy: Provides tumor DNA & RNA to identify cancer-specific somatic mutations (neoantigens) unique to the patient.'),
-                    _buildImageResourceItem(context, 'lib/assets/icons/icon_blood.png', 'Normal Blood: Serves as a healthy genetic reference to filter out inherited (germline) mutations and isolate immune cells for HLA typing.'),
+                    _buildStepGoal(context, 'Procuring Biological Starting Material', scale),
+                    SizedBox(height: 16 * scale),
+                    _buildDescription(context, 'Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:', scale),
+                    SizedBox(height: 16 * scale),
+                    _buildSectionTitle('REQUIRED SAMPLES', scale),
+                    _buildImageResourceItem(context, 'lib/assets/icons/icon_tissue.png', 'Tumor Biopsy: Provides tumor DNA & RNA to identify cancer-specific somatic mutations (neoantigens) unique to the patient.', scale),
+                    _buildImageResourceItem(context, 'lib/assets/icons/icon_blood.png', 'Normal Blood: Serves as a healthy genetic reference to filter out inherited (germline) mutations and isolate immune cells for HLA typing.', scale),
                   ] else if (currentStep.id == 10) ...[
-                    _buildStepGoal(context, 'Final Vaccine Formulation'),
-                    const SizedBox(height: 16),
-                    _buildDescription(context, 'The personalized mRNA vaccine formulation encapsulated in lipid nanoparticles.'),
+                    _buildStepGoal(context, 'Final Vaccine Formulation', scale),
+                    SizedBox(height: 16 * scale),
+                    _buildDescription(context, 'The personalized mRNA vaccine formulation encapsulated in lipid nanoparticles.', scale),
                   ] else ...[
-                    _buildStepGoal(context, 'Overview of required inputs and baseline data.'),
-                    const SizedBox(height: 16),
-                    _buildDescription(context, 'This stage prepares the necessary patient samples and reference data required for the digital pipeline.'),
+                    _buildStepGoal(context, 'Overview of required inputs and baseline data.', scale),
+                    SizedBox(height: 16 * scale),
+                    _buildDescription(context, 'This stage prepares the necessary patient samples and reference data required for the digital pipeline.', scale),
                   ],
                 ],
               ),
@@ -167,10 +169,10 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildHeader(WorkflowStep step, WorkflowNodeData? stepNode) {
+  Widget _buildHeader(WorkflowStep step, WorkflowNodeData? stepNode, double scale) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(24, 32, 24, 20),
+      padding: EdgeInsets.fromLTRB(24 * scale, 32 * scale, 24 * scale, 20 * scale),
       decoration: const BoxDecoration(
         color: Color(0xFF1C1C1E),
         border: Border(
@@ -184,29 +186,29 @@ class WorkflowDetailView extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            padding: EdgeInsets.symmetric(horizontal: 10 * scale, vertical: 4 * scale),
             decoration: BoxDecoration(
               color: const Color(0xFF6366F1).withOpacity(0.1),
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(6 * scale),
             ),
             child: Text(
               step.part.toUpperCase(),
               style: GoogleFonts.inter(
-                fontSize: 10,
+                fontSize: 10 * scale,
                 fontWeight: FontWeight.w700,
                 color: const Color(0xFF6366F1),
-                letterSpacing: 1.2,
+                letterSpacing: 1.2 * scale,
               ),
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12 * scale),
           FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
             child: Text(
               step.title,
               style: GoogleFonts.outfit(
-                fontSize: 28,
+                fontSize: 28 * scale,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
                 height: 1.2,
@@ -218,26 +220,26 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildSectionTitle(String title) {
+  Widget _buildSectionTitle(String title, double scale) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.only(bottom: 12 * scale),
       child: Text(
         title,
         style: GoogleFonts.inter(
-          fontSize: 12,
+          fontSize: 12 * scale,
           fontWeight: FontWeight.w800,
           color: Colors.grey[500],
-          letterSpacing: 1.5,
+          letterSpacing: 1.5 * scale,
         ),
       ),
     );
   }
 
-  Widget _buildStepGoal(BuildContext context, String goal) {
+  Widget _buildStepGoal(BuildContext context, String goal, double scale) {
     return Text(
       goal,
       style: GoogleFonts.inter(
-        fontSize: min(MediaQuery.of(context).size.width * 0.05, 18),
+        fontSize: min(MediaQuery.of(context).size.width * 0.05, 18 * scale),
         fontWeight: FontWeight.w600,
         color: Colors.grey[300],
         height: 1.4,
@@ -245,15 +247,15 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildDescription(BuildContext context, String description) {
+  Widget _buildDescription(BuildContext context, String description, double scale) {
     return MarkdownBody(
       data: description,
       styleSheet: _markdownStyle(context, GoogleFonts.inter(
-        fontSize: min(MediaQuery.of(context).size.width * 0.04, 15),
+        fontSize: min(MediaQuery.of(context).size.width * 0.04, 15 * scale),
         fontWeight: FontWeight.w400,
         color: Colors.grey[400],
         height: 1.6,
-      )),
+      ), scale),
       onTapLink: (text, href, title) async {
         if (href != null) {
           final url = Uri.parse(href);
@@ -265,24 +267,24 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildResourceItem(BuildContext context, WorkflowNodeInOut item, {required bool isOutput}) {
+  Widget _buildResourceItem(BuildContext context, WorkflowNodeInOut item, double scale, {required bool isOutput}) {
     String imagePath = 'lib/assets/icons/${item.icon}';
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.only(bottom: 12 * scale),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(imagePath, width: 48, height: 48),
-          const SizedBox(width: 12),
+          Image.asset(imagePath, width: 48 * scale, height: 48 * scale),
+          SizedBox(width: 12 * scale),
           Expanded(
             child: MarkdownBody(
               data: item.text,
               styleSheet: _markdownStyle(context, GoogleFonts.inter(
-                fontSize: 14,
+                fontSize: 14 * scale,
                 fontWeight: FontWeight.w500,
                 color: Colors.grey[300],
-              )),
+              ), scale),
               onTapLink: (text, href, title) async {
                 if (href != null) {
                   final url = Uri.parse(href);
@@ -298,22 +300,22 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildImageResourceItem(BuildContext context, String imagePath, String text) {
+  Widget _buildImageResourceItem(BuildContext context, String imagePath, String text, double scale) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.only(bottom: 12 * scale),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(imagePath, width: 48, height: 48),
-          const SizedBox(width: 12),
+          Image.asset(imagePath, width: 48 * scale, height: 48 * scale),
+          SizedBox(width: 12 * scale),
           Expanded(
             child: MarkdownBody(
               data: text,
               styleSheet: _markdownStyle(context, GoogleFonts.inter(
-                fontSize: 14,
+                fontSize: 14 * scale,
                 fontWeight: FontWeight.w500,
                 color: Colors.grey[300],
-              )),
+              ), scale),
               onTapLink: (text, href, title) async {
                 if (href != null) {
                   final url = Uri.parse(href);
@@ -329,21 +331,21 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  Widget _buildDetailRow(BuildContext context, IconData icon, String label, String value) {
+  Widget _buildDetailRow(BuildContext context, IconData icon, String label, String value, double scale) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.only(bottom: 16 * scale),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(8 * scale),
             decoration: BoxDecoration(
               color: const Color(0xFF2C2C2E),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8 * scale),
             ),
-            child: Icon(icon, size: 16, color: Colors.grey[400]),
+            child: Icon(icon, size: 16 * scale, color: Colors.grey[400]),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: 16 * scale),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -351,7 +353,7 @@ class WorkflowDetailView extends ConsumerWidget {
                 Text(
                   label.toUpperCase(),
                   style: GoogleFonts.inter(
-                    fontSize: 11,
+                    fontSize: 11 * scale,
                     fontWeight: FontWeight.w500,
                     color: Colors.grey[500],
                   ),
@@ -359,10 +361,10 @@ class WorkflowDetailView extends ConsumerWidget {
                 MarkdownBody(
                   data: value,
                   styleSheet: _markdownStyle(context, GoogleFonts.inter(
-                    fontSize: 14,
+                    fontSize: 14 * scale,
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
-                  )),
+                  ), scale),
                   onTapLink: (text, href, title) async {
                     if (href != null) {
                       final url = Uri.parse(href);
@@ -380,13 +382,13 @@ class WorkflowDetailView extends ConsumerWidget {
     );
   }
 
-  MarkdownStyleSheet _markdownStyle(BuildContext context, TextStyle baseStyle) {
+  MarkdownStyleSheet _markdownStyle(BuildContext context, TextStyle baseStyle, double scale) {
     return MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
       p: baseStyle,
       pPadding: EdgeInsets.zero,
       listBullet: baseStyle,
-      listIndent: 20,
-      blockSpacing: 8,
+      listIndent: 20 * scale,
+      blockSpacing: 8 * scale,
       a: baseStyle.copyWith(
         color: const Color(0xFF6366F1),
         decoration: TextDecoration.underline,

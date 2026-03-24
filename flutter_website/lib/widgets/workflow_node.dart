@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/workflow_data.dart';
-import '../utils/icon_mapper.dart';
 import '../utils/ui_utils.dart';
 
 class WorkflowNode extends StatelessWidget {
@@ -234,24 +233,25 @@ class WorkflowNode extends StatelessWidget {
 
   Widget _buildTitleNode(BuildContext context) {
     final color = _getColor(data.color);
+    final scale = getBoxScalingFactor(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         MarkdownBody(
           data: data.title,
           styleSheet: _markdownStyle(context, GoogleFonts.outfit(
-            fontSize: 48,
+            fontSize: (data.fontSize ?? 48) * scale,
             fontWeight: FontWeight.w800,
             color: color,
-            letterSpacing: -1,
+            letterSpacing: -1 * scale,
           )),
           onTapLink: (text, href, title) => _launchUrl(href),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8 * scale),
         MarkdownBody(
           data: data.description ?? '',
           styleSheet: _markdownStyle(context, GoogleFonts.inter(
-            fontSize: 24,
+            fontSize: 24 * scale,
             fontWeight: FontWeight.w500,
             color: const Color(0xFF64748B),
           )),
@@ -263,35 +263,36 @@ class WorkflowNode extends StatelessWidget {
 
   Widget _buildGroupNode(BuildContext context) {
     final color = _getColor(data.color);
+    final scale = getBoxScalingFactor(context);
     return Container(
-      width: data.size?.width ?? 1400,
-      height: data.size?.height ?? 2500,
+      width: (data.size?.width ?? 1400) * scale,
+      height: (data.size?.height ?? 2500) * scale,
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(40 * scale),
         border: Border.all(
           color: color.withOpacity(0.3),
-          width: 3,
+          width: 3 * scale,
           style: BorderStyle.solid,
         ),
       ),
       child: Stack(
         children: [
           Positioned(
-            top: 40,
+            top: 40 * scale,
             left: 0,
             right: 0,
             child: Center(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: 24 * scale, vertical: 8 * scale),
                 decoration: BoxDecoration(
                   color: color.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20 * scale),
                 ),
                 child: MarkdownBody(
                   data: data.label ?? '',
                   styleSheet: _markdownStyle(context, GoogleFonts.outfit(
-                    fontSize: 18,
+                    fontSize: 18 * scale,
                     fontWeight: FontWeight.bold,
                     color: color,
                   )),
