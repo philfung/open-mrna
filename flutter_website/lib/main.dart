@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '💉🐕 OpenVaxx',
+      title: '💉🐶 OpenVaxx',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -558,7 +558,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
               FittedBox(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'A guide to producing a personalized mRNA cancer vaccine',
+                  'An open-source guide to producing a personalized mRNA cancer vaccine',
                   style: GoogleFonts.outfit(
                     fontSize: 16 * scale,
                     fontWeight: FontWeight.w500,
