@@ -235,84 +235,96 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
       },
       child: Scaffold(
         backgroundColor: Colors.black,
-        body: Row(
+        body: Column(
           children: [
+            _buildHeader(state),
             Expanded(
-              child: Stack(
+              child: Row(
                 children: [
-                  // Dynamic Layout Canvas
-                  InteractiveViewer(
-                    transformationController: _transformationController,
-                    constrained: false,
-                    boundaryMargin: const EdgeInsets.symmetric(
-                      horizontal: 2000,
-                      vertical: 2000,
-                    ),
-                    minScale: 0.1,
-                    maxScale: 2.5,
-                    child: LayoutBuilder(
-                      builder: (context, constraints) {
-                        final double detailPanelWidth = _getDetailPanelWidth(
-                          MediaQuery.of(context).size.width,
-                        );
-                        final viewportWidth =
-                            MediaQuery.of(context).size.width -
-                            detailPanelWidth;
-                        final canvasWidth = math.max(1600.0, viewportWidth);
-
-                        return Container(
-                          padding: const EdgeInsets.fromLTRB(
-                            100,
-                            600,
-                            100,
-                            1200,
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        // Dynamic Layout Canvas
+                        InteractiveViewer(
+                          transformationController: _transformationController,
+                          constrained: false,
+                          boundaryMargin: const EdgeInsets.symmetric(
+                            horizontal: 2000,
+                            vertical: 2000,
                           ),
-                          width: canvasWidth,
-                          child: Align(
-                            alignment: Alignment.topCenter,
-                            child: SizedBox(
-                              width: 1400, // Inner width
-                              child: Stack(
-                                key: _canvasKey,
-                                children: [
-                                  // Edges Layer
-                                  Positioned.fill(
-                                    child: IgnorePointer(
-                                      child: AnimatedBuilder(
-                                        animation: _animationController,
-                                        builder: (context, child) {
-                                          return CustomPaint(
-                                            painter: DynamicEdgePainter(
-                                              edges: state.edges,
-                                              nodeKeys: _nodeKeys,
-                                              canvasKey: _canvasKey,
-                                              animationValue:
-                                                  _animationController.value,
+                          minScale: 0.1,
+                          maxScale: 2.5,
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              final double detailPanelWidth =
+                                  _getDetailPanelWidth(
+                                    MediaQuery.of(context).size.width,
+                                  );
+                              final viewportWidth =
+                                  MediaQuery.of(context).size.width -
+                                  detailPanelWidth;
+                              final canvasWidth = math.max(
+                                1600.0,
+                                viewportWidth,
+                              );
+
+                              return Container(
+                                padding: const EdgeInsets.fromLTRB(
+                                  100,
+                                  600,
+                                  100,
+                                  1200,
+                                ),
+                                width: canvasWidth,
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: SizedBox(
+                                    width: 1400, // Inner width
+                                    child: Stack(
+                                      key: _canvasKey,
+                                      children: [
+                                        // Edges Layer
+                                        Positioned.fill(
+                                          child: IgnorePointer(
+                                            child: AnimatedBuilder(
+                                              animation: _animationController,
+                                              builder: (context, child) {
+                                                return CustomPaint(
+                                                  painter: DynamicEdgePainter(
+                                                    edges: state.edges,
+                                                    nodeKeys: _nodeKeys,
+                                                    canvasKey: _canvasKey,
+                                                    animationValue:
+                                                        _animationController
+                                                            .value,
+                                                  ),
+                                                );
+                                              },
                                             ),
-                                          );
-                                        },
-                                      ),
+                                          ),
+                                        ),
+                                        // Content Layer
+                                        _buildWorkflowLayout(state),
+                                      ],
                                     ),
                                   ),
-                                  // Content Layer
-                                  _buildWorkflowLayout(state),
-                                ],
-                              ),
-                            ),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
+                        ),
+                        _buildBottomControls(step, state),
+                      ],
                     ),
                   ),
-                  // Header & Controls
-                  _buildHeader(state),
-                  _buildBottomControls(step, state),
+                  SizedBox(
+                    width: _getDetailPanelWidth(
+                      MediaQuery.of(context).size.width,
+                    ),
+                    child: const WorkflowDetailView(),
+                  ),
                 ],
               ),
-            ),
-            SizedBox(
-              width: _getDetailPanelWidth(MediaQuery.of(context).size.width),
-              child: const WorkflowDetailView(),
             ),
           ],
         ),
@@ -458,108 +470,106 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
   }
 
   Widget _buildHeader(WorkflowState state) {
-    return Positioned(
-      top: 0,
-      left: 0,
-      right: 0,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          if (constraints.maxWidth < 100) return const SizedBox.shrink();
-          final scale = getBoxScalingFactor(context);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth < 100) return const SizedBox.shrink();
+        final scale = getBoxScalingFactor(context);
 
-          return Container(
-            padding: EdgeInsets.all(24 * scale),
-            decoration: const BoxDecoration(
-              color: Color(0xFF111111),
-              border: Border(
-                bottom: BorderSide(color: Color(0xFF2C2C2E), width: 1),
-              ),
+        return Container(
+          padding: EdgeInsets.symmetric(
+            vertical: 12 * scale,
+            horizontal: 32 * scale,
+          ),
+          decoration: const BoxDecoration(
+            color: Color(0xFF111111),
+            border: Border(
+              bottom: BorderSide(color: Color(0xFF2C2C2E), width: 1),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () => _focusOnStep(1),
+                      child: Text(
+                        '💉 OpenVaxx',
+                        style: GoogleFonts.outfit(
+                          fontSize: 32 * scale,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  // GitHub Button
+                  if (constraints.maxWidth > 350 * scale)
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () => _focusOnStep(1),
-                        child: Text(
-                          '💉 OpenVaxx',
-                          style: GoogleFonts.outfit(
-                            fontSize: 32 * scale,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
+                        onTap: () async {
+                          final url = Uri.parse(
+                            'https://github.com/philfung/openvaxx',
+                          );
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url);
+                          }
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16 * scale,
+                            vertical: 8 * scale,
                           ),
-                        ),
-                      ),
-                    ),
-                    // GitHub Button
-                    if (constraints.maxWidth > 350 * scale)
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: () async {
-                            final url = Uri.parse(
-                              'https://github.com/philfung/openvaxx',
-                            );
-                            if (await canLaunchUrl(url)) {
-                              await launchUrl(url);
-                            }
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16 * scale,
-                              vertical: 8 * scale,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF6366F1),
-                              borderRadius: BorderRadius.circular(20 * scale),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  LucideIcons.github,
-                                  size: 16 * scale,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF6366F1),
+                            borderRadius: BorderRadius.circular(20 * scale),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                LucideIcons.github,
+                                size: 16 * scale,
+                                color: Colors.white,
+                              ),
+                              SizedBox(width: 8 * scale),
+                              Text(
+                                APP_VERSION,
+                                style: GoogleFonts.inter(
                                   color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14 * scale,
                                 ),
-                                SizedBox(width: 8 * scale),
-                                Text(
-                                  APP_VERSION,
-                                  style: GoogleFonts.inter(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14 * scale,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                  ],
-                ),
-                SizedBox(height: 4 * scale),
-                FittedBox(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'A guide to producing a personalized mRNA vaccine',
-                    style: GoogleFonts.outfit(
-                      fontSize: 16 * scale,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[400],
                     ),
+                ],
+              ),
+              SizedBox(height: 4 * scale),
+              FittedBox(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'A guide to producing a personalized mRNA cancer vaccine',
+                  style: GoogleFonts.outfit(
+                    fontSize: 16 * scale,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[400],
                   ),
                 ),
-              ],
-            ),
-          );
-        },
-      ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
