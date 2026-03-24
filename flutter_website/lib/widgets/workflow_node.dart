@@ -4,6 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/workflow_data.dart';
 import '../utils/icon_mapper.dart';
+import '../utils/ui_utils.dart';
 
 class WorkflowNode extends StatelessWidget {
   final WorkflowNodeData data;
@@ -46,27 +47,9 @@ class WorkflowNode extends StatelessWidget {
     }
   }
 
-  double _getBoxScalingFactor(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    // print(width);
-    double scale = 1.0;
-    double maxWidth = 800;
-    double minWidth = 400;
-    double minScale = .5;
-    if (width  < minWidth) {
-      scale = minScale;
-    } else if (width > maxWidth) {
-      scale = 1.0;
-    } else {
-      scale = minScale + (1.0 - minScale) * (width - minWidth) / (maxWidth - minWidth);
-    }
-    // print(scale);
-    return scale;
-  }
-
   Widget _buildStepNode(BuildContext context) {
     final color = _getColor(data.color);
-    final scale = _getBoxScalingFactor(context);
+    final scale = getBoxScalingFactor(context);
     double width = MediaQuery.of(context).size.width;
 
     return Container(
@@ -173,7 +156,7 @@ class WorkflowNode extends StatelessWidget {
 
   Widget _buildDataNode(BuildContext context) {
     final color = _getColor(data.color);
-    final scale = _getBoxScalingFactor(context);
+    final scale = getBoxScalingFactor(context);
     double constraintWidth = data.size?.width ?? 450;
     constraintWidth *= scale;
 
