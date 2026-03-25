@@ -41,6 +41,46 @@
     gtag('config', 'G-E5NVZ248C9');
   </script>
 
+  <script>
+    // Polyfill for Intl.v8BreakIterator using Intl.Segmenter
+    if (!window.Intl.v8BreakIterator && window.Intl.Segmenter) {
+      window.Intl.v8BreakIterator = function (locale, options) {
+        this._segmenter = new Intl.Segmenter(locale, { granularity: options.type === 'word' ? 'word' : 'sentence' });
+        this._text = "";
+        this._segments = [];
+        this._currentStep = 0;
+      };
+      window.Intl.v8BreakIterator.prototype.adoptText = function (text) {
+        this._text = text;
+        this._segments = Array.from(this._segmenter.segment(this._text));
+        this._currentStep = 0;
+      };
+      window.Intl.v8BreakIterator.prototype.first = function () {
+        this._currentStep = 0;
+        return 0;
+      };
+      window.Intl.v8BreakIterator.prototype.next = function () {
+        if (this._currentStep < this._segments.length) {
+          const segment = this._segments[this._currentStep];
+          this._currentStep++;
+          return segment.index + segment.segment.length;
+        }
+        return -1;
+      };
+      window.Intl.v8BreakIterator.prototype.current = function () {
+        if (this._currentStep === 0) return 0;
+        if (this._currentStep <= this._segments.length) {
+          const segment = this._segments[this._currentStep - 1];
+          return segment.index + segment.segment.length;
+        }
+        return -1;
+      };
+      window.Intl.v8BreakIterator.prototype.breakType = function () {
+        return 'none';
+      };
+    }
+  </script>
+
   <link rel="manifest" href="manifest.json">
   <style>
     body {
