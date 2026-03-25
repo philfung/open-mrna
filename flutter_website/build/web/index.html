@@ -141,6 +141,21 @@
 
       if (isInstagram || isFacebook || isThreads) {
         document.addEventListener('DOMContentLoaded', function () {
+          var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+          var isAndroid = /Android/.test(ua);
+          var currentUrlWithoutProtocol = window.location.href.split('://')[1];
+          
+          var redirectUrl = '';
+          var btnLabel = 'Open in System Browser';
+          
+          if (isIOS) {
+            redirectUrl = 'x-safari-https://' + currentUrlWithoutProtocol;
+            btnLabel = 'Open in Safari';
+          } else if (isAndroid) {
+            redirectUrl = 'googlechrome://' + currentUrlWithoutProtocol;
+            btnLabel = 'Open in Chrome';
+          }
+
           var div = document.createElement('div');
           div.id = 'in-app-browser-warning';
           div.style.position = 'fixed';
@@ -160,9 +175,14 @@
           div.style.textAlign = 'center';
           div.style.fontFamily = 'Helvetica, Arial, sans-serif';
 
-          div.innerHTML = '<h1 style="color: #6366F1; margin-bottom: 24px; font-size: 24px; width: 100%;">📱 Open in System Browser</h1>' +
+          var content = '<h1 style="color: #6366F1; margin-bottom: 24px; font-size: 24px; width: 100%;">📱 Open in System Browser</h1>' +
             '<p style="font-size: 16px; line-height: 1.6; width: 100%; max-width: 400px; color: #E5E7EB; margin: 0 auto; overflow-wrap: break-word;">The Facebook and Instagram in-app browsers have limited support for this application.<br><br>For the best experience, please tap <b>"..."</b> and select <b>"Open in System Browser"</b> (Safari or Chrome).</p>';
+          
+          if (redirectUrl) {
+            content += '<a href="' + redirectUrl + '" style="margin-top: 40px; padding: 14px 28px; background: #6366F1; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 16px; text-decoration: none; display: inline-block; transition: all 0.2s;">' + btnLabel + '</a>';
+          }
 
+          div.innerHTML = content;
           document.body.appendChild(div);
         });
       }
