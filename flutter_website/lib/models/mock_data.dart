@@ -297,7 +297,7 @@ final List<WorkflowNodeData> initialNodes = [
       ),
       WorkflowNodeInOut(
         'Reagents — Oligonucleotides, BspQI restriction enzymes, AMPure XP purification beads (cell-free route) or competent *E. coli* cells, LB media, miniprep kit (plasmid route)',
-        'icon_beads.png',
+        'icon_12ml.png',
       ),
     ],
     outputs: [

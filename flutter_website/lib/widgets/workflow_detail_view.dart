@@ -7,7 +7,10 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'dart:math';
 import '../providers/workflow_provider.dart';
 import '../models/workflow_data.dart';
+import '../models/mock_data.dart';
 import '../utils/ui_utils.dart';
+import '../utils/analytics_utils.dart';
+import 'nav_controls.dart';
 
 class WorkflowDetailView extends ConsumerWidget {
   const WorkflowDetailView({super.key});
@@ -250,6 +253,58 @@ class WorkflowDetailView extends ConsumerWidget {
               ),
             ),
           ),
+          _buildNavigationButtons(context, ref, state, scale),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavigationButtons(
+    BuildContext context,
+    WidgetRef ref,
+    WorkflowState state,
+    double scale,
+  ) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 24 * scale,
+        vertical: 20 * scale,
+      ),
+      decoration: const BoxDecoration(
+        color: Color(0xFF111111),
+        border: Border(
+          top: BorderSide(color: Color(0xFF2C2C2E), width: 1),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (state.currentStepId > 1)
+            NavigationArrow(
+              icon: LucideIcons.chevronUp,
+              onPressed: () {
+                AnalyticsUtils.logEvent('prev_step_click', {'from_id': state.currentStepId});
+                ref.read(workflowProvider.notifier).prevStep();
+              },
+              color: const Color(0xFF6366F1).withOpacity(0.15),
+            )
+          else
+            const SizedBox.shrink(),
+          if (state.currentStepId > 1 && state.currentStepId < workflowSteps.length)
+            SizedBox(width: 16 * scale),
+          if (state.currentStepId < workflowSteps.length)
+            NavigationArrow(
+              icon: LucideIcons.chevronDown,
+              onPressed: () {
+                AnalyticsUtils.logEvent('next_step_click', {'from_id': state.currentStepId});
+                ref.read(workflowProvider.notifier).nextStep();
+              },
+              isDown: true,
+              label: 'Next Step',
+              color: const Color(0xFF6366F1).withOpacity(0.3),
+            )
+          else
+            const SizedBox.shrink(),
         ],
       ),
     );

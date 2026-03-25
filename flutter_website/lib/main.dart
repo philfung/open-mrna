@@ -12,7 +12,6 @@ import 'models/mock_data.dart';
 import 'widgets/workflow_detail_view.dart';
 import 'widgets/welcome_modal.dart';
 import 'utils/ui_utils.dart';
-import 'utils/analytics_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const double MARGIN_VERTICAL_GROUP_NODES = 200.0;
@@ -62,8 +61,9 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
   final TransformationController _transformationController =
       TransformationController();
   late AnimationController _animationController;
-  final Map<String, GlobalKey> _nodeKeys = {};
   final GlobalKey _canvasKey = GlobalKey();
+  final GlobalKey _interactiveChildKey = GlobalKey();
+  final Map<String, GlobalKey> _nodeKeys = {};
   Size? _lastSize;
 
   @override
@@ -114,6 +114,9 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
 
     final RenderBox canvasBox =
         _canvasKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox interactiveChildBox =
+        _interactiveChildKey.currentContext!.findRenderObject() as RenderBox;
+
     Rect? combinedRect;
 
     for (final nodeId in step.nodeIds) {
@@ -123,7 +126,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
             key!.currentContext!.findRenderObject() as RenderBox;
         final position = nodeBox.localToGlobal(
           Offset.zero,
-          ancestor: canvasBox,
+          ancestor: interactiveChildBox,
         );
         final rect = position & nodeBox.size;
         if (combinedRect == null) {
@@ -136,13 +139,8 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
 
     if (combinedRect == null) return;
 
-    // Viewport relative coordinates
-    // The Container has padding (100, 600, 100, 1200)
-    const double paddingLeft = 100.0;
-    const double paddingTop = 600.0;
-
-    final double x = combinedRect.center.dx + paddingLeft;
-    final double y = combinedRect.center.dy + paddingTop;
+    final double x = combinedRect.center.dx;
+    final double y = combinedRect.center.dy;
 
     final viewportSize = MediaQuery.of(context).size;
     final double detailPanelWidth = _getDetailPanelWidth(viewportSize.width);
@@ -150,15 +148,16 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
 
     // Calculate scale with some padding
     const double viewPadding = 32.0;
-    final double scaleX =
-        (availableWidth - viewPadding * 2) / combinedRect.width;
-    final double scaleY =
-        (viewportSize.height - viewPadding * 2) / combinedRect.height;
 
-    // Limit maximum scale to 1.0 (actual size) and minimum scale to 0.8
-    final double scale = math
-        .min(math.min(scaleX, scaleY), 1.0)
-        .clamp(0.8, 1.0);
+    // Use a slightly more robust scale calculation if the rect has size
+    double scale = 1.0;
+    if (combinedRect.width > 0 && combinedRect.height > 0) {
+      final double scaleX =
+          (availableWidth - viewPadding * 2) / combinedRect.width;
+      final double scaleY =
+          (viewportSize.height - viewPadding * 2) / combinedRect.height;
+      scale = math.min(math.min(scaleX, scaleY), 1.0).clamp(0.8, 1.0);
+    }
 
     final targetMatrix = Matrix4.identity()
       ..translate(availableWidth / 2, viewportSize.height / 2)
@@ -192,24 +191,27 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
 
   void _onNextPressed(WorkflowState state) {
     if (state.currentStepId < workflowSteps.length) {
-      AnalyticsUtils.logEvent('next_step_click', {'step_id': state.currentStepId});
       ref.read(workflowProvider.notifier).nextStep();
-      Future.microtask(() => _focusOnStep(state.currentStepId + 1));
     }
   }
 
   void _onPrevPressed(WorkflowState state) {
     if (state.currentStepId > 1) {
       ref.read(workflowProvider.notifier).prevStep();
-      Future.microtask(() => _focusOnStep(state.currentStepId - 1));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(workflowProvider);
-    final step = state.currentStep;
     final viewportSize = MediaQuery.of(context).size;
+
+    // Handle auto-focus on step change
+    ref.listen(workflowProvider.select((s) => s.currentStepId), (previous, next) {
+      if (previous != next) {
+        _focusOnStep(next);
+      }
+    });
 
     // Handle responsive re-centering on resize
     if (_lastSize != null && _lastSize != viewportSize) {
@@ -277,6 +279,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
                               );
 
                               return Container(
+                                key: _interactiveChildKey,
                                 padding: const EdgeInsets.fromLTRB(
                                   100,
                                   600,
@@ -321,7 +324,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
                             },
                           ),
                         ),
-                        _buildBottomControls(step, state),
+                        // _buildBottomControls(step, state),
                       ],
                     ),
                   ),
@@ -575,36 +578,6 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
     );
   }
 
-  Widget _buildBottomControls(WorkflowStep step, WorkflowState state) {
-    return Positioned(
-      bottom: 40,
-      left: 0,
-      right: 0,
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (state.currentStepId > 1)
-              _AnimatedArrow(
-                icon: LucideIcons.chevronUp,
-                onPressed: () => _onPrevPressed(state),
-                color: const Color(0xFF6366F1).withOpacity(0.15),
-              ),
-            const SizedBox(height: 12),
-            if (state.currentStepId < workflowSteps.length)
-              _AnimatedArrow(
-                icon: LucideIcons.chevronDown,
-                onPressed: () => _onNextPressed(state),
-                isDown: true,
-                label: 'Next Step',
-                color: const Color(0xFF6366F1).withOpacity(0.3),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Color _getColor(String? colorName) {
     switch (colorName) {
       case 'indigo':
@@ -620,133 +593,6 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
       default:
         return const Color(0xFF6366F1);
     }
-  }
-}
-
-class _AnimatedArrow extends StatefulWidget {
-  final IconData icon;
-  final VoidCallback onPressed;
-  final bool isDown;
-  final String? label;
-  final Color? color;
-
-  const _AnimatedArrow({
-    required this.icon,
-    required this.onPressed,
-    this.isDown = false,
-    this.label,
-    this.color,
-  });
-
-  @override
-  State<_AnimatedArrow> createState() => _AnimatedArrowState();
-}
-
-class _AnimatedArrowState extends State<_AnimatedArrow>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..repeat(reverse: true);
-    _animation = Tween<double>(
-      begin: 0,
-      end: 10,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(
-            0,
-            widget.isDown ? _animation.value : -_animation.value,
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: widget.onPressed,
-              borderRadius: BorderRadius.circular(32),
-              child: Container(
-                padding: widget.label != null
-                    ? const EdgeInsets.symmetric(horizontal: 24, vertical: 12)
-                    : const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: widget.color ?? Colors.white.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(32),
-                  border: Border.all(
-                    color: (widget.color ?? const Color(0xFF6366F1))
-                        .withOpacity(0.5),
-                    width: 2,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: (widget.color ?? const Color(0xFF6366F1))
-                          .withOpacity(0.3),
-                      blurRadius: 20,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 0),
-                    ),
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
-                      blurRadius: 15,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (widget.label != null && !widget.isDown) ...[
-                      Text(
-                        widget.label!,
-                        style: GoogleFonts.inter(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                    Icon(
-                      widget.icon,
-                      color: Colors.white,
-                      size: widget.label != null ? 32 : 48,
-                    ),
-                    if (widget.label != null && widget.isDown) ...[
-                      const SizedBox(width: 8),
-                      Text(
-                        widget.label!,
-                        style: GoogleFonts.inter(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
   }
 }
 
