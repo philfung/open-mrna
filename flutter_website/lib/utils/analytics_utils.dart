@@ -1,5 +1,8 @@
-import 'dart:js' as js;
+import 'dart:js_interop';
 import 'package:flutter/foundation.dart';
+
+@JS('gtag')
+external void _gtag(String type, String eventName, [JSAny? parameters]);
 
 class AnalyticsUtils {
   static void logEvent(String name, [Map<String, dynamic>? parameters]) {
@@ -7,16 +10,9 @@ class AnalyticsUtils {
 
     try {
       if (parameters != null) {
-        js.context.callMethod('gtag', [
-          'event',
-          name,
-          js.JsObject.jsify(parameters),
-        ]);
+        _gtag('event', name, parameters.jsify());
       } else {
-        js.context.callMethod('gtag', [
-          'event',
-          name,
-        ]);
+        _gtag('event', name);
       }
       debugPrint('GA4 Event logged: $name ${parameters ?? ""}');
     } catch (e) {

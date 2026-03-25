@@ -15,7 +15,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="/openvaxx/">
+  <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -137,8 +137,9 @@
       var ua = navigator.userAgent || navigator.vendor || window.opera;
       var isInstagram = ua.indexOf('Instagram') > -1;
       var isFacebook = !!ua.match(/FBAN|FBAV/);
+      var isThreads = ua.indexOf('Threads') > -1;
 
-      if (isInstagram || isFacebook) {
+      if (isInstagram || isFacebook || isThreads) {
         document.addEventListener('DOMContentLoaded', function () {
           var div = document.createElement('div');
           div.id = 'in-app-browser-warning';
