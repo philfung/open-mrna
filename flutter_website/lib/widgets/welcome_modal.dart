@@ -45,7 +45,7 @@ class WelcomeModal extends StatelessWidget {
                           fit: BoxFit.scaleDown,
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            '💉🐶 OpenVAXX',
+                            'OpenVAXX',
                             style: GoogleFonts.outfit(
                               fontSize: 32,
                               fontWeight: FontWeight.w900,
@@ -122,7 +122,7 @@ class WelcomeModal extends StatelessWidget {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          '⚠️ RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE. This is a reference for educational purposes. Building mRNA vaccines involves severe biological hazards, requiring strict oversight and qualified personnel. The authors assume no liability for misuse.  Do not attempt any part of this workflow.',
+                          'RESEACH & EDUCATION USE ONLY. NOT MEDICAL ADVICE. This is a reference for educational purposes. Building mRNA vaccines involves severe biological hazards, requiring strict oversight and qualified personnel. The authors assume no liability for misuse. Do not attempt any part of this workflow.',
                           style: GoogleFonts.inter(
                             fontSize: min(
                               MediaQuery.of(context).size.width * 0.035,

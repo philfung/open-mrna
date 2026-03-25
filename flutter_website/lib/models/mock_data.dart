@@ -6,15 +6,15 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Part1Group',
     type: NodeType.group,
-    title: 'Part A: Upstream Digital Pipeline · Data → Blueprint',
-    label: 'Part A: Upstream Digital Pipeline · Data → Blueprint',
+    title: 'Part A: Upstream Digital Pipeline - Data to Blueprint',
+    label: 'Part A: Upstream Digital Pipeline - Data to Blueprint',
     color: 'indigo',
   ),
   WorkflowNodeData(
     id: 'Title1',
     type: NodeType.title,
     title: 'Part A: Upstream Digital Pipeline',
-    description: 'Data → Blueprint',
+    description: 'Data to Blueprint',
     parentNode: 'Part1Group',
     fontSize: 30,
     color: 'indigo',
@@ -46,7 +46,7 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Step1',
     type: NodeType.step,
-    title: 'Step 1 · Reading the Blueprint',
+    title: 'Step 1: Reading the Blueprint',
     goal:
         'Convert samples into unorganized genetic code to establish a baseline and identify anomalies.',
     description:
@@ -73,19 +73,19 @@ final List<WorkflowNodeData> initialNodes = [
     ],
     outputs: [
       WorkflowNodeInOut(
-        'baseline-normal.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)  — Normal blood Whole Exome Sequencing (~30X–50X)',
+        'baseline-normal.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)  - Normal blood Whole Exome Sequencing (~30X-50X)',
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'tumor-exome.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) — Tumor biopsy Whole Exome Sequencing (~100X–500X)',
+        'tumor-exome.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) - Tumor biopsy Whole Exome Sequencing (~100X-500X)',
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) — Tumor biopsy RNA-Seq (~50M–100M reads).  Used in Step 3 for expression-level filtering within pVACseq.',
+        'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) - Tumor biopsy RNA-Seq (~50M-100M reads). Used in Step 3 for expression-level filtering within pVACseq.',
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        '[patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#) — Patient HLA profile (MHC Class I & II typing), derived computationally from baseline-normal.FASTQ using tools such as OptiType or HLA-HD',
+        '[patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#) - Patient HLA profile (MHC Class I & II typing), derived computationally from baseline-normal.FASTQ using tools such as OptiType or HLA-HD',
         'icon_file.png',
       ),
     ],
@@ -94,17 +94,18 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeIn2',
     type: NodeType.data,
-    title: '📄 Genetic files from patient samples',
+    title: 'Genetic files from patient samples',
+    iconName: 'file-text',
     description:
-        '1. baseline-normal.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n2. tumor-exome.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n3. tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n4. [patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#)',
+        'Tumor blood and biopsy are collected for sequencing.\n1. baseline-normal.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n2. tumor-exome.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n3. tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n4. [patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#)',
     parentNode: 'Part1Group',
     color: 'blue',
   ),
   WorkflowNodeData(
     id: 'NodeRef',
     type: NodeType.data,
-    title:
-        '🧬 Human Reference Genome (.[FASTA](https://en.wikipedia.org/wiki/FASTA_format))',
+    title: 'Human Reference Genome (.FASTA)',
+    iconName: 'dna',
     description: '(e.g. Human Genome Project)  \nchr1 NNNNNNNNNN...',
     parentNode: 'Part1Group',
     color: 'slate',
@@ -112,7 +113,7 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Step2',
     type: NodeType.step,
-    title: 'Step 2 · Spotting the Typos',
+    title: 'Step 2: Spotting the Typos',
     goal: 'Compare healthy code against tumor code to isolate cancers.',
     description:
         'Aligns reads and mathematically subtracts healthy DNA from tumor DNA to isolate somatic mutations.',
@@ -142,11 +143,11 @@ final List<WorkflowNodeData> initialNodes = [
     ],
     outputs: [
       WorkflowNodeInOut(
-        'somatic-variants.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format) — All raw mutation candidates',
+        'somatic-variants.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format) - All raw mutation candidates',
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'filtered-variants.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format) — High-confidence, tumor-only mutations',
+        'filtered-variants.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format) - High-confidence, tumor-only mutations',
         'icon_file.png',
       ),
     ],
@@ -155,8 +156,8 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeIn3',
     type: NodeType.data,
-    title:
-        '📄 2 Condensed mutation lists (.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format))',
+    title: '2 Condensed mutation lists (.VCF)',
+    iconName: 'file-text',
     description:
         'somatic-variants.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)  \nfiltered-variants.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)',
     parentNode: 'Part1Group',
@@ -166,8 +167,8 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeHLA',
     type: NodeType.data,
-    title:
-        '🔬 [Patient HLA profile](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#) (.txt)',
+    title: 'Patient HLA profile (.txt)',
+    iconName: 'microscope',
     description: 'Immune system receptor map  \nHLA-A*02:01, HLA-B*07:02...',
     parentNode: 'Part1Group',
     color: 'blue',
@@ -176,8 +177,8 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeTumorRNAFastQ',
     type: NodeType.data,
-    title:
-        '📄  Tumor biopsy RNA-Sequencing(.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format))',
+    title: 'Tumor biopsy RNA-Sequencing (.FASTQ)',
+    iconName: 'file-text',
     description:
         'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format).',
     parentNode: 'Part1Group',
@@ -187,7 +188,7 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Step3',
     type: NodeType.step,
-    title: 'Step 3 · Picking the Targets',
+    title: 'Step 3: Picking the Targets',
     goal:
         'Use AI to predict which mutations the immune system will recognize as a threat.',
     description:
@@ -218,7 +219,7 @@ final List<WorkflowNodeData> initialNodes = [
     ],
     outputs: [
       WorkflowNodeInOut(
-        '[ranked-predictions.tsv](https://pvactools.readthedocs.io/en/7.0.0_docs/pvacseq/output_files.html) — Leaderboard of best targets',
+        '[ranked-predictions.tsv](https://pvactools.readthedocs.io/en/7.0.0_docs/pvacseq/output_files.html) - Leaderboard of best targets',
         'icon_file.png',
       ),
     ],
@@ -227,7 +228,8 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeIn4',
     type: NodeType.data,
-    title: '📊 Ranked leaderboard of targets (.tsv)',
+    title: 'Ranked leaderboard of targets (.tsv)',
+    iconName: 'bar-chart',
     description:
         '[ranked-predictions.tsv](https://pvactools.readthedocs.io/en/7.0.0_docs/pvacseq/output_files.html)  \nTop predicted neoantigens',
     parentNode: 'Part1Group',
@@ -236,7 +238,7 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Step4',
     type: NodeType.step,
-    title: 'Step 4 · Writing the New Code',
+    title: 'Step 4: Writing the New Code',
     goal:
         'Compile the top predicted targets into a printable digital blueprint.',
     description:
@@ -259,7 +261,7 @@ final List<WorkflowNodeData> initialNodes = [
     ],
     outputs: [
       WorkflowNodeInOut(
-        '[vaccine-construct.fa](https://en.wikipedia.org/wiki/FASTA_format) — Master mRNA sequence',
+        '[vaccine-construct.fa](https://en.wikipedia.org/wiki/FASTA_format) - Master mRNA sequence',
         'icon_file.png',
       ),
     ],
@@ -268,7 +270,8 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeIn5',
     type: NodeType.data,
-    title: '📜 Optimized mRNA blueprint (.fa)',
+    title: 'Optimized mRNA blueprint (.fa)',
+    iconName: 'scroll',
     description:
         '[vaccine-construct.fa](https://en.wikipedia.org/wiki/FASTA_format) (Master sequence)',
     parentNode: 'Part1Group',
@@ -279,15 +282,15 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Part2Group',
     type: NodeType.group,
-    title: 'Part B: Downstream Physical Pipeline · Blueprint → Vial',
-    label: 'Part B: Downstream Physical Pipeline · Blueprint → Vial',
+    title: 'Part B: Downstream Physical Pipeline - Blueprint to Vial',
+    label: 'Part B: Downstream Physical Pipeline - Blueprint to Vial',
     color: 'teal',
   ),
   WorkflowNodeData(
     id: 'Title2',
     type: NodeType.title,
     title: 'Part B: Downstream Physical Pipeline',
-    description: 'Blueprint → Vial',
+    description: 'Blueprint to Vial',
     parentNode: 'Part2Group',
     fontSize: 30,
     color: 'teal',
@@ -295,11 +298,11 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Step5',
     type: NodeType.step,
-    title: 'Step 5 · Printing the Master Copy',
+    title: 'Step 5: Printing the Master Copy',
     goal:
         'Convert the digital blueprint back into a physical, readable linear DNA template.',
     description:
-        'Two synthesis routes are available — choose one: \n1. **Cell-Free / Linear (recommended for speed):** The BioXp system prints the DNA template directly from the digital sequence. \n2. **Plasmid-Based (traditional):** Gibson Assembly stitches oligonucleotides into a DNA plasmid, which is then linearized with enzymes.',
+        'Two synthesis routes are available - choose one: \n1. **Cell-Free / Linear (recommended for speed):** The BioXp system prints the DNA template directly from the digital sequence. \n2. **Plasmid-Based (traditional):** Gibson Assembly stitches oligonucleotides into a DNA plasmid, which is then linearized with enzymes.',
     shortDescription: 'Translates the digital blueprint into DNA template.',
     hardware:
         'Benchtop DNA Synthesizer (e.g., [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-systems/))',
@@ -317,13 +320,13 @@ final List<WorkflowNodeData> initialNodes = [
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'Reagents — Oligonucleotides, BspQI restriction enzymes, AMPure XP purification beads (cell-free route) or competent *E. coli* cells, LB media, miniprep kit (plasmid route)',
+        'Reagents - Oligonucleotides, BspQI restriction enzymes, AMPure XP purification beads (cell-free route) or competent *E. coli* cells, LB media, miniprep kit (plasmid route)',
         'icon_12ml.png',
       ),
     ],
     outputs: [
       WorkflowNodeInOut(
-        '~1.5 mL Purified linear DNA template (~75 µg)',
+        '~1.5 mL Purified linear DNA template (~75 ug)',
         'icon_dna.png',
       ),
     ],
@@ -332,8 +335,9 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeIn6',
     type: NodeType.data,
-    title: '📜 1.5 mL Purified linear DNA template',
-    description: 'Yield: ~75 µg (at ~50 ng/µL)  \nStable at -20°C',
+    title: '1.5 mL Purified linear DNA template',
+    iconName: 'scroll',
+    description: 'Yield: ~75 ug (at ~50 ng/ug)  \nStable at -20 deg C',
     parentNode: 'Part2Group',
     color: 'teal',
     images: ['lib/assets/icons/icon_dna.png'],
@@ -341,18 +345,19 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeIVT',
     type: NodeType.data,
-    title: '⚗️ IVT Reagents',
-    description: 'RNA Polymerase, N1-methylpseudouridine, CleanCap® AG',
+    title: 'IVT Reagents',
+    iconName: 'flask-conical',
+    description: 'RNA Polymerase, N1-methylpseudouridine, CleanCap AG',
     parentNode: 'Part2Group',
     color: 'teal',
   ),
   WorkflowNodeData(
     id: 'Step6',
     type: NodeType.step,
-    title: 'Step 6 · Creating the mRNA',
+    title: 'Step 6: Creating the mRNA',
     goal: 'Transcribe DNA into functional, immune-cloaked mRNA.',
     description:
-        'Continuous-flow In Vitro Transcription (IVT) bioreactors read the DNA and print the corresponding mRNA strand. After transcription, two cleanup steps:  \n1. **DNase I digest** — Degrades the remaining DNA template.  \n2. **mRNA purification** — Removes enzymes, free nucleotides, and abortive transcripts via precip. (LiCL) or column (e.g., silica column or HPLC).',
+        'Continuous-flow In Vitro Transcription (IVT) bioreactors read the DNA and print the corresponding mRNA strand. After transcription, two cleanup steps:  \n1. **DNase I digest** - Degrades the remaining DNA template.  \n2. **mRNA purification** - Removes enzymes, free nucleotides, and abortive transcripts via precip. (LiCL) or column (e.g., silica column or HPLC).',
     shortDescription:
         'IVT bioreactors transcribe DNA into mRNA, followed by multi-stage purification.',
     hardware:
@@ -367,7 +372,7 @@ final List<WorkflowNodeData> initialNodes = [
     image: 'lib/assets/hardware/bioxp.png',
     inputs: [
       WorkflowNodeInOut(
-        '~1.5 mL Purified linear DNA template (~75 µg)',
+        '~1.5 mL Purified linear DNA template (~75 ug)',
         'icon_dna.png',
       ),
       WorkflowNodeInOut('IVT Reagents', 'icon_5ml_dna.png'),
@@ -380,8 +385,9 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeIn7',
     type: NodeType.data,
-    title: '💉 5.0 mL Highly pure mRNA',
-    description: 'Yield: ~1.0 mg (at ~200 ng/µL)  \nStored at -80°C',
+    title: '5.0 mL Highly pure mRNA',
+    iconName: 'syringe',
+    description: 'Yield: ~1.0 mg (at ~200 ng/ug)  \nStored at -80 deg C',
     parentNode: 'Part2Group',
     color: 'teal',
     images: ['lib/assets/icons/icon_5ml_dna.png'],
@@ -389,7 +395,8 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeLipids',
     type: NodeType.data,
-    title: '🧴 4-Lipid Cocktail',
+    title: '4-Lipid Cocktail',
+    iconName: 'container',
     description: 'ALC-0315, PEG-Lipid, DSPC, Cholesterol',
     parentNode: 'Part2Group',
     color: 'teal',
@@ -397,7 +404,7 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Step7',
     type: NodeType.step,
-    title: 'Step 7 · Packaging for Delivery',
+    title: 'Step 7: Packaging for Delivery',
     goal:
         'Wrap mRNA in a protective lipid nanoparticle to allow human cell entry.',
     description:
@@ -429,7 +436,8 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeIn8',
     type: NodeType.data,
-    title: '🧪 12 mL Raw mRNA-LNP mixture',
+    title: '12 mL Raw mRNA-LNP mixture',
+    iconName: 'test-tube',
     description:
         'Yield: ~0.9 mg encapsulated (>90% efficiency)  \nOpalescent liquid',
     parentNode: 'Part2Group',
@@ -439,7 +447,7 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'Step8',
     type: NodeType.step,
-    title: 'Step 8 · Quality Check & Bottling',
+    title: 'Step 8: Quality Check and Bottling',
     goal:
         'Validate integrity, size, and concentration before finalizing for injection.',
     description:
@@ -468,8 +476,9 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeEnd',
     type: NodeType.data,
-    title: '💊 10 x 1.0 mL Vaccine Vials',
-    description: 'Concentration: ~100 µg/mL  \n10 Doses',
+    title: '10 x 1.0 mL Vaccine Vials',
+    iconName: 'pill',
+    description: 'Concentration: ~100 ug/mL  \n10 Doses',
     parentNode: 'Part2Group',
     color: 'teal',
     images: ['lib/assets/icons/icon_vaccine.png'],
