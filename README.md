@@ -2,11 +2,11 @@
 From biopsy to syringe: this is an end-to-end overview on how to synthesize personalized mRNA cancer vaccine in a private lab.
 Focuses on open-source, state-of-the-art software tools paired with "best-tool-for-the-job" benchtop lab equipment.
 
-[**Try the Interactive Guide**](https://philfung.github.io/openvaxx/)
-
 > [!CAUTION]
 > **⚠️ RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE.**
 > This is a reference for educational purposes. Building mRNA vaccines involves severe biological hazards, requiring strict oversight and qualified personnel. The authors assume no liability for misuse.  Do not attempt any part of this workflow.
+
+[**Try the Interactive Guide**](https://philfung.github.io/openvaxx/)
 
 **Open to contributors!! This is a work-in-progress and I am certainly not an expert in the field.**
 
