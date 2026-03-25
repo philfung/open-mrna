@@ -72264,7 +72264,7 @@ s=A.pl(a)
 r=12*s
 q=32*s
 p=t.p
-o=A.b([A.qK(A.GT(l,A.ei("OpenVaxx",l,A.po().$3$color$fontSize$fontWeight(B.j,q,B.cB),l),B.aO,!1,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,new A.aia(this.a),l,l,l,!1,B.dO),B.e4,l,l,l,l)],p)
+o=A.b([A.qK(A.GT(l,A.ei("\ud83d\udc89\ud83d\udc36 OpenVaxx",l,A.po().$3$color$fontSize$fontWeight(B.j,q,B.cB),l),B.aO,!1,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,new A.aia(this.a),l,l,l,!1,B.dO),B.e4,l,l,l,l)],p)
 if(k>350*s){k=16*s
 n=8*s
 m=A.dq(20*s)
@@ -72422,7 +72422,7 @@ h.push(A.He(s.c,B.j,r,20))
 if(o&&s.e)B.b.I(h,A.b([B.wF,A.ei(p,r,A.e3().$3$color$fontSize$fontWeight(B.j,14,B.aj),r)],i))
 return A.a0s(B.an,!0,r,A.aq7(!1,q,!0,A.cX(A.eN(h,B.a9,B.aq,B.br,r),B.r,r,B.y4,new A.cb(m,r,k,l,j,r,B.S),r,r,r,new A.ax(n,8,n,8),r),r,!0,r,r,r,r,r,r,s.d,r,r,r),B.r,B.P,0,r,r,r,r,r,B.dN)}}
 A.t7.prototype={
-S(a){var s=null,r=A.dq(28),q=t.w,p=A.bL(a,s,q).w,o=Math.min(A.bL(a,s,q).w.a.a*0.05,40),n=t.p,m=A.eN(A.b([A.l0(A.alo(B.h9,A.ei("OpenVAXX",s,A.po().$3$color$fontSize$fontWeight(B.j,32,B.cB),s),B.em)),B.KG,A.aAw(s,A.He(B.G8,B.c_,s,s),s,s,new A.abc(a),s,s,s)],n),B.a9,B.aq,B.N,s),l=A.ei("From biopsy to syringe, this demonstrates an end-to-end workflow for producing a personalized mRNA cancer vaccine. ",s,A.e3().$4$color$fontSize$fontWeight$height(B.c0,Math.min(A.bL(a,s,q).w.a.a*0.04,16),B.B,1.6),s),k=A.dq(20),j=A.uZ(B.zZ,B.z,1)
+S(a){var s=null,r=A.dq(28),q=t.w,p=A.bL(a,s,q).w,o=Math.min(A.bL(a,s,q).w.a.a*0.05,40),n=t.p,m=A.eN(A.b([A.l0(A.alo(B.h9,A.ei("\ud83d\udc89\ud83d\udc36 OpenVaXX",s,A.po().$3$color$fontSize$fontWeight(B.j,32,B.cB),s),B.em)),B.KG,A.aAw(s,A.He(B.G8,B.c_,s,s),s,s,new A.abc(a),s,s,s)],n),B.a9,B.aq,B.N,s),l=A.ei("From biopsy to syringe, this demonstrates an end-to-end workflow for producing a personalized mRNA cancer vaccine. ",s,A.e3().$4$color$fontSize$fontWeight$height(B.c0,Math.min(A.bL(a,s,q).w.a.a*0.04,16),B.B,1.6),s),k=A.dq(20),j=A.uZ(B.zZ,B.z,1)
 return A.nh(!0,s,new A.G6(B.d8,20,new A.d4(r,B.q),new A.iF(new A.ae(320,650,0,p.a.b*0.85),A.cX(A.amn(A.e8(A.b([m,B.wH,l,B.wH,A.cX(A.e8(A.b([A.eN(A.b([B.BV,B.KF,A.ei("Caution",s,A.e3().$4$color$fontSize$fontWeight$letterSpacing(B.As,14,B.cA,1.2),s)],n),B.a9,B.aq,B.N,s),B.KK,A.ei("RESEACH & EDUCATION USE ONLY. NOT MEDICAL ADVICE. This is a reference for educational purposes. Building mRNA vaccines involves severe biological hazards, requiring strict oversight and qualified personnel. The authors assume no liability for misuse. Do not attempt any part of this workflow.",s,A.e3().$4$color$fontSize$fontWeight$height(B.zT,Math.min(A.bL(a,s,q).w.a.a*0.035,13),B.B,1.5),s)],n),B.M,B.N),B.r,s,s,new A.cb(B.Ao,s,j,k,s,s,B.S),s,s,s,B.Bd,s),B.KI,A.bZ(new A.Gp(new A.abd(a),s,s,s,A.azJ(s,s,B.af,s,s,s,0,s,s,B.j,s,s,B.Bb,s,new A.d4(A.dq(16),B.q),s,s,s,s,s),s,s,!1,s,!0,s,A.ei("I Understand",s,A.e3().$2$fontSize$fontWeight(16,B.aj),s),s),s,1/0)],n),B.M,B.br),s,s,B.aX),B.r,s,s,s,s,s,s,new A.ax(o,o,o,o),s),s),s),s,s,s,s,!0,s,s,s,new A.abe(a),s,s)}}
 A.abe.prototype={
 $2(a,b){if(b instanceof A.hZ){A.xM(this.a,!1).de()
