@@ -105,7 +105,7 @@ class WorkflowNode extends StatelessWidget {
           ),
           SizedBox(height: (16 * scale)),
           MarkdownBody(
-            data: data.description ?? '',
+            data: data.shortDescription ?? '',
             styleSheet: _markdownStyle(
               context,
               GoogleFonts.inter(
@@ -348,6 +348,8 @@ class WorkflowNode extends StatelessWidget {
     bool isCost = false,
     Color? color,
   }) {
+    final scale = getBoxScalingFactor(context);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 6),
       child: MarkdownBody(
@@ -356,13 +358,13 @@ class WorkflowNode extends StatelessWidget {
             _markdownStyle(
               context,
               GoogleFonts.inter(
-                fontSize: 12,
+                fontSize: 12 * scale,
                 fontWeight: isCost ? FontWeight.bold : FontWeight.w500,
                 color: isCost ? color : Colors.grey[400],
               ),
             ).copyWith(
               strong: GoogleFonts.inter(
-                fontSize: 12,
+                fontSize: 12 * scale,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey[300],
               ),

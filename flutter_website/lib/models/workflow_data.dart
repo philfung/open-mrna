@@ -14,6 +14,7 @@ class WorkflowNodeData {
   final NodeType type;
   final String title;
   final String? description;
+  final String? shortDescription;
   final String? goal;
   final String? hardware;
   final String? software;
@@ -38,6 +39,7 @@ class WorkflowNodeData {
     required this.type,
     required this.title,
     this.description,
+    this.shortDescription,
     this.goal,
     this.hardware,
     this.software,

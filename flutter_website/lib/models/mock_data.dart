@@ -50,6 +50,8 @@ final List<WorkflowNodeData> initialNodes = [
     goal: 'Digitizing the Cells',
     description:
         'The machine reads extracted DNA/RNA, turning biological chemistry into digital text.',
+    shortDescription:
+        'Sequences extracted DNA/RNA to convert biological chemistry into digital genetic text.',
     hardware:
         '[Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) or Element AVITI',
     outsourced: 'Novogene, Azenta, Eurofins',
@@ -113,6 +115,8 @@ final List<WorkflowNodeData> initialNodes = [
     goal: 'Finding the Mutations',
     description:
         'Aligns reads and mathematically subtracts healthy DNA from tumor DNA to isolate somatic mutations.',
+    shortDescription:
+        'Aligns genetic reads and subtracts healthy DNA from tumor DNA to identify cancer-specific somatic mutations.',
     hardware: 'None',
     software:
         '[GATK Mutect2](https://github.com/broadinstitute/gatk) (open-source Genome Analysis Toolkit)',
@@ -185,6 +189,8 @@ final List<WorkflowNodeData> initialNodes = [
     goal: 'AI Neoantigen Prediction',
     description:
         'Neural networks predict which mutations will most effectively trigger an immune response based on the patient HLA receptors. pVACseq also uses tumor-rna.FASTQ to filter candidate neoantigens by their actual expression levels in the tumor.',
+    shortDescription:
+        'Neural networks predict immunogenic mutations based on HLA receptors, further refined by tumor-RNA expression levels via pVACseq.',
     hardware: 'None',
     software:
         '[pVACseq](https://github.com/griffithlab/pVACtools) (open-source cancer immunotherapy suite) running [MHCflurry](https://github.com/openvax/mhcflurry) (open-source peptide-MHC binding prediction)',
@@ -230,6 +236,8 @@ final List<WorkflowNodeData> initialNodes = [
     goal: 'Sequence Assembly',
     description:
         'Organize the cancer markers into a safe, logical order and then translate those instructions into a highly stable genetic "recipe."',
+    shortDescription:
+        'Organizes selected cancer markers into a logical sequence and optimizes them into a stable genetic blueprint.',
     hardware: 'None',
     software:
         '[pVACvector](https://github.com/griffithlab/pVACtools) (open-source cancer immunotherapy suite)+ [LinearDesign](https://github.com/LinearDesignSoftware/LinearDesign) (open source mRNA design algorithm)',
@@ -285,6 +293,8 @@ final List<WorkflowNodeData> initialNodes = [
     goal: 'DNA Synthesis',
     description:
         'Two synthesis routes are available — choose one: \n1. **Cell-Free / Linear (recommended for speed):** The BioXp system prints the DNA template directly from the digital sequence. \n2. **Plasmid-Based (traditional):** Gibson Assembly stitches oligonucleotides into a DNA plasmid, which is then linearized with enzymes.',
+    shortDescription:
+        'Translates the digital blueprint into a physical DNA template using rapid cell-free or traditional plasmid-based methods.',
     hardware:
         'Benchtop DNA Synthesizer (e.g., [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-systems/))',
     outsourced: 'Twist, IDT, GenScript, Azenta',
@@ -336,6 +346,8 @@ final List<WorkflowNodeData> initialNodes = [
     goal: 'Automated mRNA Synthesis',
     description:
         'Continuous-flow In Vitro Transcription (IVT) bioreactors read the DNA and print the corresponding mRNA strand. After transcription, two cleanup steps:  \n1. **DNase I digest** — Degrades the remaining DNA template.  \n2. **mRNA purification** — Removes enzymes, free nucleotides, and abortive transcripts via precip. (LiCL) or column (e.g., silica column or HPLC).',
+    shortDescription:
+        'Uses IVT bioreactors to transcribe DNA into mRNA, followed by template digestion and multi-stage purification.',
     hardware:
         '[Telesis Bio BioXp](https://telesisbio.com/products/bioxp-systems/)',
     outsourced: 'TriLink, GenScript, BiCell Scientific',
@@ -381,6 +393,8 @@ final List<WorkflowNodeData> initialNodes = [
     goal: 'LNP Formulation',
     description:
         'Microfluidic collisions force mRNA and lipids to self-assemble into nanoparticles.',
+    shortDescription:
+        'Uses microfluidic collisions to encapsulate purified mRNA within lipid nanoparticles for safe delivery to cells.',
     hardware:
         '[Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / NanoAssemblr Ignite',
     outsourced: 'VectorBuilder, Lonza, Vernal Biosciences',
@@ -418,6 +432,8 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Step 8 · Quality Check & Bottling',
     goal: 'QC & Finalization',
     description: 'DLS verifies 60-100nm particles and TFF washes out ethanol.',
+    shortDescription:
+        'Performs final quality checks using DLS for particle size verification and TFF for purification and bottling.',
     hardware:
         '[Unchained Labs Stunner](https://www.unchainedlabs.com/stunner/) & TFF System',
     outsourced: 'CordenPharma, uBriGene, VectorBuilder',

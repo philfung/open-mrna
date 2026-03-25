@@ -546,7 +546,7 @@ class WorkflowDetailView extends ConsumerWidget {
                   styleSheet: _markdownStyle(
                     context,
                     GoogleFonts.inter(
-                      fontSize: 13 * scale,
+                      fontSize: 12 * scale,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
