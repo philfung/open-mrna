@@ -59,21 +59,21 @@ class WorkflowNode extends StatelessWidget {
         children: [
           Row(
             children: [
-              if (data.iconName != null) ...[
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: color.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(
-                    getLucideIcon(data.iconName),
-                    color: color,
-                    size: 24 * scale,
-                  ),
-                ),
-                SizedBox(width: 16 * scale),
-              ],
+              // if (data.iconName != null) ...[
+              //   Container(
+              //     padding: const EdgeInsets.all(12),
+              //     decoration: BoxDecoration(
+              //       color: color.withOpacity(0.1),
+              //       borderRadius: BorderRadius.circular(12),
+              //     ),
+              //     child: Icon(
+              //       getLucideIcon(data.iconName),
+              //       color: color,
+              //       size: 24 * scale,
+              //     ),
+              //   ),
+              //   SizedBox(width: 16 * scale),
+              // ],
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
