@@ -2,7 +2,7 @@
 From biopsy to syringe: this is an end-to-end overview on how to synthesize personalized mRNA cancer vaccine in a private lab.
 Focuses on open-source, state-of-the-art software tools paired with "best-tool-for-the-job" benchtop lab equipment.
 
-[Try the Guide App](https://philfung.github.io/openvaxx/)
+[Try the Interactive Guide](https://philfung.github.io/openvaxx/)
 
 > [!CAUTION]
 > **⚠️ RESEARCH & EDUCATION USE ONLY. NOT MEDICAL ADVICE.**
