@@ -138,53 +138,65 @@
       var isInstagram = ua.indexOf('Instagram') > -1;
       var isFacebook = !!ua.match(/FBAN|FBAV/);
       var isThreads = ua.indexOf('Threads') > -1;
+      var isAndroid = /Android/.test(ua);
+      var isWebView = isInstagram || isFacebook || isThreads || (isAndroid && /wv/.test(ua));
 
-      if (isInstagram || isFacebook || isThreads) {
-        document.addEventListener('DOMContentLoaded', function () {
-          var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-          var isAndroid = /Android/.test(ua);
-          var currentUrlWithoutProtocol = window.location.href.split('://')[1];
-          
-          var redirectUrl = '';
-          var btnLabel = 'Open in System Browser';
-          
-          if (isIOS) {
-            redirectUrl = 'x-safari-https://' + currentUrlWithoutProtocol;
-            btnLabel = 'Open in Safari';
-          } else if (isAndroid) {
-            redirectUrl = 'googlechrome://' + currentUrlWithoutProtocol;
-            btnLabel = 'Open in Chrome';
-          }
+      if (isWebView) {
+        if (isAndroid) {
+          // 1. Get the current URL
+          var currentUrl = window.location.href;
+          // 2. Remove the protocol (http:// or https://) for the Intent format
+          var urlWithoutProtocol = currentUrl.replace(/^https?:\/\//, '');
+          // 3. Construct the Intent URI
+          // package=com.android.chrome forces it to open in Chrome
+          // S.browser_fallback_url provides a backup if Chrome isn't installed
+          var chromeIntent = "intent://" + urlWithoutProtocol + "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" + encodeURIComponent(currentUrl) + ";end";
+          // 4. Redirect
+          window.location.href = chromeIntent;
+        } else {
+          // For non-Android (likely iOS) show the existing warning UI
+          document.addEventListener('DOMContentLoaded', function () {
+            var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            var currentUrlWithoutProtocol = window.location.href.split('://')[1];
+            
+            var redirectUrl = '';
+            var btnLabel = 'Open in System Browser';
+            
+            if (isIOS) {
+              redirectUrl = 'x-safari-https://' + currentUrlWithoutProtocol;
+              btnLabel = 'Open in Safari';
+            }
 
-          var div = document.createElement('div');
-          div.id = 'in-app-browser-warning';
-          div.style.position = 'fixed';
-          div.style.top = '0';
-          div.style.left = '0';
-          div.style.width = '100%';
-          div.style.height = '100%';
-          div.style.boxSizing = 'border-box';
-          div.style.backgroundColor = 'rgba(0,0,0,0.98)';
-          div.style.color = 'white';
-          div.style.display = 'flex';
-          div.style.flexDirection = 'column';
-          div.style.justifyContent = 'center';
-          div.style.alignItems = 'center';
-          div.style.zIndex = '100000';
-          div.style.padding = '24px';
-          div.style.textAlign = 'center';
-          div.style.fontFamily = 'Helvetica, Arial, sans-serif';
+            var div = document.createElement('div');
+            div.id = 'in-app-browser-warning';
+            div.style.position = 'fixed';
+            div.style.top = '0';
+            div.style.left = '0';
+            div.style.width = '100%';
+            div.style.height = '100%';
+            div.style.boxSizing = 'border-box';
+            div.style.backgroundColor = 'rgba(0,0,0,0.98)';
+            div.style.color = 'white';
+            div.style.display = 'flex';
+            div.style.flexDirection = 'column';
+            div.style.justifyContent = 'center';
+            div.style.alignItems = 'center';
+            div.style.zIndex = '100000';
+            div.style.padding = '24px';
+            div.style.textAlign = 'center';
+            div.style.fontFamily = 'Helvetica, Arial, sans-serif';
 
-          var content = '<h1 style="color: #6366F1; margin-bottom: 24px; font-size: 24px; width: 100%;">📱 Open in System Browser</h1>' +
-            '<p style="font-size: 16px; line-height: 1.6; width: 100%; max-width: 400px; color: #E5E7EB; margin: 0 auto; overflow-wrap: break-word;">The Facebook and Instagram in-app browsers have limited support for this application.<br><br>For the best experience, please tap <b>"..."</b> and select <b>"Open in System Browser"</b> (Safari or Chrome).</p>';
-          
-          if (redirectUrl) {
-            content += '<a href="' + redirectUrl + '" style="margin-top: 40px; padding: 14px 28px; background: #6366F1; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 16px; text-decoration: none; display: inline-block; transition: all 0.2s;">' + btnLabel + '</a>';
-          }
+            var content = '<h1 style="color: #6366F1; margin-bottom: 24px; font-size: 24px; width: 100%;">📱 Open in System Browser</h1>' +
+              '<p style="font-size: 16px; line-height: 1.6; width: 100%; max-width: 400px; color: #E5E7EB; margin: 0 auto; overflow-wrap: break-word;">The Facebook and Instagram in-app browsers have limited support for this application.<br><br>For the best experience, please tap <b>"..."</b> and select <b>"Open in System Browser"</b> (Safari or Chrome).</p>';
+            
+            if (redirectUrl) {
+              content += '<a href="' + redirectUrl + '" style="margin-top: 40px; padding: 14px 28px; background: #6366F1; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 16px; text-decoration: none; display: inline-block; transition: all 0.2s;">' + btnLabel + '</a>';
+            }
 
-          div.innerHTML = content;
-          document.body.appendChild(div);
-        });
+            div.innerHTML = content;
+            document.body.appendChild(div);
+          });
+        }
       }
     })();
   </script>
