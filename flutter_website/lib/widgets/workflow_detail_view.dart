@@ -203,7 +203,7 @@ class WorkflowDetailView extends ConsumerWidget {
                     SizedBox(height: 16 * scale),
                     _buildDescription(
                       context,
-                      'Two key patient samples are required to initiate the personalized mRNA vaccine manufacturing process:',
+                      'Two patient samples are required to initiate the vaccine manufacturing process:',
                       scale,
                     ),
                     SizedBox(height: 16 * scale),
@@ -408,7 +408,7 @@ class WorkflowDetailView extends ConsumerWidget {
       styleSheet: _markdownStyle(
         context,
         GoogleFonts.inter(
-          fontSize: min(MediaQuery.of(context).size.width * 0.04, 12 * scale),
+          fontSize: 13 * scale,
           fontWeight: FontWeight.w400,
           color: Colors.grey[400],
           height: 1.6,
@@ -447,7 +447,7 @@ class WorkflowDetailView extends ConsumerWidget {
               styleSheet: _markdownStyle(
                 context,
                 GoogleFonts.inter(
-                  fontSize: 12 * scale,
+                  fontSize: 13 * scale,
                   fontWeight: FontWeight.w500,
                   color: Colors.grey[300],
                 ),

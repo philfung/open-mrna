@@ -47,13 +47,14 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'Step1',
     type: NodeType.step,
     title: 'Step 1 · Reading the Blueprint',
-    goal: 'Digitizing the Cells',
+    goal:
+        'Convert samples into unorganized genetic code to establish a baseline and identify anomalies.',
     description:
         'The machine reads extracted DNA/RNA, turning biological chemistry into digital text.',
-    shortDescription:
-        'Sequences extracted DNA/RNA to convert biological chemistry into digital genetic text.',
+    shortDescription: 'Sequences extracted DNA/RNA into digital genetic text.',
     hardware:
         '[Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) or Element AVITI',
+    shortHardware: 'Illumina NextSeq 2000',
     outsourced: 'Novogene, Azenta, Eurofins',
     cost: '~\$300k fixed + ~\$1k / pt (In-House) or ~\$2.5k / pt (Outsourced)',
     parentNode: 'Part1Group',
@@ -112,14 +113,15 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'Step2',
     type: NodeType.step,
     title: 'Step 2 · Spotting the Typos',
-    goal: 'Finding the Mutations',
+    goal: 'Compare healthy code against tumor code to isolate cancers.',
     description:
         'Aligns reads and mathematically subtracts healthy DNA from tumor DNA to isolate somatic mutations.',
     shortDescription:
-        'Aligns genetic reads and subtracts healthy DNA from tumor DNA to identify cancer-specific somatic mutations.',
+        'Aligns genetic reads and identifies cancer-specific somatic mutations.',
     hardware: 'None',
     software:
         '[GATK Mutect2](https://github.com/broadinstitute/gatk) (open-source Genome Analysis Toolkit)',
+    shortSoftware: 'GATK Mutect2',
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'zap',
@@ -186,14 +188,16 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'Step3',
     type: NodeType.step,
     title: 'Step 3 · Picking the Targets',
-    goal: 'AI Neoantigen Prediction',
+    goal:
+        'Use AI to predict which mutations the immune system will recognize as a threat.',
     description:
-        'Neural networks predict which mutations will most effectively trigger an immune response based on the patient HLA receptors. pVACseq also uses tumor-rna.FASTQ to filter candidate neoantigens by their actual expression levels in the tumor.',
+        'Neural networks predict which mutations will most effectively trigger an immune response based on the patient HLA receptors.',
     shortDescription:
-        'Neural networks predict immunogenic mutations based on HLA receptors, further refined by tumor-RNA expression levels via pVACseq.',
+        'AI predicts which mutations the immune system will recognize as a threat.',
     hardware: 'None',
     software:
         '[pVACseq](https://github.com/griffithlab/pVACtools) (open-source cancer immunotherapy suite) running [MHCflurry](https://github.com/openvax/mhcflurry) (open-source peptide-MHC binding prediction)',
+    shortSoftware: 'pVACseq + MHCflurry',
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'target',
@@ -233,14 +237,16 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'Step4',
     type: NodeType.step,
     title: 'Step 4 · Writing the New Code',
-    goal: 'Sequence Assembly',
+    goal:
+        'Compile the top predicted targets into a printable digital blueprint.',
     description:
         'Organize the cancer markers into a safe, logical order and then translate those instructions into a highly stable genetic "recipe."',
     shortDescription:
-        'Organizes selected cancer markers into a logical sequence and optimizes them into a stable genetic blueprint.',
+        'Organizes selected cancer markers, translate into a stable genetic blueprint.',
     hardware: 'None',
     software:
         '[pVACvector](https://github.com/griffithlab/pVACtools) (open-source cancer immunotherapy suite)+ [LinearDesign](https://github.com/LinearDesignSoftware/LinearDesign) (open source mRNA design algorithm)',
+    shortSoftware: 'pVACvector + LinearDesign',
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'pen-tool',
@@ -290,13 +296,14 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'Step5',
     type: NodeType.step,
     title: 'Step 5 · Printing the Master Copy',
-    goal: 'DNA Synthesis',
+    goal:
+        'Convert the digital blueprint back into a physical, readable linear DNA template.',
     description:
         'Two synthesis routes are available — choose one: \n1. **Cell-Free / Linear (recommended for speed):** The BioXp system prints the DNA template directly from the digital sequence. \n2. **Plasmid-Based (traditional):** Gibson Assembly stitches oligonucleotides into a DNA plasmid, which is then linearized with enzymes.',
-    shortDescription:
-        'Translates the digital blueprint into a physical DNA template using rapid cell-free or traditional plasmid-based methods.',
+    shortDescription: 'Translates the digital blueprint into DNA template.',
     hardware:
         'Benchtop DNA Synthesizer (e.g., [Telesis Bio BioXp](https://telesisbio.com/products/bioxp-systems/))',
+    shortHardware: 'Telesis Bio BioXp',
     outsourced: 'Twist, IDT, GenScript, Azenta',
     cost:
         '~\$100k fixed + ~\$600 / rxn (In-House) or ~\$200-\$900 / rxn (Outsourced)',
@@ -326,7 +333,7 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'NodeIn6',
     type: NodeType.data,
     title: '📜 1.5 mL Purified linear DNA template',
-    // description: 'Yield: ~75 µg (at ~50 ng/µL)  \nStable at -20°C',
+    description: 'Yield: ~75 µg (at ~50 ng/µL)  \nStable at -20°C',
     parentNode: 'Part2Group',
     color: 'teal',
     images: ['lib/assets/icons/icon_dna.png'],
@@ -343,13 +350,14 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'Step6',
     type: NodeType.step,
     title: 'Step 6 · Creating the mRNA',
-    goal: 'Automated mRNA Synthesis',
+    goal: 'Transcribe DNA into functional, immune-cloaked mRNA.',
     description:
         'Continuous-flow In Vitro Transcription (IVT) bioreactors read the DNA and print the corresponding mRNA strand. After transcription, two cleanup steps:  \n1. **DNase I digest** — Degrades the remaining DNA template.  \n2. **mRNA purification** — Removes enzymes, free nucleotides, and abortive transcripts via precip. (LiCL) or column (e.g., silica column or HPLC).',
     shortDescription:
-        'Uses IVT bioreactors to transcribe DNA into mRNA, followed by template digestion and multi-stage purification.',
+        'IVT bioreactors transcribe DNA into mRNA, followed by multi-stage purification.',
     hardware:
         '[Telesis Bio BioXp](https://telesisbio.com/products/bioxp-systems/)',
+    shortHardware: 'Telesis Bio BioXp',
     outsourced: 'TriLink, GenScript, BiCell Scientific',
     cost:
         '~\$250k fixed + ~\$2k / rxn (In-House) or ~\$1k-\$3k / rxn (Outsourced)',
@@ -373,7 +381,7 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'NodeIn7',
     type: NodeType.data,
     title: '💉 5.0 mL Highly pure mRNA',
-    // description: 'Yield: ~1.0 mg (at ~200 ng/µL)  \nStored at -80°C',
+    description: 'Yield: ~1.0 mg (at ~200 ng/µL)  \nStored at -80°C',
     parentNode: 'Part2Group',
     color: 'teal',
     images: ['lib/assets/icons/icon_5ml_dna.png'],
@@ -390,13 +398,15 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'Step7',
     type: NodeType.step,
     title: 'Step 7 · Packaging for Delivery',
-    goal: 'LNP Formulation',
+    goal:
+        'Wrap mRNA in a protective lipid nanoparticle to allow human cell entry.',
     description:
-        'Microfluidic collisions force mRNA and lipids to self-assemble into nanoparticles.',
+        'Precise microfluidic collisions force the negatively charged mRNA and positively charged lipids to self-assemble into nanoparticles.',
     shortDescription:
-        'Uses microfluidic collisions to encapsulate purified mRNA within lipid nanoparticles for safe delivery to cells.',
+        'Assemble the mRNA into lipid nanoparticles using microfluidic collisions.',
     hardware:
         '[Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / NanoAssemblr Ignite',
+    shortHardware: 'Unchained Labs Sunshine',
     outsourced: 'VectorBuilder, Lonza, Vernal Biosciences',
     cost:
         '~\$150k fixed + ~\$500 / rxn (In-House) or ~\$2k-\$5k / rxn (Outsourced)',
@@ -420,8 +430,8 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'NodeIn8',
     type: NodeType.data,
     title: '🧪 12 mL Raw mRNA-LNP mixture',
-    // description:
-    //     'Yield: ~0.9 mg encapsulated (>90% efficiency)  \nOpalescent liquid',
+    description:
+        'Yield: ~0.9 mg encapsulated (>90% efficiency)  \nOpalescent liquid',
     parentNode: 'Part2Group',
     color: 'teal',
     images: ['lib/assets/icons/icon_12ml.png'],
@@ -430,12 +440,15 @@ final List<WorkflowNodeData> initialNodes = [
     id: 'Step8',
     type: NodeType.step,
     title: 'Step 8 · Quality Check & Bottling',
-    goal: 'QC & Finalization',
-    description: 'DLS verifies 60-100nm particles and TFF washes out ethanol.',
+    goal:
+        'Validate integrity, size, and concentration before finalizing for injection.',
+    description:
+        'DLS verifies particles are exactly 60-100nm. TFF washes out ethanol.',
     shortDescription:
-        'Performs final quality checks using DLS for particle size verification and TFF for purification and bottling.',
+        'Performs final quality checks on size and concentration.',
     hardware:
         '[Unchained Labs Stunner](https://www.unchainedlabs.com/stunner/) & TFF System',
+    shortHardware: 'Unchained Labs Stunner',
     outsourced: 'CordenPharma, uBriGene, VectorBuilder',
     cost:
         '~\$100k fixed + ~\$100 / rxn (In-House) or ~\$1k-\$3k / rxn (Outsourced)',

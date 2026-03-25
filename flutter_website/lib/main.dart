@@ -207,7 +207,10 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
     final viewportSize = MediaQuery.of(context).size;
 
     // Handle auto-focus on step change
-    ref.listen(workflowProvider.select((s) => s.currentStepId), (previous, next) {
+    ref.listen(workflowProvider.select((s) => s.currentStepId), (
+      previous,
+      next,
+    ) {
       if (previous != next) {
         _focusOnStep(next);
       }
@@ -565,7 +568,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
                 child: Text(
                   'An open-source guide to producing a personalized mRNA cancer vaccine',
                   style: GoogleFonts.outfit(
-                    fontSize: 16 * scale,
+                    fontSize: 18 * scale,
                     fontWeight: FontWeight.w500,
                     color: Colors.grey[400],
                   ),

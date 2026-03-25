@@ -85,6 +85,7 @@ class WorkflowNode extends StatelessWidget {
                       ),
                       onTapLink: (text, href, title) => _launchUrl(href),
                     ),
+                    // if (data.goal != null) SizedBox(height: 10 * scale),
                     // if (data.goal != null)
                     //   MarkdownBody(
                     //     data: 'Goal: ${data.goal}',
@@ -103,19 +104,19 @@ class WorkflowNode extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: (16 * scale)),
-          MarkdownBody(
-            data: data.shortDescription ?? '',
-            styleSheet: _markdownStyle(
-              context,
-              GoogleFonts.inter(
-                fontSize: 15 * scale,
-                color: Colors.grey[400],
-                height: 1.5,
-              ),
-            ),
-            onTapLink: (text, href, title) => _launchUrl(href),
-          ),
+          // SizedBox(height: (10 * scale)),
+          // MarkdownBody(
+          //   data: data.shortDescription ?? '',
+          //   styleSheet: _markdownStyle(
+          //     context,
+          //     GoogleFonts.inter(
+          //       fontSize: 15 * scale,
+          //       color: Colors.grey[400],
+          //       height: 1.5,
+          //     ),
+          //   ),
+          //   onTapLink: (text, href, title) => _launchUrl(href),
+          // ),
           if (data.image != null) ...[
             SizedBox(height: 16 * scale),
             ClipRRect(
@@ -136,17 +137,17 @@ class WorkflowNode extends StatelessWidget {
               ),
             ),
           ],
-          if (data.hardware != null ||
-              data.software != null ||
+          if (data.shortHardware != null ||
+              data.shortSoftware != null ||
               data.outsourced != null ||
               data.cost != null) ...[
-            SizedBox(height: 20 * scale),
+            SizedBox(height: 10 * scale),
             const Divider(),
-            SizedBox(height: 12 * scale),
-            if (data.hardware != null)
-              _buildFooterItem(context, 'Lab Equipment', data.hardware!),
-            if (data.software != null)
-              _buildFooterItem(context, 'Software', data.software!),
+            // SizedBox(height: 5 * scale),
+            if (data.shortHardware != null)
+              _buildFooterItem(context, 'Lab Equipment', data.shortHardware!),
+            if (data.shortSoftware != null)
+              _buildFooterItem(context, 'Software', data.shortSoftware!),
             // if (data.outsourced != null)
             //   _buildFooterItem(context, 'Outsourced', data.outsourced!),
             // if (data.cost != null)
@@ -358,13 +359,13 @@ class WorkflowNode extends StatelessWidget {
             _markdownStyle(
               context,
               GoogleFonts.inter(
-                fontSize: 12 * scale,
+                fontSize: 15 * scale,
                 fontWeight: isCost ? FontWeight.bold : FontWeight.w500,
                 color: isCost ? color : Colors.grey[400],
               ),
             ).copyWith(
               strong: GoogleFonts.inter(
-                fontSize: 12 * scale,
+                fontSize: 15 * scale,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey[300],
               ),
