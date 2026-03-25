@@ -70,19 +70,19 @@ final List<WorkflowNodeData> initialNodes = [
     ],
     outputs: [
       WorkflowNodeInOut(
-        'baseline-normal.FASTQ — Normal blood Whole Exome Sequencing (~30X–50X)',
+        'baseline-normal.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)  — Normal blood Whole Exome Sequencing (~30X–50X)',
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'tumor-exome.FASTQ — Tumor biopsy Whole Exome Sequencing (~100X–500X)',
+        'tumor-exome.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) — Tumor biopsy Whole Exome Sequencing (~100X–500X)',
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'tumor-rna.FASTQ — Tumor biopsy RNA-Seq (~50M–100M reads).  Used in Step 3 for expression-level filtering within pVACseq.',
+        'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) — Tumor biopsy RNA-Seq (~50M–100M reads).  Used in Step 3 for expression-level filtering within pVACseq.',
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'patient-hla.txt — Patient HLA profile (MHC Class I & II typing), derived computationally from baseline-normal.FASTQ using tools such as OptiType or HLA-HD',
+        '[patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#) — Patient HLA profile (MHC Class I & II typing), derived computationally from baseline-normal.FASTQ using tools such as OptiType or HLA-HD',
         'icon_file.png',
       ),
     ],
@@ -93,7 +93,7 @@ final List<WorkflowNodeData> initialNodes = [
     type: NodeType.data,
     title: '📄 Genetic files from patient samples',
     description:
-        '1. baseline-normal.FASTQ — Normal blood Whole Exome Sequencing (~30X–50X)  \n2. tumor-exome.FASTQ — Tumor biopsy Whole Exome Sequencing (~100X–500X)  \n3. tumor-rna.FASTQ — Tumor biopsy RNA-Seq (~50M–100M reads)  \n4. patient-hla.txt — Patient HLA profile (MHC Class I & II typing), derived computationally from baseline-normal.FASTQ',
+        '1. baseline-normal.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format  ) — Normal blood Whole Exome Sequencing (~30X–50X)  \n2. tumor-exome.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) — Tumor biopsy Whole Exome Sequencing (~100X–500X)  \n3. tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) — Tumor biopsy RNA-Seq (~50M–100M reads)  \n4. [patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#) — Patient HLA profile (MHC Class I & II typing), derived computationally from baseline-normal.FASTQ',
     parentNode: 'Part1Group',
     color: 'blue',
   ),
@@ -102,7 +102,7 @@ final List<WorkflowNodeData> initialNodes = [
     type: NodeType.data,
     title:
         '🧬 Human Reference Genome (.[FASTA](https://en.wikipedia.org/wiki/FASTA_format))',
-    description: '(e.g. Human Genome Project)  \n>chr1 NNNNNNNNNN...',
+    description: '(e.g. Human Genome Project)  \nchr1 NNNNNNNNNN...',
     parentNode: 'Part1Group',
     color: 'slate',
   ),
@@ -342,7 +342,10 @@ final List<WorkflowNodeData> initialNodes = [
     iconName: 'factory',
     image: 'lib/assets/hardware/bioxp.png',
     inputs: [
-      WorkflowNodeInOut('Linear DNA template', 'icon_dna.png'),
+      WorkflowNodeInOut(
+        '~1.5 mL Purified linear DNA template (~75 µg)',
+        'icon_dna.png',
+      ),
       WorkflowNodeInOut('IVT Reagents', 'icon_5ml_dna.png'),
     ],
     outputs: [
@@ -384,7 +387,7 @@ final List<WorkflowNodeData> initialNodes = [
     iconName: 'package',
     image: 'lib/assets/hardware/unchained_sunshine.png',
     inputs: [
-      WorkflowNodeInOut('Purified mRNA', 'icon_mrna.png'),
+      WorkflowNodeInOut('~5.0 mL Highly pure mRNA (~1.0 mg)', 'icon_mrna.png'),
       WorkflowNodeInOut('4-Lipid Cocktail', 'icon_12ml.png'),
     ],
     outputs: [
@@ -420,7 +423,7 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'teal',
     iconName: 'flask-conical',
     image: 'lib/assets/hardware/unchained_stunner.png',
-    inputs: [WorkflowNodeInOut('Raw mRNA-LNP mixture', 'icon_12ml.png')],
+    inputs: [WorkflowNodeInOut('~12 mL Raw mRNA-LNP mixture', 'icon_12ml.png')],
     outputs: [
       WorkflowNodeInOut(
         '10 x 1.0 mL sterile glass vials (approx. 10 doses)',

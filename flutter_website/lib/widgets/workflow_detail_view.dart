@@ -264,9 +264,9 @@ class WorkflowDetailView extends ConsumerWidget {
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(
         24 * scale,
-        20 * scale,
+        5 * scale,
         24 * scale,
-        20 * scale,
+        5 * scale,
       ),
       decoration: const BoxDecoration(
         color: Color(0xFF1C1C1E),
@@ -278,7 +278,7 @@ class WorkflowDetailView extends ConsumerWidget {
           Container(
             padding: EdgeInsets.symmetric(
               horizontal: 1 * scale,
-              vertical: 4 * scale,
+              vertical: 2 * scale,
             ),
             decoration: BoxDecoration(
               color: const Color(0xFF6366F1).withOpacity(0.1),
@@ -294,7 +294,7 @@ class WorkflowDetailView extends ConsumerWidget {
               ),
             ),
           ),
-          SizedBox(height: 12 * scale),
+          SizedBox(height: 6 * scale),
           FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
@@ -381,7 +381,7 @@ class WorkflowDetailView extends ConsumerWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(imagePath, width: 48 * scale, height: 48 * scale),
+          Image.asset(imagePath, width: 40 * scale, height: 40 * scale),
           SizedBox(width: 12 * scale),
           Expanded(
             child: MarkdownBody(
