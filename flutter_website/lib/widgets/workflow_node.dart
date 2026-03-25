@@ -172,11 +172,10 @@ class WorkflowNode extends StatelessWidget {
   Widget _buildDataNode(BuildContext context) {
     final color = _getColor(data.color);
     final scale = getBoxScalingFactor(context);
-    double constraintWidth = data.size?.width ?? 450;
+    double constraintWidth = data.size?.width ?? 400;
     constraintWidth *= scale;
 
     return Container(
-      width: constraintWidth,
       constraints: BoxConstraints(maxWidth: constraintWidth),
       padding: EdgeInsets.symmetric(
         horizontal: 24 * scale,

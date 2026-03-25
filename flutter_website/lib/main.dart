@@ -63,6 +63,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
   late AnimationController _animationController;
   final GlobalKey _canvasKey = GlobalKey();
   final GlobalKey _interactiveChildKey = GlobalKey();
+  final GlobalKey _viewportKey = GlobalKey();
   final Map<String, GlobalKey> _nodeKeys = {};
   Size? _lastSize;
 
@@ -104,7 +105,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
     debugPrint('Focusing on step $stepId');
     final step = workflowSteps.firstWhere((s) => s.id == stepId);
 
-    if (_canvasKey.currentContext == null) {
+    if (_canvasKey.currentContext == null || _viewportKey.currentContext == null) {
       Future.delayed(
         const Duration(milliseconds: 100),
         () => _focusOnStep(stepId),
@@ -114,6 +115,8 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
 
     final RenderBox interactiveChildBox =
         _interactiveChildKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox viewportBox =
+        _viewportKey.currentContext!.findRenderObject() as RenderBox;
 
     Rect? combinedRect;
 
@@ -140,25 +143,24 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
     final double x = combinedRect.center.dx;
     final double y = combinedRect.center.dy;
 
-    final viewportSize = MediaQuery.of(context).size;
-    final double detailPanelWidth = _getDetailPanelWidth(viewportSize.width);
-    final double availableWidth = viewportSize.width - detailPanelWidth;
+    final viewportSize = viewportBox.size;
+    final double availableWidth = viewportSize.width;
+    final double availableHeight = viewportSize.height;
 
     // Calculate scale with some padding
     const double viewPadding = 32.0;
 
-    // Use a slightly more robust scale calculation if the rect has size
     double scale = 1.0;
     if (combinedRect.width > 0 && combinedRect.height > 0) {
       final double scaleX =
           (availableWidth - viewPadding * 2) / combinedRect.width;
       final double scaleY =
-          (viewportSize.height - viewPadding * 2) / combinedRect.height;
+          (availableHeight - viewPadding * 2) / combinedRect.height;
       scale = math.min(math.min(scaleX, scaleY), 1.0).clamp(0.8, 1.0);
     }
 
     final targetMatrix = Matrix4.identity()
-      ..translate(availableWidth / 2, viewportSize.height / 2)
+      ..translate(availableWidth / 2, availableHeight / 2)
       ..scale(scale)
       ..translate(-x, -y);
 
@@ -254,6 +256,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
                   ),
                   Expanded(
                     child: Stack(
+                      key: _viewportKey,
                       children: [
                         // Dynamic Layout Canvas
                         InteractiveViewer(

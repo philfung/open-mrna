@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'workflow_data.dart';
 
 final List<WorkflowNodeData> initialNodes = [
@@ -29,7 +28,6 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'blue',
     images: ['lib/assets/icons/icon_tissue.png'],
     isHighlighted: false,
-    size: const Size(180, 0),
   ),
   WorkflowNodeData(
     id: 'NodeIn1B',
@@ -41,7 +39,6 @@ final List<WorkflowNodeData> initialNodes = [
     color: 'blue',
     images: ['lib/assets/icons/icon_blood.png'],
     isHighlighted: false,
-    size: const Size(180, 0),
   ),
   WorkflowNodeData(
     id: 'Step1',
@@ -162,7 +159,6 @@ final List<WorkflowNodeData> initialNodes = [
         'somatic-variants.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)  \nfiltered-variants.[VCF](https://en.wikipedia.org/wiki/Variant_Call_Format)',
     parentNode: 'Part1Group',
     color: 'blue',
-    size: const Size(160, 0),
   ),
   WorkflowNodeData(
     id: 'NodeHLA',
@@ -172,7 +168,6 @@ final List<WorkflowNodeData> initialNodes = [
     description: 'Immune system receptor map  \nHLA-A*02:01, HLA-B*07:02...',
     parentNode: 'Part1Group',
     color: 'blue',
-    size: const Size(160, 0),
   ),
   WorkflowNodeData(
     id: 'NodeTumorRNAFastQ',
@@ -183,7 +178,6 @@ final List<WorkflowNodeData> initialNodes = [
         'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format).',
     parentNode: 'Part1Group',
     color: 'blue',
-    size: const Size(160, 0),
   ),
   WorkflowNodeData(
     id: 'Step3',
