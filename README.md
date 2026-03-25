@@ -9,9 +9,8 @@ Focuses on open-source, state-of-the-art software tools paired with "best-tool-f
 
 # Table of Contents
 - [System Architecture](#system-architecture)
-- [Workflow, Part 1: Upstream Digital Pipeline ("Data to Blueprint")](#part-1-upstream-digital-pipeline-data-to-blueprint)
-- [Workflow, Part 2: Downstream Physical Pipeline ("Blueprint to Vial")](#part-2-downstream-physical-pipeline-blueprint-to-vial)
-- [Lab Equipment & Reagent Stack Summary](#lab-equipment--reagent-stack-summary)
+- [Workflow, Part 1: Upstream Digital Pipeline ("Data to Blueprint")](#workflow-part-1-upstream-digital-pipeline-data-to-blueprint)
+- [Workflow, Part 2: Downstream Physical Pipeline ("Blueprint to Vial")](#workflow-part-2-downstream-physical-pipeline-blueprint-to-vial)
 - [Interactive System Architecture (Web App)](#interactive-system-architecture)
 
 # System Architecture
