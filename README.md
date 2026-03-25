@@ -14,7 +14,7 @@ Focuses on open-source, state-of-the-art software tools paired with "best-tool-f
 - [System Architecture](#system-architecture)
 - [Workflow, Part 1: Upstream Digital Pipeline ("Data to Blueprint")](#workflow-part-1-upstream-digital-pipeline-data-to-blueprint)
 - [Workflow, Part 2: Downstream Physical Pipeline ("Blueprint to Vial")](#workflow-part-2-downstream-physical-pipeline-blueprint-to-vial)
-- [Interactive System Architecture (Web App)](#interactive-system-architecture)
+- [Web App](#web-app)
 
 # System Architecture
 
@@ -162,7 +162,7 @@ GGCCGCUGCUUAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ---
 
-# Interactive System Architecture
+# Web App
 
 You can explore the system architecture interactively through our Flutter-based web app.
 
