@@ -568,7 +568,7 @@ class _WorkflowScreenState extends ConsumerState<WorkflowScreen>
               FittedBox(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'An open-source guide to producing a personalized mRNA cancer vaccine',
+                  'An open-source workflow for producing a personalized mRNA cancer vaccine',
                   style: GoogleFonts.outfit(
                     fontSize: 18 * scale,
                     fontWeight: FontWeight.w500,
