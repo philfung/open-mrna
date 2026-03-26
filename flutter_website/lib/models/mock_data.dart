@@ -242,7 +242,7 @@ final List<WorkflowNodeData> initialNodes = [
     hardware: 'None',
     software:
         '1. Generate protein string: [NeoDesign](https://github.com/HuangLab-Fudan/neoDesign) or [pVACvector](https://github.com/griffithlab/pVACtools)\n2. Generate multiple candidate mRNA sequences: [mRNAfold](https://github.com/maxhwardg/mRNAfold)\n3. Select best mRNA sequence: [mRNABERT](https://github.com/yyly6/mRNABERT)',
-    shortSoftware: 'pVACvector + LinearDesign',
+    shortSoftware: 'NeoDesign -> mRNAfold -> mRNABERT',
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'pen-tool',
