@@ -72268,7 +72268,7 @@ o=A.b([A.qK(A.GT(l,A.ei("\ud83d\udc89\ud83d\udc36 OpenVaxx",l,A.po().$3$color$fo
 if(k>350*s){k=16*s
 n=8*s
 m=A.dq(20*s)
-o.push(A.qK(A.GT(l,A.cX(A.eN(A.b([A.He(B.G6,B.j,l,k),A.bZ(l,l,n),A.ei("v1.0.0",l,A.e3().$3$color$fontSize$fontWeight(B.j,14*s,B.aj),l)],p),B.a9,B.aq,B.br,l),B.r,l,l,new A.cb(B.af,l,l,m,l,l,B.S),l,l,l,new A.ax(k,n,k,n),l),B.aO,!1,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,new A.aib(),l,l,l,!1,B.dO),B.e4,l,l,l,l))}return A.cX(A.e8(A.b([A.eN(o,B.a9,B.qL,B.N,l),A.bZ(l,4*s,l),A.alo(B.h9,A.ei("An open-source guide to producing a personalized mRNA cancer vaccine",l,A.po().$3$color$fontSize$fontWeight(B.c_,18*s,B.B),l),B.k5)],p),B.M,B.br),B.r,l,l,B.y5,l,l,l,new A.ax(q,r,q,r),l)},
+o.push(A.qK(A.GT(l,A.cX(A.eN(A.b([A.He(B.G6,B.j,l,k),A.bZ(l,l,n),A.ei("v1.0.0",l,A.e3().$3$color$fontSize$fontWeight(B.j,14*s,B.aj),l)],p),B.a9,B.aq,B.br,l),B.r,l,l,new A.cb(B.af,l,l,m,l,l,B.S),l,l,l,new A.ax(k,n,k,n),l),B.aO,!1,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,new A.aib(),l,l,l,!1,B.dO),B.e4,l,l,l,l))}return A.cX(A.e8(A.b([A.eN(o,B.a9,B.qL,B.N,l),A.bZ(l,4*s,l),A.alo(B.h9,A.ei("An open-source workflow for producing a personalized mRNA cancer vaccine",l,A.po().$3$color$fontSize$fontWeight(B.c_,18*s,B.B),l),B.k5)],p),B.M,B.br),B.r,l,l,B.y5,l,l,l,new A.ax(q,r,q,r),l)},
 $S:470}
 A.aia.prototype={
 $0(){return this.a.pr(1)},
