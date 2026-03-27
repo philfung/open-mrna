@@ -351,9 +351,9 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Step 6: Creating the mRNA',
     goal: 'Transcribe DNA into functional, immune-cloaked mRNA.',
     description:
-        'Continuous-flow In Vitro Transcription (IVT) bioreactors read the DNA and print the corresponding mRNA strand. After transcription, two cleanup steps:  \n1. **DNase I digest** - Degrades the remaining DNA template.  \n2. **mRNA purification** - Removes enzymes, free nucleotides, and abortive transcripts via precip. (LiCL) or column (e.g., silica column or HPLC).',
+        'Automated In Vitro Transcription (IVT) systems synthesize the mRNA strand from the DNA template. The process includes:\n1. DNase I digestion to remove the template\n2. multi-stage purification (e.g., magnetic beads or HPLC) to isolate pure, functional mRNA.',
     shortDescription:
-        'IVT bioreactors transcribe DNA into mRNA, followed by multi-stage purification.',
+        'Automated IVT synthesizes mRNA from DNA, followed by integrated multi-stage purification.',
     hardware:
         '[Telesis Bio BioXp](https://telesisbio.com/products/bioxp-system/bioxp-3250-system/)',
     shortHardware: 'Telesis Bio BioXp',
