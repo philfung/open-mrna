@@ -266,6 +266,7 @@ class WorkflowDetailView extends ConsumerWidget {
     double scale,
   ) {
     return Container(
+      width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: 24 * scale,
         vertical: 20 * scale,
@@ -274,25 +275,23 @@ class WorkflowDetailView extends ConsumerWidget {
         color: Color(0xFF111111),
         border: Border(top: BorderSide(color: Color(0xFF2C2C2E), width: 1)),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Stack(
+        alignment: Alignment.center,
         children: [
           if (state.currentStepId > 1)
-            NavigationArrow(
-              icon: LucideIcons.chevronUp,
-              onPressed: () {
-                AnalyticsUtils.logEvent('prev_step_click', {
-                  'from_id': state.currentStepId,
-                });
-                ref.read(workflowProvider.notifier).prevStep();
-              },
-              color: const Color(0xFF6366F1).withOpacity(0.15),
-            )
-          else
-            const SizedBox.shrink(),
-          if (state.currentStepId > 1 &&
-              state.currentStepId < workflowSteps.length)
-            SizedBox(width: 16 * scale),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: NavigationArrow(
+                icon: LucideIcons.chevronUp,
+                onPressed: () {
+                  AnalyticsUtils.logEvent('prev_step_click', {
+                    'from_id': state.currentStepId,
+                  });
+                  ref.read(workflowProvider.notifier).prevStep();
+                },
+                color: const Color(0xFF6366F1).withOpacity(0.15),
+              ),
+            ),
           if (state.currentStepId < workflowSteps.length)
             NavigationArrow(
               icon: LucideIcons.chevronDown,
@@ -305,9 +304,7 @@ class WorkflowDetailView extends ConsumerWidget {
               isDown: true,
               label: 'Next Step',
               color: const Color(0xFF6366F1).withOpacity(0.3),
-            )
-          else
-            const SizedBox.shrink(),
+            ),
         ],
       ),
     );
