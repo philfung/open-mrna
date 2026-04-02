@@ -78,11 +78,15 @@ final List<WorkflowNodeData> initialNodes = [
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) - Tumor biopsy RNA-Seq (~50M-100M reads). Used in Step 3 for expression-level filtering within pVACseq.',
+        'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) - Tumor biopsy RNA-Seq (~50M-100M reads).',
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        '[patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#) - Patient HLA profile (MHC Class I & II typing), derived computationally from baseline-normal.FASTQ using tools such as OptiType or HLA-HD',
+        'tumor-rna-quantification.tsv - Tumor gene expression levels.  Made using [Salmon / Kallisto](https://learn.gencore.bio.nyu.edu/rna-seq-analysis/salmon-kallisto-rapid-transcript-quantification-for-rna-seq-data/) on the FASTQ file.',
+        'icon_file.png',
+      ),
+      WorkflowNodeInOut(
+        '[patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#) - Patient HLA profile (MHC Class I & II typing).  Made using [OptiType](https://github.com/nf-core/hlatyping) or [HLA-HD](https://github.com/TRON-Bioinformatics/tronflow-hla-hd) on baseline-normal.FASTQ',
         'icon_file.png',
       ),
     ],
@@ -94,14 +98,14 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Genetic files from patient samples',
     iconName: 'file-text',
     description:
-        'Tumor blood and biopsy are collected for sequencing.\n1. baseline-normal.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n2. tumor-exome.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n3. tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n4. [patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#)',
+        'Tumor blood and biopsy are collected for sequencing.\n1. baseline-normal.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n2. tumor-exome.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n3. tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)\n4. tumor-rna-quantification.tsv\n5. [patient-hla.txt](https://support.illumina.com/content/dam/illumina-support/help/BaseSpace_App_WGS_v6_OLH_15050955_03/Content/Source/Informatics/Apps/HLATypingFormat_appISCWGS.htm#)',
     parentNode: 'Part1Group',
     color: 'blue',
   ),
   WorkflowNodeData(
     id: 'NodeRef',
     type: NodeType.data,
-    title: 'Human Reference Genome (.FASTA)',
+    title: 'Human Reference Genome (.FASTA) and Annotation mapping file (.GTF)',
     iconName: 'dna',
     description: '(e.g. Human Genome Project)  \nchr1 NNNNNNNNNN...',
     parentNode: 'Part1Group',
@@ -172,10 +176,9 @@ final List<WorkflowNodeData> initialNodes = [
   WorkflowNodeData(
     id: 'NodeTumorRNAFastQ',
     type: NodeType.data,
-    title: 'Tumor biopsy RNA-Sequencing (.FASTQ)',
+    title: 'Tumor biopsy RNA-Sequencing (.TSV)',
     iconName: 'file-text',
-    description:
-        'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format).',
+    description: 'tumor-rna-quantification.tsv',
     parentNode: 'Part1Group',
     color: 'blue',
   ),
@@ -207,7 +210,7 @@ final List<WorkflowNodeData> initialNodes = [
         'icon_file.png',
       ),
       WorkflowNodeInOut(
-        'tumor-rna.[FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) - used by pVACseq to filter candidates by expression level',
+        'tumor-rna-quantification.tsv - Filter candidates by expression level',
         'icon_file.png',
       ),
     ],
