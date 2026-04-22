@@ -75,6 +75,16 @@ class WorkflowDetailView extends ConsumerWidget {
                     ),
                     SizedBox(height: 10 * scale),
 
+                    if (stepNode.note != null) ...[
+                      _buildSectionTitle('NOTE', scale),
+                      _buildDescription(
+                        context,
+                        stepNode.note!,
+                        scale,
+                      ),
+                      SizedBox(height: 10 * scale),
+                    ],
+
                     LayoutBuilder(
                       builder: (context, constraints) {
                         final bool isNarrow =

@@ -404,6 +404,8 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Step 7: Packaging for Delivery',
     goal:
         'Wrap mRNA in a protective lipid nanoparticle to allow human cell entry.',
+    note:
+        '⚠️ **The Delivery System:** Calibrate microfluidic flow rates and lipid-to-mRNA ratios to ensure LNP sizes remain between 60-100nm, preventing degradation in the bloodstream.',
     description:
         'Precise microfluidic collisions force the negatively charged mRNA and positively charged lipids to self-assemble into nanoparticles.',
     shortDescription:
@@ -447,6 +449,8 @@ final List<WorkflowNodeData> initialNodes = [
     title: 'Step 8: Quality Check and Bottling',
     goal:
         'Validate integrity, size, and concentration before finalizing for injection.',
+    note:
+        '⚠️ **Sterility and Purity:** Manufacture the final product in an ISO-certified "Clean Room" to minimize the risk of bacterial endotoxins and other contaminants.',
     description:
         'DLS verifies particles are exactly 60-100nm. TFF washes out ethanol.',
     shortDescription:

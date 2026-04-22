@@ -122,6 +122,9 @@ This pipeline is divided into two continuous halves:
 
 ## Step 7: Packaging for Delivery
 **Goal:** Wrap mRNA in a protective lipid nanoparticle to allow human cell entry.
+
+> [!WARNING]
+> **The Delivery System:** Calibrate microfluidic flow rates and lipid-to-mRNA ratios to ensure LNP sizes remain between 60-100nm, preventing degradation in the bloodstream.
 * **Hardware:** [Unchained Labs Sunshine](https://www.unchainedlabs.com/sunshine/) / NanoAssemblr Ignite
 * **Alt. (Outsourced):** VectorBuilder, Lonza, Vernal Biosciences
 * **Est. Cost:** ~$150k fixed + ~$500 / rxn (In-House) or ~$2k-$5k / rxn (Outsourced)
@@ -134,6 +137,9 @@ This pipeline is divided into two continuous halves:
 
 ## Step 8: Quality Check and Bottling
 **Goal:** Validate integrity, size, and concentration before finalizing for injection.
+
+> [!CAUTION]
+> **Sterility and Purity:** Manufacture final product in an ISO-certified "Clean Room" to minimize the risk of bacterial endotoxins and other contaminants.
 * **Hardware:** [Unchained Labs Stunner](https://www.unchainedlabs.com/stunner/) & TFF System
 * **Alt. (Outsourced):** CordenPharma, uBriGene, VectorBuilder
 * **Est. Cost:** ~$100k fixed + ~$100 / rxn (In-House) or ~$1k-$3k / rxn (Outsourced)

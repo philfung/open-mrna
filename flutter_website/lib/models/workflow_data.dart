@@ -16,6 +16,7 @@ class WorkflowNodeData {
   final String? description;
   final String? shortDescription;
   final String? goal;
+  final String? note;
   final String? hardware;
   final String? shortHardware;
   final String? software;
@@ -43,6 +44,7 @@ class WorkflowNodeData {
     this.description,
     this.shortDescription,
     this.goal,
+    this.note,
     this.hardware,
     this.shortHardware,
     this.software,
