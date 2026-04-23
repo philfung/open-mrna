@@ -1,6 +1,7 @@
 [![Contributions](https://img.shields.io/badge/contributions-welcome-blue)](https://github.com/philfung/open-mrna/graphs/contributors)
 [![Last Commit](https://img.shields.io/github/last-commit/philfung/open-mrna)]()
 [![License: MIT](https://img.shields.io/badge/license-Apache%20License%202.0-blue)](https://opensource.org/license/apache-2.0)
+[![Version](https://img.shields.io/badge/version-v0.5.0--beta-orange)](https://github.com/philfung/open-mrna/releases)
 
 # 💉 Open-mRNA: A guide to producing a personalized mRNA cancer vaccine
 From biopsy to syringe: this is an end-to-end overview on how to synthesize personalized mRNA cancer vaccine in a private lab.
