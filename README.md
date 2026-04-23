@@ -37,8 +37,8 @@ This pipeline is divided into two continuous halves:
 ## Step 1: Reading the Blueprint
 **Goal:** Convert samples into unorganized genetic code to establish a baseline and identify anomalies.
 * **Hardware:** [Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) or Element AVITI
-* **Alt. (Outsourced):** Novogene, Azenta, Eurofins
-* **Est. Cost:** ~$300k fixed + ~$1k / pt (In-House) or ~$2.5k / pt (Outsourced)
+* **Alt. (Outsourced):** Tempus, Personalis, CeGaT, Novogene
+* **Est. Cost:** ~$300k fixed + ~$1k / pt (In-House) or ~$3k-$10k / pt (Outsourced Clinical)
 * **Inputs:**
   * Tumor biopsy - at least 35mg in tissue
   * Normal blood (healthy baseline) - standard 4ml EDTA tube

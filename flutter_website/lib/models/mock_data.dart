@@ -52,8 +52,8 @@ final List<WorkflowNodeData> initialNodes = [
     hardware:
         '[Illumina NextSeq 2000](https://www.illumina.com/systems/sequencing-platforms/nextseq-1000-2000.html) or Element AVITI',
     shortHardware: 'Illumina NextSeq 2000',
-    outsourced: 'Novogene, Azenta, Eurofins',
-    cost: '~\$300k fixed + ~\$1k / pt (In-House) or ~\$2.5k / pt (Outsourced)',
+    outsourced: 'Tempus, Personalis, CeGaT, Novogene',
+    cost: '~\$300k fixed + ~\$1k / pt (In-House) or ~\$3k-\$10k / pt (Outsourced Clinical)',
     parentNode: 'Part1Group',
     color: 'rose',
     iconName: 'database',
