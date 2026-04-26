@@ -154,17 +154,6 @@ This pipeline is divided into two continuous halves:
 * **Outputs:** 10 x 1.0 mL sterile glass vials (approx. 10 doses)
 * **File Format:** Final Vaccine Product
 
-## Step 9: Administration & Multi-Modal Protocol
-**Goal:** Ensure the vaccine can successfully breach the tumor's defenses and train the immune system.
-
-> [!WARNING]
-> **The Tumor Microenvironment:** A tumor actively builds a suppressive microenvironment to hide from and disable the immune system. An mRNA vaccine alone may be ineffective if these "shields" remain up.
-
-* **Process:** The administration of a personalized mRNA vaccine is often part of a broader, multimodal treatment protocol designed to disable the cancer's defense mechanisms. For example, a treatment protocol with critical sequence and timing could include:
-  1. **Personalized mRNA Vaccine:** Trains T-cells to recognize and attack specific tumor neoantigens.
-  2. **Tyrosine Kinase Inhibitor (TKI):** Targets the tumor's supply infrastructure by blocking angiogenesis (blood vessel growth) and providing foundational anti-tumor pressure.
-  3. **PD-1 Checkpoint Inhibitor:** Prevents the tumor from sending a "stand down" signal to attacking T-cells. This removes the brakes from the immune system, unleashing their full killing potential against the cancer.
-
 ---
 
 # Web App
@@ -199,8 +188,8 @@ The interactive workflow is a Vite-based application. To run it:
 ### The Role of AI
 An advanced LLM can be useful for orchestrating the bioinformatics workflow, debugging dependency conflicts, designing multimodal treatment protocols, and navigating ethics approvals.
 
-### Other Strategies
-In order to overcome the tumor microenvironment, other strategies may need to be considered in parallel with vaccine therapy, such as use of Tyrosine Kinase Inhibitors (TKIs) and PD-1 inhibitors.
+### Protocol
+The administration of a personalized mRNA vaccine is often part of a broader, multimodal treatment protocol designed to disable the cancer's defense mechanisms. For example, a treatment protocol with critical sequence and timing could include use of Tyrosine Kinase Inhibitors (TKIs) and PD-1 inhibitors.
 
 # Acknowledgements
 
