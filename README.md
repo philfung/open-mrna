@@ -191,6 +191,9 @@ An advanced LLM can be useful for orchestrating the bioinformatics workflow, deb
 ### Protocol
 The administration of a personalized mRNA vaccine is often part of a broader, multimodal treatment protocol designed to disable the cancer's defense mechanisms. For example, a treatment protocol with critical sequence and timing could include use of Tyrosine Kinase Inhibitors (TKIs) and PD-1 inhibitors.
 
+# Related
+* [Awesome mRNA Cancer Vaccine Research](https://github.com/philfung/awesome-mrna-cancer-vaccines)
+
 # Acknowledgements
 
 1. This is **heavily inspired** by [Paul S Conyngham's](https://x.com/paul_conyngham/status/2036940410363535823) valiant effort in developing a personalized mRNA vaccine for his dog, Rosie.
